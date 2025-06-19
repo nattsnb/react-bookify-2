@@ -7,10 +7,9 @@ import "./poppins.css";
 import { useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import pl from "date-fns/locale/pl";
 import { ErrorContext } from "./contexts/errorContext";
-import {ExploreVenuesView} from "./components/ExploreVenuesView";
-import {VenueDetailedView} from "./components/VenueDetailedView";
+import { ExploreVenuesView } from "./components/ExploreVenuesView";
+import { VenueDetailedView } from "./components/VenueDetailedView";
 
 export function App() {
   const [isError, setIsError] = useState(false);
@@ -22,7 +21,7 @@ export function App() {
           <CssBaseline />
           <Layout>
             <Routes>
-              <Route path="/" element={<ExploreVenuesView />}/>
+              <Route path="/" element={<ExploreVenuesView />} />
               <Route path="/venue/:venueId" element={<VenueDetailedView />} />
               <Route path="/about-us/" element={<p>about us</p>} />
               <Route

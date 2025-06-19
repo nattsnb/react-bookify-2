@@ -1,4 +1,4 @@
 export class VenueTypeDto {
-  id: number;
-  name: string;
+  id!: number;
+  name!: string;
 }

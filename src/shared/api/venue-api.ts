@@ -1,18 +1,19 @@
-const API_URL =
-  "http://localhost:3000";
+import type { VenueDto } from "../types/venue/venue.dto.ts";
 
-const getAllVenues = () => {
+const API_URL = "http://localhost:3000";
+
+const getAllVenues = (): Promise<VenueDto[] | undefined> => {
   return fetch(`${API_URL}/venue/`, {
     method: "GET",
   })
     .then((res) => res.json())
-    .catch((error) => console.error("Error fetching venues:", error));
+    .catch((error: unknown) => console.error("Error fetching venues:", error));
 };
 
-const getHead = () => {
+const getHead = (): Promise<Response | void> => {
   return fetch(`${API_URL}/venue`, {
     method: "HEAD",
-  }).catch((error) => console.error("Server is not running:", error));
+  }).catch((error: unknown) => console.error("Server is not running:", error));
 };
 
 export const api = {

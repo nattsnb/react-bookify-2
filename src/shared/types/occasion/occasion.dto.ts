@@ -1,4 +1,4 @@
 export class OccasionDto {
-  id: number;
-  name: string;
+  id!: number;
+  name!: string;
 }

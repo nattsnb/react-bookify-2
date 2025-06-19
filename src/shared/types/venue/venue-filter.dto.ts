@@ -1,15 +1,3 @@
-import { Transform } from 'class-transformer';
-import {
-  IsOptional,
-  IsArray,
-  IsInt,
-  IsNumber,
-  IsString,
-  IsDateString,
-  Min,
-} from 'class-validator';
-import { ApiPropertyOptional } from '@nestjs/swagger';
-
 export class VenueFilterDto {
   amenities?: number[];
   occasions?: number[];

@@ -1,6 +1,5 @@
-
 export class CreateRatingDto {
-  score: number;
+  score!: number;
   review?: string;
-  reservationId: number;
+  reservationId!: number;
 }

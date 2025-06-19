@@ -1,5 +1,5 @@
 export class FavouriteDto {
-  id: number;
-  venueId: number;
-  userId: number;
+  id!: number;
+  venueId!: number;
+  userId!: number;
 }
