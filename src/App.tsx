@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+import theme from "./theme";
+import { Route, Routes } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import "./poppins.css";
+import { useState } from "react";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import pl from "date-fns/locale/pl";
+import { ErrorContext } from "./contexts/errorContext";
+import {ExploreVenuesView} from "./components/ExploreVenuesView";
+import {VenueDetailedView} from "./components/VenueDetailedView";
 
-function App() {
-  const [count, setCount] = useState(0)
+export function App() {
+  const [isError, setIsError] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ErrorContext.Provider value={{ isError, setIsError }}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout>
+            <Routes>
+              <Route path="/" element={<ExploreVenuesView />}/>
+              <Route path="/venue/:venueId" element={<VenueDetailedView />} />
+              <Route path="/about-us/" element={<p>about us</p>} />
+              <Route
+                path="/your-favourites/"
+                element={<p>your favourites</p>}
+              />
+              <Route path="/start-hosting/" element={<p>start hosting</p>} />
+              <Route path="/login/" element={<p>log in</p>} />
+              <Route path="/contact/" element={<p>contact</p>} />
+              <Route path="/assistance/" element={<p>assistance</p>} />
+            </Routes>
+          </Layout>
+        </ThemeProvider>
+      </LocalizationProvider>
+    </ErrorContext.Provider>
+  );
 }
-
-export default App
