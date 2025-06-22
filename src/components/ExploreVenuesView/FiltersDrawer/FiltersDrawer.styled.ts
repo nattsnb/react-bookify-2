@@ -7,7 +7,12 @@ import {
   styled,
 } from "@mui/material";
 
-export const StyledResetContainer = styled(Link)`
+export const StyledResetButton = styled("button")`
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
   color: ${({ theme }) => theme.palette.primary.main};
   font-weight: bold;
 `;

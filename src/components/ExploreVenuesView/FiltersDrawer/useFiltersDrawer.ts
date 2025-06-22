@@ -2,14 +2,25 @@ import { useEffect, useState } from "react";
 import { useError } from "../../../contexts/errorContext.ts";
 import { categoryApi } from "../../../shared/api/categoryApi.ts";
 import type { CategoryDto } from "../../../shared/types/category/category.dto.ts";
+import { useFilter } from "../../../contexts/filterParamsContext.ts";
+import {
+  getEuroCentLimitForPLN,
+  useCurrency,
+} from "../../../contexts/currencyContext.tsx";
 
 export const useFiltersDrawer = () => {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
   const [categoryData, setCategoryData] = useState<CategoryDto[] | null>(null);
-
+  const { filterParams, setFilterParams } = useFilter();
   const [isLoading, setIsLoading] = useState(true);
-  const [priceRangeValue, setPriceRangeValue] = useState([0, 10000]);
   const { setIsError } = useError();
+  const { currencyRate } = useCurrency();
+
+  const priceRangeValue: [number, number] = [
+    filterParams?.pricePerNightInEURCentMin ?? 0,
+    filterParams?.pricePerNightInEURCentMax ??
+      getEuroCentLimitForPLN(1000, currencyRate!),
+  ];
 
   useEffect(() => {
     async function getCategories() {
@@ -42,14 +53,37 @@ export const useFiltersDrawer = () => {
     _activeThumb: number,
   ) => {
     if (Array.isArray(newValue)) {
-      setPriceRangeValue(newValue);
+      setFilterParams({
+        ...filterParams,
+        pricePerNightInEURCentMin: newValue[0],
+        pricePerNightInEURCentMax: newValue[1],
+      });
     }
   };
 
-  const handleClick = (section: keyof typeof openSections) => {
+  const handleDropClick = (section: keyof typeof openSections) => {
     setOpenSections((previousState) => ({
       [section]: !previousState[section],
     }));
+  };
+
+  const toggleAmenity = (id: number) => {
+    const currentAmenities = filterParams?.amenities || [];
+    const updatedAmenities = currentAmenities.includes(id)
+      ? currentAmenities.filter((item) => item !== id)
+      : [...currentAmenities, id];
+
+    setFilterParams({
+      ...filterParams,
+      amenities: updatedAmenities,
+    });
+  };
+
+  const isAmenitySelected = (id: number) =>
+    filterParams?.amenities?.includes(id) || false;
+
+  const handleResetClick = () => {
+    setFilterParams(undefined);
   };
 
   return {
@@ -59,6 +93,9 @@ export const useFiltersDrawer = () => {
     setOpenSections,
     openSections,
     priceRangeValue,
-    handleClick,
+    handleClick: handleDropClick,
+    toggleAmenity,
+    isAmenitySelected,
+    handleResetClick,
   };
 };

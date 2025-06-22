@@ -2,8 +2,8 @@ import { createContext, useContext } from "react";
 import type { VenueFilterDto } from "../shared/types/venue/venue-filter.dto.ts";
 
 interface FilterParamsContextType {
-  filterParams: VenueFilterDto;
-  setFilterParams: (value: VenueFilterDto) => void;
+  filterParams: VenueFilterDto | undefined;
+  setFilterParams: (value: VenueFilterDto | undefined) => void;
 }
 
 export const FilterParamsContext =

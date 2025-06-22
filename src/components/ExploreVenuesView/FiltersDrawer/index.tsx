@@ -18,7 +18,7 @@ import {
   StyledAmenityButton,
   StyledAmenityText,
   StyledCheckbox,
-  StyledResetContainer,
+  StyledResetButton,
   StyledSlider,
   StyledSliderContainer,
 } from "./FiltersDrawer.styled.ts";
@@ -28,6 +28,10 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import type { CategoryDto } from "../../../shared/types/category/category.dto.ts";
 import { Fragment } from "react";
 import type { AmenityDto } from "../../../shared/types/amenity/amenity.dto.ts";
+import {
+  getEuroCentLimitForPLN,
+  useCurrency,
+} from "../../../contexts/currencyContext.tsx";
 
 const priceRangeFilterData = {
   id: 0,
@@ -43,7 +47,11 @@ export function FiltersDrawer() {
     openSections,
     priceRangeValue,
     handleClick,
+    isAmenitySelected,
+    toggleAmenity,
+    handleResetClick,
   } = useFiltersDrawer();
+  const { currencyRate } = useCurrency();
 
   if (isLoading) {
     return (
@@ -61,7 +69,9 @@ export function FiltersDrawer() {
             <Typography>reset</Typography>
           </HiddenElement>
           <StyledColumnTitleContainer>filters</StyledColumnTitleContainer>
-          <StyledResetContainer>reset</StyledResetContainer>
+          <StyledResetButton onClick={handleResetClick}>
+            reset
+          </StyledResetButton>
         </StyledDrawerToolbar>
       </StyledDrawerToolbarBackground>
       <List>
@@ -87,6 +97,13 @@ export function FiltersDrawer() {
                 value={priceRangeValue}
                 onChange={handleRangeChange}
                 valueLabelDisplay="on"
+                min={0}
+                max={getEuroCentLimitForPLN(1000, currencyRate!)}
+                valueLabelFormat={(value) =>
+                  currencyRate
+                    ? `${Math.round((value / 100) * currencyRate)} zł`
+                    : `${value / 100} €`
+                }
               />
             </StyledSliderContainer>
           </Collapse>
@@ -108,8 +125,11 @@ export function FiltersDrawer() {
             >
               <List component="div" disablePadding>
                 {category.amenities?.map((amenity: AmenityDto) => (
-                  <StyledAmenityButton key={amenity.id}>
-                    <StyledCheckbox />
+                  <StyledAmenityButton
+                    key={amenity.id}
+                    onClick={() => toggleAmenity(amenity.id)}
+                  >
+                    <StyledCheckbox checked={isAmenitySelected(amenity.id)} />
                     <StyledAmenityText>{amenity.name}</StyledAmenityText>
                   </StyledAmenityButton>
                 ))}

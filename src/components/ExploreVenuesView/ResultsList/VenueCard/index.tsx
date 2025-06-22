@@ -22,8 +22,8 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useVenueCard } from "./useVenueCard.ts";
 import RoomIcon from "@mui/icons-material/Room";
-import { usePriceInPLNData } from "../../../../hooks/usePriceInPLNData.ts";
 import type { VenueDto } from "../../../../shared/types/venue/venue.dto.ts";
+import { useCurrency } from "../../../../contexts/currencyContext.tsx";
 
 interface VenueCardProps {
   venue: VenueDto;
@@ -32,8 +32,11 @@ interface VenueCardProps {
 export function VenueCard({ venue }: VenueCardProps) {
   const { currentPictureNumber, handleClickForward, handleClickBack } =
     useVenueCard(venue);
+  const { currencyRate } = useCurrency();
 
-  const priceInPLNData = usePriceInPLNData(venue.pricePerNightInEURCent);
+  const priceInPLNData = currencyRate
+    ? Math.round((venue.pricePerNightInEURCent / 100) * currencyRate)
+    : null;
 
   return (
     <StyledVenueCardWrapper>
@@ -66,7 +69,7 @@ export function VenueCard({ venue }: VenueCardProps) {
           <StyledPictureBottomInfoDiv>
             <div>
               <Typography variant="boldOnCard">
-                {priceInPLNData.priceInPLN} zł / doba
+                {priceInPLNData} zł / doba
               </Typography>
             </div>
             <StyledLocalizationDiv>
