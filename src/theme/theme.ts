@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material";
 
 const theme = createTheme({
   palette: {
@@ -42,11 +42,6 @@ const theme = createTheme({
       fontWeight: 600,
       color: "#67AA92",
       padding: "0 20px",
-    },
-    filterTitle: {
-      textTransform: "uppercase",
-      fontSize: 20,
-      fontWeight: 400,
     },
     collapseSearchBar: {
       fontWeight: 600,

@@ -16,7 +16,18 @@ const getHead = (): Promise<Response | void> => {
   }).catch((error: unknown) => console.error("Server is not running:", error));
 };
 
-export const api = {
+const getFilteredVenues = (
+  filterQueryString: string,
+): Promise<VenueDto[] | undefined> => {
+  return fetch(`${API_URL}/venue/filter?${filterQueryString}`, {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .catch((error: unknown) => console.error("Error fetching venues:", error));
+};
+
+export const venueApi = {
   getAllVenues,
   getHead,
+  getFilteredVenues,
 };

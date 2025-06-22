@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api } from "../shared/api/venue-api";
+import { venueApi } from "../shared/api/venueApi.ts";
 import { useError } from "../contexts/errorContext";
 
 export function useServerStatus() {
@@ -11,10 +11,11 @@ export function useServerStatus() {
     const checkServer = async () => {
       setIsLoading(true);
       try {
-        const response = await api.getHead();
+        const response = await venueApi.getHead();
         setIsServerRunning(response.ok);
       } catch (error) {
         setIsError(true);
+        console.error("Error while getting server status:", error);
       } finally {
         setIsLoading(false);
       }
