@@ -87,8 +87,8 @@ export const StyledFiltersContainer = styled("div")`
   font-size: 16px;
 
   &.MuiTypography-root {
-    font-size: 16px;  // nadpisanie domyślnego rozmiaru czcionki
-    font-weight: bold;  // przykład dodatkowego stylu
+    font-size: 16px;  
+    font-weight: bold;  
   }
   &.MuiListItemText-primary {
     font-size: 16px;
@@ -151,16 +151,4 @@ export const SortButton = styled("button")`
   color: ${({ theme }) => theme.palette.background.default};
   height: 40px;
   width: 64px;
-`;
-
-export const StyledSlider = styled(Slider)`
-  padding-left: ${({ theme }) => theme.spacing(13)};
-  padding-right: ${({ theme }) => theme.spacing(13)};
-  width: 70%;
-`;
-
-export const StyledSliderContainer = styled("div")`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

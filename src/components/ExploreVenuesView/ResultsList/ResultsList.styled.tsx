@@ -1,4 +1,4 @@
-import { Pagination, styled } from "@mui/material";
+import { styled } from "@mui/material";
 
 export const ListWrapper = styled("div")`
   padding: 16px;
@@ -11,12 +11,6 @@ export const CardsWrapper = styled("div")`
 `;
 
 export const CardContainer = styled("div")`
-  display: flex;
-  justify-content: center;
-`;
-
-export const StyledPagination = styled(Pagination)`
-  margin-top: 16px;
   display: flex;
   justify-content: center;
 `;

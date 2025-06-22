@@ -34,8 +34,8 @@ export const ResultsList = ({ limit }: ResultsListProps) => {
     <ListWrapper>
       <CardsWrapper>
         {venuesOnPage ? (
-          venuesOnPage.map((venue: VenueDto, index: number) => (
-            <CardContainer key={index}>
+          venuesOnPage.map((venue: VenueDto) => (
+            <CardContainer key={venue.id}>
               <VenueCard venue={venue} />
             </CardContainer>
           ))
