@@ -1,4 +1,4 @@
-import { ReservationDto } from "../reservation/reservation.dto";
+import { ReservationDto } from "../reservation/reservation.dto.ts";
 
 export class RatingDto {
   id!: number;

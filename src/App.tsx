@@ -11,7 +11,7 @@ import { ErrorContext } from "./contexts/errorContext";
 import { ExploreVenuesView } from "./components/ExploreVenuesView";
 import { VenueDetailedView } from "./components/VenueDetailedView";
 import { FilterParamsContext } from "./contexts/filterParamsContext.ts";
-import type { VenueFilterDto } from "./shared/types/venue/venue-filter.dto.ts";
+import type { VenueFilterDto } from "./shared/types/tables/venue/venue-filter.dto.ts";
 import { CurrencyProvider } from "./contexts/currencyContext.tsx";
 
 export function App() {

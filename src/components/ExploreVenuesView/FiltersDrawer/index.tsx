@@ -25,9 +25,9 @@ import {
 import { StyledColumnTitleContainer } from "../../../shared/styledComponents/styledColumnTitleContainer.ts";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import type { CategoryDto } from "../../../shared/types/category/category.dto.ts";
+import type { CategoryDto } from "../../../shared/types/tables/category/category.dto.ts";
 import { Fragment } from "react";
-import type { AmenityDto } from "../../../shared/types/amenity/amenity.dto.ts";
+import type { AmenityDto } from "../../../shared/types/tables/amenity/amenity.dto.ts";
 import {
   getEuroCentLimitForPLN,
   useCurrency,

@@ -7,7 +7,7 @@ import {
 } from "./ResultsList.styled.tsx";
 import { VerticalContainer } from "../../../shared/styledComponents/verticalContainer.styled.ts";
 import { useError } from "../../../contexts/errorContext.ts";
-import type { VenueDto } from "../../../shared/types/venue/venue.dto.ts";
+import type { VenueDto } from "../../../shared/types/tables/venue/venue.dto.ts";
 import { VenueCard } from "./VenueCard";
 
 interface ResultsListProps {

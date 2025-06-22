@@ -1,4 +1,4 @@
-import type { CategoryDto } from "../types/category/category.dto.ts";
+import type { CategoryDto } from "../types/tables/category/category.dto.ts";
 
 const API_URL = "http://localhost:3000";
 

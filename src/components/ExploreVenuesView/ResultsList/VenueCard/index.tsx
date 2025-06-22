@@ -22,7 +22,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useVenueCard } from "./useVenueCard.ts";
 import RoomIcon from "@mui/icons-material/Room";
-import type { VenueDto } from "../../../../shared/types/venue/venue.dto.ts";
+import type { VenueDto } from "../../../../shared/types/tables/venue/venue.dto.ts";
 import { useCurrency } from "../../../../contexts/currencyContext.tsx";
 
 interface VenueCardProps {

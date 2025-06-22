@@ -1,4 +1,4 @@
-import type { VenueDto } from "../types/venue/venue.dto.ts";
+import type { VenueDto } from "../types/tables/venue/venue.dto.ts";
 
 const API_URL = "http://localhost:3000";
 

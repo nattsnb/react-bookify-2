@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { SortDrawer } from "./SortDrawer.tsx";
 import { ResultsList } from "./ResultsList";
+import { SearchBar } from "../Banner/SearchBar";
 
 const INITIAL_LIMIT = 6;
 
@@ -61,7 +62,7 @@ export function ExploreVenuesView() {
             >
               <SortDrawer />
             </Drawer>
-            <p>Search Bar Here</p>
+            <SearchBar />
           </StyledNoBannerFrame>
           <StyleThinContentContainer>
             <ResultsList limit={limit} />
