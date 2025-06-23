@@ -1,7 +1,11 @@
-import { styled, TextField } from "@mui/material";
+import { styled, TextField, FormControl } from "@mui/material";
 
 interface StyledSearchBarTextFieldProps {
   isCollapsed?: boolean;
+}
+
+interface StyledSearchBarTextFieldProps {
+  InputProps?: { startAdornment: React.JSX.Element };
 }
 
 export const StyledSearchBarTextField = styled(TextField, {
@@ -33,9 +37,11 @@ export const StyledSearchBarTextField = styled(TextField, {
         ${({ theme }) => theme.spacing(1)};
       padding: 0;
     }
+
     .MuiInputBase-root {
       padding: 0;
     }
+
     .MuiInputAdornment-root {
       margin: 0;
     }
@@ -47,9 +53,11 @@ export const StyledSearchBarTextField = styled(TextField, {
         ${({ theme }) => theme.spacing(3)};
       padding: ${({ theme }) => theme.spacing(1)};
     }
+
     .MuiInputBase-root {
       padding: ${({ theme }) => theme.spacing(1)};
     }
+
     .MuiInputAdornment-root {
       margin: ${({ theme }) => theme.spacing(1)};
     }
@@ -88,3 +96,35 @@ export const StyledSearchBarContainer = styled("div")`
   justify-content: center;
   align-items: center;
 `;
+
+export const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  width: 220,
+  backgroundColor: theme.palette.background.offDefault,
+  borderRadius: 15,
+  margin: theme.spacing(2, 3),
+  boxShadow: "0 2px 6px 1px rgba(0, 0, 0, 0.2)",
+
+  "& .MuiOutlinedInput-root": {
+    borderRadius: 15,
+    paddingLeft: 0, // bo mamy ikonę z lewej
+  },
+
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "rgba(0, 0, 0, 0.2)",
+  },
+
+  "& .MuiInputLabel-root": {
+    top: -7,
+    left: 36,
+    fontSize: 14,
+    backgroundColor: theme.palette.background.offDefault,
+    padding: "0 4px",
+  },
+
+  "& .MuiInputLabel-shrink": {
+    top: -7,
+    left: 12,
+    fontSize: 12,
+    color: theme.palette.primary.main,
+  },
+}));
