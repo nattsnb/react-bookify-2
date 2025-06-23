@@ -97,34 +97,24 @@ export const StyledSearchBarContainer = styled("div")`
   align-items: center;
 `;
 
-export const StyledFormControl = styled(FormControl)(({ theme }) => ({
-  width: 220,
-  backgroundColor: theme.palette.background.offDefault,
-  borderRadius: 15,
-  margin: theme.spacing(2, 3),
-  boxShadow: "0 2px 6px 1px rgba(0, 0, 0, 0.2)",
+export const StyledFormControl = styled(FormControl)`
+  width: 220px;
+  background-color: ${({ theme }) => theme.palette.background.offDefault};
+  border-radius: 15px;
+  margin: ${({ theme }) => theme.spacing(2, 3)};
+  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
 
-  "& .MuiOutlinedInput-root": {
-    borderRadius: 15,
-    paddingLeft: 0, // bo mamy ikonę z lewej
-  },
+  .MuiOutlinedInput-root {
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    height: 48px;
+  }
 
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: "rgba(0, 0, 0, 0.2)",
-  },
-
-  "& .MuiInputLabel-root": {
-    top: -7,
-    left: 36,
-    fontSize: 14,
-    backgroundColor: theme.palette.background.offDefault,
-    padding: "0 4px",
-  },
-
-  "& .MuiInputLabel-shrink": {
-    top: -7,
-    left: 12,
-    fontSize: 12,
-    color: theme.palette.primary.main,
-  },
-}));
+  .MuiInputLabel-root {
+    display: flex;
+    align-items: center;
+    gap: ${({ theme }) => theme.spacing(1)};
+    height: 20px;
+  }
+`;
