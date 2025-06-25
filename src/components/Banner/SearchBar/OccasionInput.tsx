@@ -4,7 +4,6 @@ import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { StyledFormControl } from "./SearchBar.styled.ts";
 import { useFormContext, Controller } from "react-hook-form";
 import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-bar-form-values.dto.ts";
-import React from "react";
 import { StyledCheckbox } from "../../ExploreVenuesView/FiltersDrawer/FiltersDrawer.styled.ts";
 
 export const OccasionInput = () => {
@@ -20,7 +19,6 @@ export const OccasionInput = () => {
       <InputLabel id="occasion-label">
         <Search /> occasion
       </InputLabel>
-
       <Controller
         name="occasionIds"
         control={control}

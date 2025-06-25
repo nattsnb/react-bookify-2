@@ -118,3 +118,33 @@ export const StyledFormControl = styled(FormControl)`
     height: 20px;
   }
 `;
+
+export const StyledGuestsControlBar = styled("div")`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 48px;
+  padding: 0 12px;
+  background-color: ${({ theme }) => theme.palette.background.offDefault};
+  border-radius: 15px;
+  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
+  color: ${({ theme }) => theme.palette.text.secondary};
+
+  .MuiIconButton-root {
+    padding: 4px;
+  }
+`;
+
+export const StyledGuestInputTextField = styled(TextField)`
+  .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  input {
+    text-align: center;
+  }
+`;

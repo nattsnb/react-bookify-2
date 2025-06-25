@@ -35,7 +35,7 @@ export const SearchBar = () => {
   const isViewportLargerThanMd = useMediaQuery(theme.breakpoints.up("md"));
   const isViewportSmallerThanLg = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const { venueTypes, occasions, loading } = useSearchDropdownData();
+  const { loading } = useSearchDropdownData();
 
   if (loading) {
     return (
@@ -53,7 +53,7 @@ export const SearchBar = () => {
             <Collapse in={isCollapsed} collapsedSize={95}>
               <StyledInputsContainer>
                 <LocalizationInput />
-                <OccasionInput options={occasions} />
+                <OccasionInput />
                 <VenueTypeInput />
                 <GuestsNumberInput />
                 <DateInput />
@@ -68,7 +68,7 @@ export const SearchBar = () => {
             >
               <StyledInputsContainer>
                 <LocalizationInput />
-                <OccasionInput options={occasions} />
+                <OccasionInput />
                 <DateInput />
                 <GuestsNumberInput />
                 <VenueTypeInput />
