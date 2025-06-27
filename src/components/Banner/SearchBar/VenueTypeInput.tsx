@@ -1,7 +1,7 @@
 import { InputLabel, MenuItem, Select, InputAdornment } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
-import { StyledFormControl } from "./SearchBar.styled.ts";
+import { StyledFormControl, StyledInputLabel } from "./SearchBar.styled.ts";
 import { useFormContext, Controller } from "react-hook-form";
 import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-bar-form-values.dto.ts";
 
@@ -11,17 +11,16 @@ export const VenueTypeInput = () => {
 
   return (
     <StyledFormControl fullWidth>
-      <InputLabel id="venue-type-label">
+      <StyledInputLabel id="venue-type-label">
         <InputAdornment position="start">
           <Search />
         </InputAdornment>
         venue type
-      </InputLabel>
+      </StyledInputLabel>
 
       <Controller
         name="venueTypeId"
         control={control}
-        defaultValue=""
         render={({ field }) => (
           <Select
             labelId="venue-type-label"

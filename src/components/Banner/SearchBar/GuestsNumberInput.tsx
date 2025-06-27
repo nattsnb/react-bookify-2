@@ -59,14 +59,14 @@ export const GuestsNumberInput = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <IconButton size="small" onClick={handleDecrement}>
+                    <IconButton onClick={handleDecrement}>
                       <Remove />
                     </IconButton>
                   </InputAdornment>
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton size="small" onClick={handleIncrement}>
+                    <IconButton onClick={handleIncrement}>
                       <Add />
                     </IconButton>
                   </InputAdornment>
@@ -74,6 +74,7 @@ export const GuestsNumberInput = () => {
                 inputProps: {
                   min: 1,
                 },
+                notched: false,
               }}
             />
           );

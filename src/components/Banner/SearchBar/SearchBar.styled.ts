@@ -1,4 +1,4 @@
-import { styled, TextField, FormControl } from "@mui/material";
+import { styled, TextField, FormControl, InputLabel } from "@mui/material";
 
 interface StyledSearchBarTextFieldProps {
   isCollapsed?: boolean;
@@ -119,23 +119,6 @@ export const StyledFormControl = styled(FormControl)`
   }
 `;
 
-export const StyledGuestsControlBar = styled("div")`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 48px;
-  padding: 0 12px;
-  background-color: ${({ theme }) => theme.palette.background.offDefault};
-  border-radius: 15px;
-  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
-  color: ${({ theme }) => theme.palette.text.secondary};
-
-  .MuiIconButton-root {
-    padding: 4px;
-  }
-`;
-
 export const StyledGuestInputTextField = styled(TextField)`
   .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
     position: absolute;
@@ -146,5 +129,36 @@ export const StyledGuestInputTextField = styled(TextField)`
 
   input {
     text-align: center;
+  }
+
+  .MuiInputLabel-root.MuiInputLabel-shrink {
+    color: ${({ theme }) => theme.palette.text.secondary};
+  }
+`;
+
+export const StyledLocalizationTextField = styled(TextField)`
+  input {
+    text-align: left;
+  }
+
+  .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+    position: absolute;
+    left: 14px;
+    bottom: 8px;
+    transform: none;
+    font-size: 14px;
+    color: ${({ theme }) => theme.palette.text.secondary};
+    pointer-events: none;
+  }
+`;
+export const StyledInputLabel = styled(InputLabel)`
+  color: ${({ theme }) => theme.palette.text.secondary};
+
+  &.Mui-focused {
+    color: ${({ theme }) => theme.palette.text.secondary};
+  }
+
+  &.MuiInputLabel-shrink {
+    color: ${({ theme }) => theme.palette.text.secondary};
   }
 `;

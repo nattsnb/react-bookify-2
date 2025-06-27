@@ -1,7 +1,7 @@
-import { InputLabel, MenuItem, Select } from "@mui/material";
+import { MenuItem, Select } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
-import { StyledFormControl } from "./SearchBar.styled.ts";
+import { StyledFormControl, StyledInputLabel } from "./SearchBar.styled.ts";
 import { useFormContext, Controller } from "react-hook-form";
 import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-bar-form-values.dto.ts";
 import { StyledCheckbox } from "../../ExploreVenuesView/FiltersDrawer/FiltersDrawer.styled.ts";
@@ -16,9 +16,9 @@ export const OccasionInput = () => {
 
   return (
     <StyledFormControl fullWidth>
-      <InputLabel id="occasion-label">
+      <StyledInputLabel>
         <Search /> occasion
-      </InputLabel>
+      </StyledInputLabel>
       <Controller
         name="occasionIds"
         control={control}

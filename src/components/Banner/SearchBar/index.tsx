@@ -69,9 +69,9 @@ export const SearchBar = () => {
               <StyledInputsContainer>
                 <LocalizationInput />
                 <OccasionInput />
+                <VenueTypeInput />
                 <DateInput />
                 <GuestsNumberInput />
-                <VenueTypeInput />
               </StyledInputsContainer>
             </Collapse>
           )}
