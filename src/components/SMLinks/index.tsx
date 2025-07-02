@@ -1,9 +1,11 @@
+import type { OverridableComponent } from "@mui/material/OverridableComponent";
+import type { SvgIconTypeMap } from "@mui/material/SvgIcon";
 import { SMContainer, StyledSMLinks } from "./SMLinks.styled.ts";
 
 interface SMLink {
   id: number;
   path: string;
-  Icon: SvgIconComponent;
+  Icon: OverridableComponent<SvgIconTypeMap>;
 }
 
 interface SMLinksProps {

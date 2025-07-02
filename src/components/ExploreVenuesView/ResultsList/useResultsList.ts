@@ -38,7 +38,7 @@ export const useResultsList = (limit: number) => {
       }
       setIsLoading(false);
     }
-    getData(limit, filterParams);
+    getData(limit, filterParams!);
   }, [limit, filterParams]);
 
   const buildQueryString = (filterParams: VenueFilterDto): string => {

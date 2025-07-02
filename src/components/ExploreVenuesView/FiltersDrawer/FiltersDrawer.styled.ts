@@ -1,6 +1,5 @@
 import {
   Checkbox,
-  Link,
   ListItemButton,
   ListItemText,
   Slider,

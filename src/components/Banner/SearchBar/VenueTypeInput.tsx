@@ -1,4 +1,4 @@
-import { InputLabel, MenuItem, Select, InputAdornment } from "@mui/material";
+import { MenuItem, Select, InputAdornment } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { StyledFormControl, StyledInputLabel } from "./SearchBar.styled.ts";

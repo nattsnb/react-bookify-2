@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { venueTypeApi } from "../../../shared/api/venueTypeApi.ts";
 import { occasionApi } from "../../../shared/api/occasionApi.ts";
+import type { VenueTypeDto } from "../../../shared/types/tables/venue-type/venue-type.dto.ts";
+import type { OccasionDto } from "../../../shared/types/tables/occasion/occasion.dto.ts";
 
 export const useSearchDropdownData = () => {
   const [venueTypes, setVenueTypes] = useState<VenueTypeDto[]>([]);
@@ -14,8 +16,8 @@ export const useSearchDropdownData = () => {
           venueTypeApi.getAllVenueTypes(),
           occasionApi.getAllOccasions(),
         ]);
-        setVenueTypes(venueData);
-        setOccasions(occasionData);
+        setVenueTypes(venueData ?? []);
+        setOccasions(occasionData ?? []);
       } catch (e) {
         console.error("Failed to fetch dropdown data:", e);
       } finally {

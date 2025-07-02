@@ -1,5 +1,5 @@
 import { Divider, useMediaQuery, useTheme } from "@mui/material";
-import { SMLinks } from "../SMLinks/index.tsx";
+import { SMLinks } from "../SMLinks";
 import {
   StyledFooterContainer,
   StyledFooterLink,

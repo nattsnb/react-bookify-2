@@ -12,7 +12,11 @@ export function useServerStatus() {
       setIsLoading(true);
       try {
         const response = await venueApi.getHead();
-        setIsServerRunning(response.ok);
+        if (response instanceof Response) {
+          setIsServerRunning(response.ok);
+        } else {
+          setIsServerRunning(false);
+        }
       } catch (error) {
         setIsError(true);
         console.error("Error while getting server status:", error);

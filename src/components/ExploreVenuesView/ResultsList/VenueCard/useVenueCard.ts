@@ -1,6 +1,7 @@
 import { useState } from "react";
+import type { VenueDto } from "../../../../shared/types/tables/venue/venue.dto.ts";
 
-export const useVenueCard = (venue) => {
+export const useVenueCard = (venue: VenueDto) => {
   const [currentPictureNumber, setCurrentPictureNumber] = useState(0);
 
   const handleClickForward = () => {

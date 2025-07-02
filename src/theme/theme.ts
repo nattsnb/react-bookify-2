@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
@@ -23,7 +23,6 @@ const theme = createTheme({
   typography: {
     fontFamily: "Poppins",
     fontSize: 16,
-    padding: 0,
     homeLink: {
       fontSize: 35,
       fontWeight: 100,
@@ -31,17 +30,14 @@ const theme = createTheme({
     },
     link: {
       fontWeight: 400,
-      padding: "10px 60px",
     },
     iconLink: {
       fontSize: "40px",
       fontWeight: 400,
-      padding: "50px 80px",
     },
     boldLink: {
       fontWeight: 600,
       color: "#67AA92",
-      padding: "0 20px",
     },
     collapseSearchBar: {
       fontWeight: 600,
@@ -119,14 +115,12 @@ const theme = createTheme({
         root: {
           textDecoration: "none",
           color: "#000000",
-          padding: 0,
         },
       },
     },
     MuiTypography: {
       styleOverrides: {
         root: {
-          padding: 0,
           fontSize: "16px",
         },
       },
