@@ -1,8 +1,7 @@
 export interface SearchBarFormValuesDto {
   localization?: string;
   occasionIds?: number[];
-  dateStart?: string;
-  dateEnd?: string;
+  dateRange?: [Date | null, Date | null];
   guests?: number;
   venueTypeId?: number;
 }

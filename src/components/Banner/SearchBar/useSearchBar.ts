@@ -8,18 +8,20 @@ export function useSearchBar() {
   const form = useForm<SearchBarFormValuesDto>();
   const [filterParams, setFilterParams] = useState<Partial<VenueFilterDto>>({});
 
+  const formatDate = (date?: Date | null) =>
+    date
+      ? date.toISOString().slice(0, 10) // YYYY-MM-DD
+      : undefined;
+
   const onSubmit = async (data: SearchBarFormValuesDto) => {
-    const {
-      localization,
-      occasionIds,
-      venueTypeId,
-      dateStart,
-      dateEnd,
-      guests,
-    } = data;
+    const { localization, occasionIds, venueTypeId, dateRange, guests } = data;
+
+    const dateStart = formatDate(dateRange?.[0]);
+    const dateEnd = formatDate(dateRange?.[1]);
 
     let latitude: number | undefined;
     let longitude: number | undefined;
+    f;
 
     if (localization) {
       try {
