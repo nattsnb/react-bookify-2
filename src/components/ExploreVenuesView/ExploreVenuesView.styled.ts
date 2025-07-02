@@ -1,5 +1,4 @@
 import { styled, TextField, Toolbar } from "@mui/material";
-import toolbarBackgroundImage from "../../images/toolbar.svg";
 
 export const StyledWideContentContainer = styled("div")`
   padding-top: ${({ theme }) => theme.spacing(31)};
@@ -19,7 +18,7 @@ export const StyledWideContentContainer = styled("div")`
 `;
 
 export const StyledDrawerToolbarBackground = styled(Toolbar)`
-  background-image: url(${toolbarBackgroundImage});
+  background-image: url("/images/toolbar.svg");
   display: flex;
   justify-content: center;
   min-width: 285px;

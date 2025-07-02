@@ -1,7 +1,4 @@
 import { styled } from "@mui/material";
-import topDecorationImage from "../../images/topDecoration.svg";
-import bottomDecorationImage from "../../images/bottomDecoration.svg";
-import backgroundImage from "../../images/background.svg";
 import Typography from "@mui/material/Typography";
 
 export const StyledBannerContent = styled("div")`
@@ -20,8 +17,9 @@ export const StyledBanner = styled("div")`
   flex-direction: column;
   height: 524px;
   background-image:
-    url(${topDecorationImage}), url(${bottomDecorationImage}),
-    url(${backgroundImage});
+    url("/images/topDecoration.svg"), url("/images/bottomDecoration.svg"),
+    url("/images/background.svg");
+
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position:
     top left,
@@ -30,7 +28,8 @@ export const StyledBanner = styled("div")`
 
   ${({ theme }) => theme.breakpoints.down("md")} {
     height: fit-content;
-    background-image: url(${topDecorationImage}), url(${backgroundImage});
+    background-image:
+      url("/images/topDecoration.svg"), url("/images/background.svg");
     background-repeat: no-repeat, no-repeat;
     background-size: auto, cover;
     background-position:
@@ -72,7 +71,7 @@ export const StyledHeaderTypographyContainer = styled("div")`
 `;
 
 export const StyledBottomDecorationImageContainer = styled("div")`
-  background-image: url(${bottomDecorationImage});
+  background-image: url("/images/bottomDecoration.svg");
   min-height: 275px;
   background-repeat: no-repeat;
 `;
