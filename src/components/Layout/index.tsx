@@ -17,7 +17,6 @@ export function Layout({ children }: LayoutProps) {
   const { isError } = useError();
   const { isServerRunning, isLoading } = useServerStatus();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  console.log(theme.palette.secondary);
 
   if (isLoading) {
     return (
