@@ -13,6 +13,7 @@ import { VenueDetailedView } from "./components/VenueDetailedView";
 import { FilterParamsContext } from "./contexts/filterParamsContext.ts";
 import type { VenueFilterDto } from "./shared/types/tables/venue/venue-filter.dto.ts";
 import { CurrencyProvider } from "./contexts/currencyContext.tsx";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export function App() {
   const [isError, setIsError] = useState(false);
@@ -24,7 +25,7 @@ export function App() {
     <ErrorContext.Provider value={{ isError, setIsError }}>
       <CurrencyProvider>
         <FilterParamsContext.Provider value={{ filterParams, setFilterParams }}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Layout>

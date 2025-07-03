@@ -15,7 +15,7 @@ import { useSearchBar } from "./useSearchBar.ts";
 import { LocalizationInput } from "./LocalizationInput.tsx";
 import { OccasionInput } from "./OccasionInput.tsx";
 import { VenueTypeInput } from "./VenueTypeInput.tsx";
-import { DateInput } from "./DateInput.tsx";
+import { DateInput } from "./DateInput";
 import { GuestsNumberInput } from "./GuestsNumberInput.tsx";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { FormProvider } from "react-hook-form";

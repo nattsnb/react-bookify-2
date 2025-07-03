@@ -95,12 +95,13 @@ export const StyledFormControl = styled(FormControl)`
   border-radius: 15px;
   margin: ${({ theme }) => theme.spacing(2, 3)};
   box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
+  max-height: 48px;
 
   .MuiOutlinedInput-root {
     border-radius: 15px;
     display: flex;
     align-items: center;
-    height: 48px;
+    max-height: 48px;
   }
 
   .MuiInputLabel-root {
@@ -170,4 +171,11 @@ export const StyledInputLabel = styled(InputLabel)`
   &.MuiInputLabel-shrink {
     color: ${({ theme }) => theme.palette.text.secondary};
   }
+`;
+
+export const StyledDatesInputDiv = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;

@@ -1,5 +1,5 @@
-import type {DateRange} from "@mui/x-date-pickers-pro";
-import type {Dayjs} from "dayjs";
+import type { DateRange } from "@mui/x-date-pickers-pro";
+import type { Dayjs } from "dayjs";
 
 export interface SearchBarFormValuesDto {
   localization?: string;
