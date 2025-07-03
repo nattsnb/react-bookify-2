@@ -8,12 +8,7 @@ import {
   StyledInputLabel,
 } from "../SearchBar.styled.ts";
 import type { SearchBarFormValuesDto } from "../../../../shared/types/forms/search-bar-form-values.dto.ts";
-import {
-  StyledDateTextField,
-  StyledDateInputDiv,
-  StyledSplitDiv,
-  DateButton,
-} from "./DateInput.styled.ts";
+import { StyledDateInputDiv, DateButton } from "./DateInput.styled.ts";
 import { StyledIconContainer } from "./DateInput.styled.ts";
 import { ButtonGroup } from "@mui/material";
 
@@ -37,10 +32,9 @@ export const DateInput = () => {
         console.log("startProps", startProps);
         console.log("endProps", endProps);
         console.log("Aktualny zakres", range);
-
         return (
           <StyledFormControl fullWidth>
-            {isPickerOpen ? (
+            {isPickerOpen || range[0] || range[0] ? (
               <ButtonGroup variant="outlined" fullWidth>
                 <DateButton
                   onClick={() => setIsPickerOpen(true)}
