@@ -14,8 +14,8 @@ export function useSearchBar() {
   const onSubmit = async (data: SearchBarFormValuesDto) => {
     const { localization, occasionIds, venueTypeId, dateRange, guests } = data;
 
-    const dateStart = formatDate(dateRange?.[0]);
-    const dateEnd = formatDate(dateRange?.[1]);
+    // const dateStart = formatDate(dateRange?.[0]);
+    // const dateEnd = formatDate(dateRange?.[1]);
 
     let latitude: number | undefined;
     let longitude: number | undefined;
@@ -33,8 +33,8 @@ export function useSearchBar() {
     }
 
     const newParams: Partial<VenueFilterDto> = {
-      dateStart,
-      dateEnd,
+      // dateStart,
+      // dateEnd,
       guests,
       latitude,
       longitude,
