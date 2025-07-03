@@ -9,9 +9,7 @@ export function useSearchBar() {
   const [filterParams, setFilterParams] = useState<Partial<VenueFilterDto>>({});
 
   const formatDate = (date?: Date | null) =>
-    date
-      ? date.toISOString().slice(0, 10) // YYYY-MM-DD
-      : undefined;
+    date ? date.toISOString().slice(0, 10) : undefined;
 
   const onSubmit = async (data: SearchBarFormValuesDto) => {
     const { localization, occasionIds, venueTypeId, dateRange, guests } = data;
@@ -21,7 +19,6 @@ export function useSearchBar() {
 
     let latitude: number | undefined;
     let longitude: number | undefined;
-    f;
 
     if (localization) {
       try {
@@ -35,20 +32,23 @@ export function useSearchBar() {
       }
     }
 
-    setFilterParams((prev) => {
-      const newParams: Partial<VenueFilterDto> = {
-        dateStart,
-        dateEnd,
-        guests,
-        latitude,
-        longitude,
-      };
+    const newParams: Partial<VenueFilterDto> = {
+      dateStart,
+      dateEnd,
+      guests,
+      latitude,
+      longitude,
+    };
 
-      if (occasionIds) newParams.occasions = occasionIds;
-      if (venueTypeId) newParams.venueTypeId = venueTypeId;
+    if (occasionIds) newParams.occasions = occasionIds;
+    if (venueTypeId) newParams.venueTypeId = venueTypeId;
 
-      return { ...prev, ...newParams };
-    });
+    setFilterParams((prev) => ({
+      ...prev,
+      ...newParams,
+    }));
+
+    console.log("Wysyłane filterParams:", newParams);
   };
 
   return {

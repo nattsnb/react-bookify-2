@@ -1,76 +1,76 @@
-import { useState } from "react";
-import { Popover, TextField, IconButton, InputAdornment } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Popover } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { StyledFormControl, StyledInputLabel } from "./SearchBar.styled.ts";
 import { useFormContext, Controller } from "react-hook-form";
+import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
+import {
+  StyledFormControl,
+  StyledInputLabel,
+  StyledTextField,
+} from "./SearchBar.styled.ts";
 import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-bar-form-values.dto.ts";
-import { DateRangePicker } from "@mui/x-date-pickers-pro";
 
 export const DateInput = () => {
-  const { control } = useFormContext<SearchBarFormValuesDto>();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { control, watch } = useFormContext<SearchBarFormValuesDto>();
+  const range = watch("dateRange") ?? [null, null];
 
-  const handleOpen = (event: React.MouseEvent<HTMLElement>) =>
-    setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [shrink, setShrink] = useState(false);
+  useEffect(() => {
+    setShrink(!!range[0] || !!range[1] || Boolean(anchorEl));
+  }, [range, anchorEl]);
+
+  const openPicker = (e: React.MouseEvent<HTMLElement>) =>
+    setAnchorEl(e.currentTarget);
+  const closePicker = () => setAnchorEl(null);
+
+  const displayValue =
+    range[0] && range[1]
+      ? `${range[0].toLocaleDateString()} – ${range[1].toLocaleDateString()}`
+      : "";
 
   return (
     <StyledFormControl fullWidth>
-      <StyledInputLabel>
-        <CalendarMonthIcon /> date range
+      <StyledInputLabel shrink={shrink}>
+        <CalendarMonthIcon />
+        date range
       </StyledInputLabel>
+
       <Controller
         name="dateRange"
         control={control}
         defaultValue={[null, null]}
-        render={({ field }) => {
-          const [start, end] = field.value ?? [null, null];
-          const formattedRange =
-            start && end
-              ? `${start.toLocaleDateString()} – ${end.toLocaleDateString()}`
-              : "";
-
-          return (
-            <>
-              <TextField
-                value={formattedRange}
-                label=""
-                onClick={handleOpen}
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton tabIndex={-1}>
-                        <CalendarMonthIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                  readOnly: true,
-                }}
-              />
-              <Popover
-                open={Boolean(anchorEl)}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-              >
-                <div style={{ padding: 8, background: "#fff" }}>
-                  <DateRangePicker
-                    calendars={1}
-                    value={field.value ?? [null, null]}
-                    onChange={(newValue) => {
-                      field.onChange(newValue);
-                      handleClose();
-                    }}
-                    slotProps={{
-                      textField: { style: { display: "none" } },
-                    }}
-                  />
-                </div>
-              </Popover>
-            </>
-          );
-        }}
+        render={({ field }) => (
+          <>
+            <StyledTextField
+              variant="standard"
+              fullWidth
+              value={displayValue}
+              onClick={openPicker}
+              inputProps={{ readOnly: true }}
+            />
+            <Popover
+              open={Boolean(anchorEl)}
+              anchorEl={anchorEl}
+              onClose={closePicker}
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              transformOrigin={{ vertical: "top", horizontal: "left" }}
+            >
+              <div style={{ padding: 8, background: "#fff" }}>
+                <DateRangePicker
+                  calendars={1}
+                  value={field.value ?? [null, null]}
+                  onChange={(val) =>
+                    field.onChange(val as [Date | null, Date | null])
+                  }
+                  onAccept={closePicker}
+                  onClose={closePicker}
+                  renderInput={() => <></>}
+                />
+              </div>
+            </Popover>
+          </>
+        )}
       />
     </StyledFormControl>
   );

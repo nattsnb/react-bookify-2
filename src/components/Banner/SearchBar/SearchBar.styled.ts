@@ -1,68 +1,60 @@
 import { styled, TextField, FormControl, InputLabel } from "@mui/material";
 
-interface StyledSearchBarTextFieldProps {
-  isCollapsed?: boolean;
-}
-
-interface StyledSearchBarTextFieldProps {
-  InputProps?: { startAdornment: React.JSX.Element };
-}
-
-export const StyledSearchBarTextField = styled(TextField, {
-  shouldForwardProp: (prop) => prop !== "isCollapsed",
-})<StyledSearchBarTextFieldProps>`
-  max-width: 220px;
-  min-width: ${({ isCollapsed }) => (isCollapsed ? "0px" : "220px")};
-  max-height: 48px;
-  padding: 0;
-  justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 2px 6px 1px rgb(0 0 0 / 20%);
-  border-radius: 15px;
-  font-size: 1.2vw;
-  background-color: ${({ theme }) => theme.palette.background.offDefault};
-
-  .MuiOutlinedInput-notchedOutline {
-    border: none;
-  }
-
-  &.MuiFormControl-root {
-    margin: ${({ theme }) => theme.spacing(2)}
-      ${({ theme }) => theme.spacing(3)};
-  }
-
-  ${({ theme }) => theme.breakpoints.down("lg")} {
-    &.MuiFormControl-root {
-      margin: ${({ theme }) => theme.spacing(2)}
-        ${({ theme }) => theme.spacing(1)};
-      padding: 0;
-    }
-
-    .MuiInputBase-root {
-      padding: 0;
-    }
-
-    .MuiInputAdornment-root {
-      margin: 0;
-    }
-  }
-
-  ${({ theme }) => theme.breakpoints.down("md")} {
-    &.MuiFormControl-root {
-      margin: ${({ theme }) => theme.spacing(2)}
-        ${({ theme }) => theme.spacing(3)};
-      padding: ${({ theme }) => theme.spacing(1)};
-    }
-
-    .MuiInputBase-root {
-      padding: ${({ theme }) => theme.spacing(1)};
-    }
-
-    .MuiInputAdornment-root {
-      margin: ${({ theme }) => theme.spacing(1)};
-    }
-  }
-`;
+// export const StyledSearchBarTextField = styled(TextField, {
+//   shouldForwardProp: (prop) => prop !== "isCollapsed",
+// })<{ isCollapsed?: boolean }>`
+//     max-width: 220px;
+//     min-width: ${({ isCollapsed }) => (isCollapsed ? "0px" : "220px")};
+//     max-height: 48px;
+//     padding: 0;
+//     justify-content: center;
+//     border: 1px solid rgba(0, 0, 0, 0.2);
+//     box-shadow: 0 2px 6px 1px rgb(0 0 0 / 20%);
+//     border-radius: 15px;
+//     font-size: 1.2vw;
+//     background-color: ${({ theme }) => theme.palette.background.offDefault};
+//
+//     .MuiOutlinedInput-notchedOutline {
+//         border: none;
+//     }
+//
+//     &.MuiFormControl-root {
+//         margin: ${({ theme }) => theme.spacing(2)}
+//         ${({ theme }) => theme.spacing(3)};
+//     }
+//
+//     ${({ theme }) => theme.breakpoints.down("lg")} {
+//         &.MuiFormControl-root {
+//             margin: ${({ theme }) => theme.spacing(2)}
+//             ${({ theme }) => theme.spacing(1)};
+//             padding: 0;
+//         }
+//
+//         .MuiInputBase-root {
+//             padding: 0;
+//         }
+//
+//         .MuiInputAdornment-root {
+//             margin: 0;
+//         }
+//     }
+//
+//     ${({ theme }) => theme.breakpoints.down("md")} {
+//         &.MuiFormControl-root {
+//             margin: ${({ theme }) => theme.spacing(2)}
+//             ${({ theme }) => theme.spacing(3)};
+//             padding: ${({ theme }) => theme.spacing(1)};
+//         }
+//
+//         .MuiInputBase-root {
+//             padding: ${({ theme }) => theme.spacing(1)};
+//         }
+//
+//         .MuiInputAdornment-root {
+//             margin: ${({ theme }) => theme.spacing(1)};
+//         }
+//     }
+// `;
 
 export const StyledInputsContainer = styled("div")`
   width: 100%;
@@ -117,6 +109,14 @@ export const StyledFormControl = styled(FormControl)`
     gap: ${({ theme }) => theme.spacing(1)};
     height: 20px;
   }
+
+  & .MuiDateRangePickerToolbar-root {
+    display: none;
+  }
+
+  & .MuiCalendarPicker-root {
+    padding: 0;
+  }
 `;
 
 export const StyledGuestInputTextField = styled(TextField)`
@@ -136,7 +136,7 @@ export const StyledGuestInputTextField = styled(TextField)`
   }
 `;
 
-export const StyledLocalizationTextField = styled(TextField)`
+export const StyledTextField = styled(TextField)`
   input {
     text-align: left;
   }
@@ -150,7 +150,16 @@ export const StyledLocalizationTextField = styled(TextField)`
     color: ${({ theme }) => theme.palette.text.secondary};
     pointer-events: none;
   }
+
+  .MuiInput-underline:before,
+  .MuiInput-underline:hover:not(.Mui-disabled):before,
+  .MuiInput-underline:after,
+  .MuiInputBase-root:before,
+  .MuiInputBase-root:after {
+    border-bottom: none;
+  }
 `;
+
 export const StyledInputLabel = styled(InputLabel)`
   color: ${({ theme }) => theme.palette.text.secondary};
 
