@@ -1,37 +1,9 @@
-import { Button, type ButtonProps, styled, TextField } from "@mui/material";
+import { Button, type ButtonProps, styled } from "@mui/material";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 interface DateButtonProps extends ButtonProps {
   isSet?: boolean;
 }
-
-export const StyledDateTextField = styled(TextField)`
-  border: none;
-  box-shadow: none;
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  min-width: 0;
-  font-weight: 600;
-
-  .MuiInput-underline:before,
-  .MuiInput-underline:after,
-  .MuiInputBase-root:before,
-  .MuiInputBase-root:after {
-    border-bottom: none !important;
-  }
-  .MuiInputLabel-root.MuiInputLabel-shrink {
-    display: none;
-  }
-
-  .MuiInputLabel-root {
-    font-weight: 700;
-    color: ${({ theme }) => theme.palette.text.secondary};
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    font-size: 16px;
-  }
-`;
 
 export const StyledDateInputDiv = styled("div")`
   width: 220px;
@@ -42,12 +14,6 @@ export const StyledDateInputDiv = styled("div")`
   align-items: center;
   min-height: 48px;
   font-size: 1.2vw;
-`;
-
-export const StyledSplitDiv = styled("div")`
-  height: 48px;
-  width: 3px;
-  background-color: ${({ theme }) => theme.palette.primary.fontLight};
 `;
 
 export const StyledIconContainer = styled("div")`
@@ -66,4 +32,38 @@ export const DateButton = styled(Button, {
   textTransform: "none",
   height: 48,
   padding: 0,
+
+  // usuń focus/ripple
+  boxShadow: "none",
+  border: "none",
+
+  "&:focus, &:focus-visible, &:active": {
+    outline: "none",
+    boxShadow: "none",
+    border: "none",
+  },
+
+  ".MuiTouchRipple-root": {
+    display: "none",
+  },
 }));
+
+export const SplitButtonGroup = styled(ButtonGroup)`
+  width: 100%;
+  background-color: ${({ theme }) => theme.palette.background.offDefault};
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
+
+  && {
+    box-shadow: none;
+  }
+
+  .MuiButtonGroup-grouped {
+    border: none;
+  }
+
+  .MuiButtonGroup-grouped:not(:last-of-type) {
+    border-right: 4px solid ${({ theme }) => theme.palette.divider};
+  }
+`;

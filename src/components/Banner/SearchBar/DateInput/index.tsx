@@ -1,13 +1,16 @@
-import { useState } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useFormContext } from "react-hook-form";
-import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import { StyledFormControl, StyledInputLabel } from "../SearchBar.styled.ts";
 import type { SearchBarFormValuesDto } from "../../../../shared/types/forms/search-bar-form-values.dto.ts";
-import { StyledDateInputDiv, DateButton } from "./DateInput.styled.ts";
+import {
+  StyledDateInputDiv,
+  DateButton,
+  SplitButtonGroup,
+} from "./DateInput.styled.ts";
 import { StyledIconContainer } from "./DateInput.styled.ts";
-import { ButtonGroup } from "@mui/material";
 import { useDateInput } from "./useDateInput.ts";
+import type { Dayjs } from "dayjs";
+import { DesktopDateRangePicker } from "@mui/x-date-pickers-pro";
 
 export const DateInput = () => {
   const { isPickerOpen, setIsPickerOpen } = useDateInput();
@@ -15,26 +18,27 @@ export const DateInput = () => {
   const range = watch("dateRange") ?? [null, null];
 
   return (
-    <DateRangePicker
+    <DesktopDateRangePicker
       value={range}
       onChange={(newValue) => {
-        setValue("dateRange", newValue);
+        setValue("dateRange", newValue as [Dayjs | null, Dayjs | null]);
       }}
       open={isPickerOpen}
       onOpen={() => setIsPickerOpen(true)}
       onClose={() => setIsPickerOpen(false)}
+      calendars={1}
       renderInput={() => {
         return (
           <StyledFormControl fullWidth>
             {isPickerOpen || range[0] || range[0] ? (
-              <ButtonGroup variant="outlined" fullWidth>
+              <SplitButtonGroup variant="outlined" fullWidth>
                 <DateButton isSet={!!range[0]}>
                   {range[0] ? range[0].format("YYYY-MM-DD") : "starts at"}
                 </DateButton>
                 <DateButton isSet={!!range[1]}>
                   {range[1] ? range[1].format("YYYY-MM-DD") : "ends at"}
                 </DateButton>
-              </ButtonGroup>
+              </SplitButtonGroup>
             ) : (
               <StyledDateInputDiv onClick={() => setIsPickerOpen(true)}>
                 <StyledInputLabel>
