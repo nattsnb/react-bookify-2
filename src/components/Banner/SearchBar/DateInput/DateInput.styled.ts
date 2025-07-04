@@ -1,4 +1,8 @@
-import { Button, styled, TextField } from "@mui/material";
+import { Button, type ButtonProps, styled, TextField } from "@mui/material";
+
+interface DateButtonProps extends ButtonProps {
+  isSet?: boolean;
+}
 
 export const StyledDateTextField = styled(TextField)`
   border: none;
@@ -50,14 +54,16 @@ export const StyledIconContainer = styled("div")`
   padding-right: ${({ theme }) => theme.spacing(2)};
 `;
 
-export const DateButton = styled(Button)<{ isSet?: boolean }>`
-  flex: 1;
-  font-weight: ${({ isSet }) => (isSet ? 400 : 700)};
-  color: ${({ theme }) => theme.palette.text.secondary};
-  font-size: ${({ isSet }) => (isSet ? "0.9rem" : "1rem")};
-  justify-content: center;
-  align-items: center;
-  text-transform: none;
-  height: 48px;
-  padding: 0;
-`;
+export const DateButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "isSet",
+})<DateButtonProps>(({ isSet, theme }) => ({
+  flex: 1,
+  fontWeight: isSet ? 400 : 700,
+  color: theme.palette.text.secondary,
+  fontSize: isSet ? "0.9rem" : "1rem",
+  justifyContent: "center",
+  alignItems: "center",
+  textTransform: "none",
+  height: 48,
+  padding: 0,
+}));
