@@ -25,7 +25,10 @@ export function App() {
     <ErrorContext.Provider value={{ isError, setIsError }}>
       <CurrencyProvider>
         <FilterParamsContext.Provider value={{ filterParams, setFilterParams }}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <LocalizationProvider
+            dateAdapter={AdapterDayjs}
+            localeText={{ okButtonLabel: "Done" }}
+          >
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Layout>

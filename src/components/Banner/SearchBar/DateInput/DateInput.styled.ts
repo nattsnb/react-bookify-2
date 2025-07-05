@@ -1,5 +1,7 @@
 import { Button, type ButtonProps, styled } from "@mui/material";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import { PickersActionBar } from "@mui/x-date-pickers/PickersActionBar";
+import { DesktopDateRangePicker } from "@mui/x-date-pickers-pro";
 
 interface DateButtonProps extends ButtonProps {
   isSet?: boolean;
@@ -32,8 +34,6 @@ export const DateButton = styled(Button, {
   textTransform: "none",
   height: 48,
   padding: 0,
-
-  // usuń focus/ripple
   boxShadow: "none",
   border: "none",
 
@@ -65,5 +65,19 @@ export const SplitButtonGroup = styled(ButtonGroup)`
 
   .MuiButtonGroup-grouped:not(:last-of-type) {
     border-right: 4px solid ${({ theme }) => theme.palette.divider};
+  }
+`;
+
+export const StyledActionBar = styled(PickersActionBar)`
+  justify-content: center;
+  padding-top: 0;
+  & .MuiButton-root {
+    text-transform: capitalize;
+    font-weight: 600;
+    border-radius: 18px;
+    background-color: ${({ theme }) => theme.palette.primary.main};
+    color: ${({ theme }) => theme.palette.background.default};
+    width: 132px;
+    height: 40px;
   }
 `;

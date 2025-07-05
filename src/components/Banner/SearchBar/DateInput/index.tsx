@@ -6,6 +6,7 @@ import {
   StyledDateInputDiv,
   DateButton,
   SplitButtonGroup,
+  StyledActionBar,
 } from "./DateInput.styled.ts";
 import { StyledIconContainer } from "./DateInput.styled.ts";
 import { useDateInput } from "./useDateInput.ts";
@@ -27,6 +28,15 @@ export const DateInput = () => {
       onOpen={() => setIsPickerOpen(true)}
       onClose={() => setIsPickerOpen(false)}
       calendars={1}
+      showDaysOutsideCurrentMonth
+      components={{
+        ActionBar: StyledActionBar,
+      }}
+      componentsProps={{
+        actionBar: {
+          actions: ["accept"],
+        },
+      }}
       renderInput={() => {
         return (
           <StyledFormControl fullWidth>

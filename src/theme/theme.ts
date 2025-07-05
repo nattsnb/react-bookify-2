@@ -136,6 +136,31 @@ const theme = createTheme({
         },
       },
     },
+    MuiPickersPopper: {
+      styleOverrides: {
+        root: {
+          "& .MuiPaper-root": {
+            borderRadius: 18,
+            width: "100%",
+            boxShadow: "0 8px 24px rgba(0,0,0,0.32)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          },
+          "& .MuiDayPicker-slideTransition": {
+            width: "100%",
+            maxWidth: "100%",
+            padding: 0,
+            marginBottom: 0,
+          },
+          "& .MuiPickersActionBar-root": {
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          },
+        },
+      },
+    },
   },
 });
 

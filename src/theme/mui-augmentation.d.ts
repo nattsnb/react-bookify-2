@@ -89,3 +89,13 @@ declare module "@mui/material/Divider" {
     dark: true;
   }
 }
+
+declare module "@mui/material/styles" {
+  interface Components {
+    MuiPickersPopper?: {
+      styleOverrides?: ComponentsOverrides<Theme>["MuiPopover"];
+      defaultProps?: object;
+      variants?: object[];
+    };
+  }
+}
