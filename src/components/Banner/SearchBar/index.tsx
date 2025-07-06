@@ -23,12 +23,22 @@ import { FormProvider } from "react-hook-form";
 export const SearchBar = () => {
   const {
     form,
-    form: { handleSubmit },
+    form: { handleSubmit, reset },
     onSubmit,
   } = useSearchBar();
 
   const [isCollapsed, setIsCollapsed] = React.useState(false);
-  const collapseSearchBar = () => setIsCollapsed((prev) => !prev);
+
+  const collapseSearchBar = () => {
+    setIsCollapsed((prev) => {
+      const next = !prev;
+      if (!next) {
+        reset();
+        handleSubmit(onSubmit)();
+      }
+      return next;
+    });
+  };
 
   const theme = useTheme();
   const isViewportSmallerThanMd = useMediaQuery(theme.breakpoints.down("md"));
