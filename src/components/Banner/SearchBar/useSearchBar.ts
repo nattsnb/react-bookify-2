@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import type { VenueFilterDto } from "../../../shared/types/tables/venue/venue-filter.dto.ts";
 import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-bar-form-values.dto";
 import { geocodeCity } from "../../../shared/utils/geocodeCity.ts";
 import type { Dayjs } from "dayjs";
+import { useFilter } from "../../../contexts/filterParamsContext.ts";
 
 export function useSearchBar() {
   const form = useForm<SearchBarFormValuesDto>();
-  const [filterParams, setFilterParams] = useState<Partial<VenueFilterDto>>({});
+  const { filterParams, setFilterParams } = useFilter();
 
   const formatDate = (date?: Dayjs | null) =>
     date ? date.format("YYYY-MM-DD") : undefined;
@@ -39,15 +39,14 @@ export function useSearchBar() {
       guests,
       latitude,
       longitude,
+      occasions: occasionIds,
+      venueTypeId,
     };
 
-    if (occasionIds) newParams.occasions = occasionIds;
-    if (venueTypeId) newParams.venueTypeId = venueTypeId;
-
-    setFilterParams((prev) => ({
-      ...prev,
+    setFilterParams({
+      ...filterParams,
       ...newParams,
-    }));
+    });
 
     console.log("Wysyłane filterParams:", newParams);
   };
@@ -55,6 +54,5 @@ export function useSearchBar() {
   return {
     form,
     onSubmit,
-    filterParams,
   };
 }

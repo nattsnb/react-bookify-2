@@ -26,7 +26,10 @@ export const VenueTypeInput = () => {
             labelId="venue-type-label"
             id="venue-type"
             value={field.value ?? ""}
-            onChange={field.onChange}
+            onChange={(event) => {
+              const value = event.target.value;
+              field.onChange(value === "" ? undefined : value);
+            }}
             displayEmpty
             renderValue={(selected) => {
               if (!selected) return;
