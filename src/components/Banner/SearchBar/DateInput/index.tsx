@@ -29,6 +29,7 @@ export const DateInput = () => {
       onClose={() => setIsPickerOpen(false)}
       calendars={1}
       showDaysOutsideCurrentMonth
+      closeOnSelect={false}
       components={{
         ActionBar: StyledActionBar,
       }}
@@ -41,7 +42,11 @@ export const DateInput = () => {
         return (
           <StyledFormControl fullWidth>
             {isPickerOpen || range[0] || range[0] ? (
-              <SplitButtonGroup variant="outlined" fullWidth>
+              <SplitButtonGroup
+                variant="outlined"
+                fullWidth
+                onClick={() => setIsPickerOpen(true)}
+              >
                 <DateButton isSet={!!range[0]}>
                   {range[0] ? range[0].format("YYYY-MM-DD") : "starts at"}
                 </DateButton>
