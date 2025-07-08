@@ -1,4 +1,10 @@
-import { styled, TextField, FormControl, InputLabel } from "@mui/material";
+import {
+  styled,
+  TextField,
+  FormControl,
+  InputLabel,
+  List,
+} from "@mui/material";
 
 // export const StyledSearchBarTextField = styled(TextField, {
 //   shouldForwardProp: (prop) => prop !== "isCollapsed",

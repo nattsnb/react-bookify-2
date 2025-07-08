@@ -12,7 +12,7 @@ import {
   StyledSearchBarContainer,
 } from "./SearchBar.styled.ts";
 import { useSearchBar } from "./useSearchBar.ts";
-import { LocalizationInput } from "./LocalizationInput.tsx";
+import { LocalizationInput } from "./LocalizationInput/LocalizationInput.tsx";
 import { OccasionInput } from "./OccasionInput.tsx";
 import { VenueTypeInput } from "./VenueTypeInput.tsx";
 import { DateInput } from "./DateInput";
