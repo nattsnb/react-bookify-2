@@ -5,6 +5,7 @@ import {
   StyledLoginLink,
   StyledNavBarContainer,
   StyledNavBarLinksContainer,
+  StyledTypographyForHomeLink,
 } from "./NavBar.styled.ts";
 
 export function NavBar() {
@@ -17,7 +18,9 @@ export function NavBar() {
           <>
             <div>
               <Link href={"/"}>
-                <Typography variant="homeLink">bookify</Typography>
+                <StyledTypographyForHomeLink variant="homeLink">
+                  bookify
+                </StyledTypographyForHomeLink>
               </Link>
             </div>
             <StyledNavBarLinksContainer>
@@ -42,7 +45,9 @@ export function NavBar() {
             </div>
             <div>
               <Link href={"/"}>
-                <Typography variant="homeLink">bookify</Typography>
+                <StyledTypographyForHomeLink variant="homeLink">
+                  bookify
+                </StyledTypographyForHomeLink>
               </Link>
             </div>
             <Link href={"/login/"} sx={{ color: "#67AA92" }} variant="boldLink">

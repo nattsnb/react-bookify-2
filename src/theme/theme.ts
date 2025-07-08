@@ -24,7 +24,6 @@ const theme = createTheme({
     fontFamily: "Poppins",
     fontSize: 16,
     homeLink: {
-      fontSize: 35,
       fontWeight: 100,
       textTransform: "uppercase",
     },
