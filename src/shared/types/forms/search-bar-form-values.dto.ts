@@ -7,4 +7,5 @@ export interface SearchBarFormValuesDto {
   dateRange?: DateRange<Dayjs>;
   guests?: number;
   venueTypeId?: number;
+  radiusKm: number;
 }

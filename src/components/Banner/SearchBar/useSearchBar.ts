@@ -5,6 +5,8 @@ import { geocodeCity } from "../../../shared/utils/geocodeCity.ts";
 import type { Dayjs } from "dayjs";
 import { useFilter } from "../../../contexts/filterParamsContext.ts";
 
+const DEFAULT_RADIUS_KM = 10;
+
 export function useSearchBar() {
   const form = useForm<SearchBarFormValuesDto>();
   const { filterParams, setFilterParams } = useFilter();
@@ -17,6 +19,7 @@ export function useSearchBar() {
 
     const dateStart = formatDate(dateRange?.[0]);
     const dateEnd = formatDate(dateRange?.[1]);
+    let radiusKm: number | undefined;
 
     let latitude: number | undefined;
     let longitude: number | undefined;
@@ -27,6 +30,7 @@ export function useSearchBar() {
         if (coordinates) {
           latitude = coordinates.latitude;
           longitude = coordinates.longitude;
+          radiusKm = DEFAULT_RADIUS_KM;
         }
       } catch (err) {
         console.error("Could not resolve city name", err);
@@ -39,6 +43,7 @@ export function useSearchBar() {
       guests,
       latitude,
       longitude,
+      radiusKm,
       occasions: occasionIds,
       venueTypeId,
     };
@@ -47,8 +52,6 @@ export function useSearchBar() {
       ...filterParams,
       ...newParams,
     });
-
-    console.log("Wysyłane filterParams:", newParams);
   };
 
   return {
