@@ -36,7 +36,7 @@ export function Layout({ children }: LayoutProps) {
       <NavBar />
       {isServerRunning ? (
         <PageWidthContainer>
-          {matches ? <Banner /> : <></>}
+          <Banner />
           {children}
         </PageWidthContainer>
       ) : (
