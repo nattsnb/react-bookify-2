@@ -7,37 +7,32 @@ import {
 import { Divider, useMediaQuery, useTheme } from "@mui/material";
 import { SearchBar } from "./SearchBar";
 import { useLocation } from "react-router-dom";
-
-const pathsToDisplaySearchBar = ["/"];
+import { getBannerConfig } from "../../shared/utils/getBannerConfig.ts";
 
 export function Banner() {
   const theme = useTheme();
-  const isViewportLargerThanMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const location = useLocation();
-  const showSearchBar = pathsToDisplaySearchBar.includes(location.pathname);
-  console.log("Banner render", location.pathname, {
-    showSearchBar,
-    isViewportLargerThanMd,
-  });
+  const config = getBannerConfig(location.pathname, isDesktop);
 
   return (
     <>
-      <StyledBanner isShort={!showSearchBar}>
-        <StyledBannerContent>
-          {isViewportLargerThanMd ? (
-            <>
-              <StyledHeaderTypographyContainer>
-                <StyledHeaderTypography>
-                  Find your place and experience it together.
-                </StyledHeaderTypography>
-              </StyledHeaderTypographyContainer>
-              {showSearchBar && <SearchBar />}
-            </>
-          ) : (
-            <>
-              {showSearchBar ? (
-                <SearchBar />
-              ) : (
+      {isDesktop ? (
+        <StyledBanner>
+          <StyledBannerContent>
+            <StyledHeaderTypographyContainer>
+              <StyledHeaderTypography>
+                Find your place and experience it together.
+              </StyledHeaderTypography>
+            </StyledHeaderTypographyContainer>
+            {config.searchBar && <SearchBar />}
+          </StyledBannerContent>
+        </StyledBanner>
+      ) : (
+        <>
+          {config.banner && (
+            <StyledBanner>
+              <StyledBannerContent>
                 <StyledHeaderTypographyContainer>
                   <StyledHeaderTypography>
                     Find your place
@@ -46,11 +41,12 @@ export function Banner() {
                     and experience it together.
                   </StyledHeaderTypography>
                 </StyledHeaderTypographyContainer>
-              )}
-            </>
+              </StyledBannerContent>
+            </StyledBanner>
           )}
-        </StyledBannerContent>
-      </StyledBanner>
+          {config.searchBar && <SearchBar />}
+        </>
+      )}
       <Divider variant="light"></Divider>
     </>
   );
