@@ -38,33 +38,35 @@ export const StyledBanner = styled("div")`
   }
 `;
 
-export const StyledHeaderTypography = styled(Typography)`
-  font-size: 40px;
-  font-weight: 600;
-  text-align: right;
-  margin-right: ${({ theme }) => theme.spacing(28)};
+export const StyledHeaderTypography = styled(Typography)(
+  ({ theme }) => `
+    font-size: 40px;
+    font-weight: 600;
+    text-align: right;
+    margin-right: ${theme.spacing(28)};
+    
+    ${theme.breakpoints.down("xl")} {
+      font-size: 36px;
+      margin-right: ${theme.spacing(16)};
+    }
 
-  ${({ theme }) => theme.breakpoints.down("xl")} {
-    font-size: 36px;
-    margin-right: ${({ theme }) => theme.spacing(16)};
-  }
+    ${theme.breakpoints.down("lg")} {
+      margin-right: ${theme.spacing(12)};
+      font-size: 32px;
+    }
 
-  ${({ theme }) => theme.breakpoints.down("lg")} {
-    margin-right: ${({ theme }) => theme.spacing(12)};
-    font-size: 32px;
-  }
+    ${theme.breakpoints.down("md")} {
+      margin-left: ${theme.spacing(8)};
+      margin-right: ${theme.spacing(0)};
+      text-align: left;
+    }
 
-  ${({ theme }) => theme.breakpoints.down("md")} {
-    margin-left: ${({ theme }) => theme.spacing(8)};
-    margin-right: ${({ theme }) => theme.spacing(0)};
-    text-align: left;
-  }
-
-  ${({ theme }) => theme.breakpoints.down("sm")} {
-    margin-left: ${({ theme }) => theme.spacing(4)};
-    font-size: 25px;
-  }
-`;
+    ${theme.breakpoints.down("sm")} {
+      margin-left: ${theme.spacing(4)};
+      font-size: 25px;
+    }
+  `,
+);
 
 export const StyledHeaderTypographyContainer = styled("div")`
   margin-top: ${({ theme }) => theme.spacing(45)};

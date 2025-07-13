@@ -16,32 +16,34 @@ export const StyledResetButton = styled("button")`
   font-weight: bold;
 `;
 
-export const StyledSlider = styled(Slider)`
-  & .MuiSlider-valueLabel {
-    background-color: ${({ theme }) => theme.palette.primary.main};
-  }
-  & .MuiSlider-track {
-    background: linear-gradient(
-      to bottom,
-      ${({ theme }) => theme.palette.primary.main},
-      ${({ theme }) => theme.palette.secondary.light}
-    );
-    border: none;
-  }
+export const StyledSlider = styled(Slider)(
+  ({ theme }) => `
+    & .MuiSlider-valueLabel {
+      background-color: ${theme.palette.primary.main};
+    }
+    & .MuiSlider-track {
+      background: linear-gradient(
+        to bottom,
+        ${theme.palette.primary.main},
+        ${theme.palette.secondary.light}
+      );
+      border: none;
+    }
 
-  & .MuiSlider-thumb {
-    background: linear-gradient(
-      to bottom,
-      ${({ theme }) => theme.palette.primary.main},
-      ${({ theme }) => theme.palette.secondary.light}
-    );
-    border: 2px solid white;
-  }
-  padding-left: ${({ theme }) => theme.spacing(13)};
-  padding-right: ${({ theme }) => theme.spacing(13)};
-  margin-top: ${({ theme }) => theme.spacing(12)};
-  width: 70%;
-`;
+    & .MuiSlider-thumb {
+      background: linear-gradient(
+        to bottom,
+        ${theme.palette.primary.main},
+        ${theme.palette.secondary.light}
+      );
+      border: 2px solid white;
+    }
+    padding-left: ${theme.spacing(13)};
+    padding-right: ${theme.spacing(13)};
+    margin-top: ${theme.spacing(12)};
+    width: 70%;
+  `,
+);
 
 export const StyledSliderContainer = styled("div")`
   display: flex;

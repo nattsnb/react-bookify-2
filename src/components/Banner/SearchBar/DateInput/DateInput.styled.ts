@@ -48,36 +48,40 @@ export const DateButton = styled(Button, {
   },
 }));
 
-export const SplitButtonGroup = styled(ButtonGroup)`
-  width: 100%;
-  background-color: ${({ theme }) => theme.palette.background.offDefault};
-  border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
+export const SplitButtonGroup = styled(ButtonGroup)(
+  ({ theme }) => `
+    width: 100%;
+    background-color: ${theme.palette.background.offDefault};
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
 
-  && {
-    box-shadow: none;
-  }
+    && {
+      box-shadow: none;
+    }
 
-  .MuiButtonGroup-grouped {
-    border: none;
-  }
+    .MuiButtonGroup-grouped {
+      border: none;
+    }
 
-  .MuiButtonGroup-grouped:not(:last-of-type) {
-    border-right: 4px solid ${({ theme }) => theme.palette.divider};
-  }
-`;
+    .MuiButtonGroup-grouped:not(:last-of-type) {
+      border-right: 4px solid ${theme.palette.divider};
+    }
+  `,
+);
 
-export const StyledActionBar = styled(PickersActionBar)`
-  justify-content: center;
-  padding-top: 0;
-  & .MuiButton-root {
-    text-transform: capitalize;
-    font-weight: 600;
-    border-radius: 18px;
-    background-color: ${({ theme }) => theme.palette.primary.main};
-    color: ${({ theme }) => theme.palette.background.default};
-    width: 132px;
-    height: 40px;
-  }
-`;
+export const StyledActionBar = styled(PickersActionBar)(
+  ({ theme }) => `
+    justify-content: center;
+    padding-top: 0;
+    & .MuiButton-root {
+      text-transform: capitalize;
+      font-weight: 600;
+      border-radius: 18px;
+      background-color: ${theme.palette.primary.main};
+      color: ${theme.palette.background.default};
+      width: 132px;
+      height: 40px;
+    }
+  `,
+);

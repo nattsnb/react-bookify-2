@@ -1,92 +1,34 @@
-import {
-  styled,
-  TextField,
-  FormControl,
-  InputLabel,
-  List,
-} from "@mui/material";
+import { styled, TextField, FormControl, InputLabel } from "@mui/material";
 
-// export const StyledSearchBarTextField = styled(TextField, {
-//   shouldForwardProp: (prop) => prop !== "isCollapsed",
-// })<{ isCollapsed?: boolean }>`
-//     max-width: 220px;
-//     min-width: ${({ isCollapsed }) => (isCollapsed ? "0px" : "220px")};
-//     max-height: 48px;
-//     padding: 0;
-//     justify-content: center;
-//     border: 1px solid rgba(0, 0, 0, 0.2);
-//     box-shadow: 0 2px 6px 1px rgb(0 0 0 / 20%);
-//     border-radius: 15px;
-//     font-size: 1.2vw;
-//     background-color: ${({ theme }) => theme.palette.background.offDefault};
-//
-//     .MuiOutlinedInput-notchedOutline {
-//         border: none;
-//     }
-//
-//     &.MuiFormControl-root {
-//         margin: ${({ theme }) => theme.spacing(2)}
-//         ${({ theme }) => theme.spacing(3)};
-//     }
-//
-//     ${({ theme }) => theme.breakpoints.down("lg")} {
-//         &.MuiFormControl-root {
-//             margin: ${({ theme }) => theme.spacing(2)}
-//             ${({ theme }) => theme.spacing(1)};
-//             padding: 0;
-//         }
-//
-//         .MuiInputBase-root {
-//             padding: 0;
-//         }
-//
-//         .MuiInputAdornment-root {
-//             margin: 0;
-//         }
-//     }
-//
-//     ${({ theme }) => theme.breakpoints.down("md")} {
-//         &.MuiFormControl-root {
-//             margin: ${({ theme }) => theme.spacing(2)}
-//             ${({ theme }) => theme.spacing(3)};
-//             padding: ${({ theme }) => theme.spacing(1)};
-//         }
-//
-//         .MuiInputBase-root {
-//             padding: ${({ theme }) => theme.spacing(1)};
-//         }
-//
-//         .MuiInputAdornment-root {
-//             margin: ${({ theme }) => theme.spacing(1)};
-//         }
-//     }
-// `;
+export const StyledInputsContainer = styled("div")(
+  ({ theme }) => `
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: ${theme.spacing(19)};
 
-export const StyledInputsContainer = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: ${({ theme }) => theme.spacing(19)};
+    ${theme.breakpoints.down("md")} {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: ${theme.spacing(8)};
+    }
+  `,
+);
 
-  ${({ theme }) => theme.breakpoints.down("md")} {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: ${({ theme }) => theme.spacing(8)};
-  }
-`;
+export const StyledCollapseTypographyContainer = styled("div")(
+  ({ theme }) => `
+    margin-top: ${theme.spacing(2)};
 
-export const StyledCollapseTypographyContainer = styled("div")`
-  margin-top: ${({ theme }) => theme.spacing(2)};
-
-  .MuiButton-root {
-    border: none;
-    font-weight: 600;
-    color: ${({ theme }) => theme.palette.primary.main};
-    text-transform: none;
-  }
-`;
+    .MuiButton-root {
+      border: none;
+      font-weight: 600;
+      color: ${theme.palette.primary.main};
+      text-transform: none;
+    }
+  `,
+);
 
 export const StyledSearchBarContainer = styled("div")`
   display: flex;
@@ -95,89 +37,97 @@ export const StyledSearchBarContainer = styled("div")`
   align-items: center;
 `;
 
-export const StyledFormControl = styled(FormControl)`
-  width: 220px;
-  background-color: ${({ theme }) => theme.palette.background.offDefault};
-  border-radius: 15px;
-  margin: ${({ theme }) => theme.spacing(2, 3)};
-  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
-  max-height: 48px;
-
-  .MuiOutlinedInput-root {
+export const StyledFormControl = styled(FormControl)(
+  ({ theme }) => `
+    width: 220px;
+    background-color: ${theme.palette.background.offDefault};
     border-radius: 15px;
-    display: flex;
-    align-items: center;
+    margin: ${theme.spacing(2, 3)};
+    box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.2);
     max-height: 48px;
-  }
 
-  .MuiInputLabel-root {
-    display: flex;
-    align-items: center;
-    gap: ${({ theme }) => theme.spacing(1)};
-    height: 20px;
-  }
+    .MuiOutlinedInput-root {
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      max-height: 48px;
+    }
 
-  & .MuiDateRangePickerToolbar-root {
-    display: none;
-  }
+    .MuiInputLabel-root {
+      display: flex;
+      align-items: center;
+      gap: ${theme.spacing(1)};
+      height: 20px;
+    }
 
-  & .MuiCalendarPicker-root {
-    padding: 0;
-  }
-`;
+    & .MuiDateRangePickerToolbar-root {
+      display: none;
+    }
 
-export const StyledGuestInputTextField = styled(TextField)`
-  .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+    & .MuiCalendarPicker-root {
+      padding: 0;
+    }
+  `,
+);
 
-  input {
-    text-align: center;
-  }
+export const StyledGuestInputTextField = styled(TextField)(
+  ({ theme }) => `
+    .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-  .MuiInputLabel-root.MuiInputLabel-shrink {
-    color: ${({ theme }) => theme.palette.text.secondary};
-  }
-`;
+    input {
+      text-align: center;
+    }
 
-export const StyledTextField = styled(TextField)`
-  input {
-    text-align: left;
-  }
+    .MuiInputLabel-root.MuiInputLabel-shrink {
+      color: ${theme.palette.text.secondary};
+    }
+  `,
+);
 
-  .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
-    position: absolute;
-    left: 14px;
-    bottom: 8px;
-    transform: none;
-    font-size: 14px;
-    color: ${({ theme }) => theme.palette.text.secondary};
-    pointer-events: none;
-  }
+export const StyledTextField = styled(TextField)(
+  ({ theme }) => `
+    input {
+      text-align: left;
+    }
 
-  .MuiInput-underline:before,
-  .MuiInput-underline:hover:not(.Mui-disabled):before,
-  .MuiInput-underline:after,
-  .MuiInputBase-root:before,
-  .MuiInputBase-root:after {
-    border-bottom: none;
-  }
-`;
+    .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+      position: absolute;
+      left: 14px;
+      bottom: 8px;
+      transform: none;
+      font-size: 14px;
+      color: ${theme.palette.text.secondary};
+      pointer-events: none;
+    }
 
-export const StyledInputLabel = styled(InputLabel)`
-  color: ${({ theme }) => theme.palette.text.secondary};
+    .MuiInput-underline:before,
+    .MuiInput-underline:hover:not(.Mui-disabled):before,
+    .MuiInput-underline:after,
+    .MuiInputBase-root:before,
+    .MuiInputBase-root:after {
+      border-bottom: none;
+    }
+  `,
+);
 
-  &.Mui-focused {
-    color: ${({ theme }) => theme.palette.text.secondary};
-  }
+export const StyledInputLabel = styled(InputLabel)(
+  ({ theme }) => `
+    color: ${theme.palette.text.secondary};
 
-  &.MuiInputLabel-shrink {
-    color: ${({ theme }) => theme.palette.text.secondary};
-  }
-`;
+    &.Mui-focused {
+      color: ${theme.palette.text.secondary};
+    }
+
+    &.MuiInputLabel-shrink {
+      color: ${theme.palette.text.secondary};
+    }
+  `,
+);
 
 export const StyledDatesInputDiv = styled("div")`
   display: flex;
