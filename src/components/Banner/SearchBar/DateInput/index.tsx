@@ -9,18 +9,20 @@ import {
   StyledActionBar,
 } from "./DateInput.styled.ts";
 import { StyledIconContainer } from "./DateInput.styled.ts";
-import { useDateInput } from "./useDateInput.ts";
 import type { Dayjs } from "dayjs";
 import { DesktopDateRangePicker } from "@mui/x-date-pickers-pro";
+import { useState } from "react";
 
 export const DateInput = () => {
-  const { isPickerOpen, setIsPickerOpen } = useDateInput();
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
+
   const { watch, setValue } = useFormContext<SearchBarFormValuesDto>();
-  const range = watch("dateRange") ?? [null, null];
+  const dateRange = watch("dateRange") ?? [null, null];
+  const [startDate, endDate] = dateRange;
 
   return (
     <DesktopDateRangePicker
-      value={range}
+      value={dateRange}
       onChange={(newValue) => {
         setValue("dateRange", newValue as [Dayjs | null, Dayjs | null]);
       }}
@@ -41,17 +43,17 @@ export const DateInput = () => {
       renderInput={() => {
         return (
           <StyledFormControl fullWidth>
-            {isPickerOpen || range[0] || range[0] ? (
+            {isPickerOpen || startDate ? (
               <SplitButtonGroup
                 variant="outlined"
                 fullWidth
                 onClick={() => setIsPickerOpen(true)}
               >
-                <DateButton isSet={!!range[0]}>
-                  {range[0] ? range[0].format("YYYY-MM-DD") : "starts at"}
+                <DateButton isSet={!!startDate}>
+                  {startDate ? startDate.format("YYYY-MM-DD") : "starts at"}
                 </DateButton>
-                <DateButton isSet={!!range[1]}>
-                  {range[1] ? range[1].format("YYYY-MM-DD") : "ends at"}
+                <DateButton isSet={!!endDate}>
+                  {endDate ? endDate.format("YYYY-MM-DD") : "ends at"}
                 </DateButton>
               </SplitButtonGroup>
             ) : (
