@@ -9,11 +9,12 @@ import {
   StyledRightColumnContainer,
   StyledWideBodyContainer,
 } from "./VenueDetailedView.styled.ts";
-import React, { createContext } from "react";
-import { useVenue } from "./useVenueDetailedView.ts";
+import React from "react";
+import { useVenueDetailedView } from "./useVenueDetailedView.ts";
 import { VerticalContainer } from "../../shared/styledComponents/verticalContainer.styled.ts";
 import { useError } from "../../contexts/errorContext.ts";
 import { useParams } from "react-router-dom";
+import Calendar from "./Calendar";
 
 const DisplayedContentValue = {
   description: "description",
@@ -25,8 +26,7 @@ const DisplayedContentValue = {
 export function VenueDetailedView() {
   const query = useParams<{ venueId: string }>();
   const venueId = Number(query.venueId);
-  const { isLoading, displayedPictureNumber, setDisplayedPictureNumber } =
-    useVenue(venueId);
+  const { isLoading, venue } = useVenueDetailedView(venueId);
   const { isError } = useError();
 
   const theme = useTheme();
@@ -61,7 +61,7 @@ export function VenueDetailedView() {
               <div>WideBodyLinkBarAndContentContainer</div>
             </StyledLeftColumnContainer>
             <StyledRightColumnContainer>
-              <div>DatePicker</div>
+              <Calendar venue={venue} />
               <div>ContactInfo</div>
             </StyledRightColumnContainer>
           </StyledWideBodyContainer>

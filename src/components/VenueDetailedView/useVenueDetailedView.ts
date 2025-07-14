@@ -3,12 +3,12 @@ import { useError } from "../../contexts/errorContext.ts";
 import { venueApi } from "../../shared/api/venueApi.ts";
 import type { VenueDto } from "../../shared/types/tables/venue/venue.dto.ts";
 
-export const useVenue = (venueId: number) => {
+export const useVenueDetailedView = (venueId: number) => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
   const contactsRef = useRef<HTMLDivElement>(null);
-  const [venueDetails, setVenueDetails] = useState<VenueDto | null>(null);
+  const [venue, setVenue] = useState<VenueDto | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [displayedPictureNumber, setDisplayedPictureNumber] =
     useState<number>(0);
@@ -32,7 +32,7 @@ export const useVenue = (venueId: number) => {
       try {
         const venueDetailsResponse = await venueApi.getOneVenue(venueId);
         if (venueDetailsResponse) {
-          setVenueDetails(venueDetailsResponse);
+          setVenue(venueDetailsResponse);
         }
       } catch (error) {
         setIsError(true);
@@ -44,7 +44,7 @@ export const useVenue = (venueId: number) => {
   }, []);
 
   return {
-    venueDetails,
+    venueDetails: venue,
     isLoading,
     descriptionRef,
     galleryRef,
@@ -53,5 +53,6 @@ export const useVenue = (venueId: number) => {
     handleScroll,
     displayedPictureNumber,
     setDisplayedPictureNumber,
+    venue,
   };
 };
