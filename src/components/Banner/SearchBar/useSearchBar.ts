@@ -4,12 +4,15 @@ import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-
 import { geocodeCity } from "../../../shared/utils/geocodeCity.ts";
 import type { Dayjs } from "dayjs";
 import { useFilter } from "../../../contexts/filterParamsContext.ts";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DEFAULT_RADIUS_KM = 10;
 
 export function useSearchBar() {
   const form = useForm<SearchBarFormValuesDto>();
   const { filterParams, setFilterParams } = useFilter();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const formatDate = (date?: Dayjs | null) =>
     date ? date.format("YYYY-MM-DD") : undefined;
@@ -52,6 +55,10 @@ export function useSearchBar() {
       ...filterParams,
       ...newParams,
     });
+
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
   };
 
   return {
