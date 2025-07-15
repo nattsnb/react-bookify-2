@@ -15,6 +15,7 @@ import { VerticalContainer } from "../../shared/styledComponents/verticalContain
 import { useError } from "../../contexts/errorContext.ts";
 import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
+import { ContactInfo } from "./ContactInfo";
 
 const DisplayedContentValue = {
   description: "description",
@@ -54,7 +55,7 @@ export function VenueDetailedView() {
             </StyledBackToResultsFlexDiv>
           </Link>
         </StyledBackToResultsLinkContainer>
-        {isViewportLargerThanLg ? (
+        {isViewportLargerThanLg && venue ? (
           <StyledWideBodyContainer>
             <StyledLeftColumnContainer>
               <div>DetailsAndImageContainer</div>
@@ -62,7 +63,7 @@ export function VenueDetailedView() {
             </StyledLeftColumnContainer>
             <StyledRightColumnContainer>
               <Calendar venue={venue} />
-              <div>ContactInfo</div>
+              <ContactInfo venue={venue} />
             </StyledRightColumnContainer>
           </StyledWideBodyContainer>
         ) : (

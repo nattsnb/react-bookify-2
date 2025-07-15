@@ -3,6 +3,13 @@ import type { ReservationDto } from "../reservation/reservation.dto.ts";
 import type { FavouriteDto } from "../favourite/favourite.dto.ts";
 import type { VenueTypeDto } from "../venue-type/venue-type.dto.ts";
 
+export interface OwnerDto {
+  id: number;
+  email: string;
+  name: string;
+  phoneNumber: string;
+}
+
 export class VenueDto {
   id!: number;
   name!: string;
@@ -27,6 +34,7 @@ export class VenueDto {
   latitude!: number;
   longitude!: number;
   ownerId!: number;
+  owner!: OwnerDto;
   amenities?: AmenityDto[];
   reservations?: ReservationDto[];
   favourites?: FavouriteDto[];
