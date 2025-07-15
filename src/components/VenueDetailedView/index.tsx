@@ -17,18 +17,21 @@ import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import { ContactInfo } from "./ContactInfo";
 import { DetailsAndImageContainer } from "./DetailsAndImageContainer";
-
-const DisplayedContentValue = {
-  description: "description",
-  gallery: "gallery",
-  map: "map",
-  contacts: "contacts",
-};
+import { WideBodyLinkBarAndContentContainer } from "./LinkBarAndBody/WideBodyLinkBarAndContentContainer.tsx";
+import { NarrowBodyLinkBar } from "./LinkBarAndBody/NarowBodyLinkBar.tsx";
 
 export function VenueDetailedView() {
   const query = useParams<{ venueId: string }>();
   const venueId = Number(query.venueId);
-  const { isLoading, venue } = useVenueDetailedView(venueId);
+  const {
+    isLoading,
+    venue,
+    descriptionRef,
+    galleryRef,
+    mapRef,
+    contactsRef,
+    handleScroll,
+  } = useVenueDetailedView(venueId);
   const { isError } = useError();
 
   const theme = useTheme();
@@ -60,7 +63,7 @@ export function VenueDetailedView() {
           <StyledWideBodyContainer>
             <StyledLeftColumnContainer>
               <DetailsAndImageContainer venue={venue} />
-              <div>WideBodyLinkBarAndContentContainer</div>
+              <WideBodyLinkBarAndContentContainer />
             </StyledLeftColumnContainer>
             <StyledRightColumnContainer>
               <Calendar venue={venue} />
@@ -70,7 +73,13 @@ export function VenueDetailedView() {
         ) : (
           <>
             <div>DetailsAndImageContainer</div>
-            <div>NarrowBodyLinkBar</div>
+            <NarrowBodyLinkBar
+              mapRef={mapRef}
+              galleryRef={galleryRef}
+              descriptionRef={descriptionRef}
+              contactsRef={contactsRef}
+              handleScroll={handleScroll}
+            />
             <div>Description</div>
             <div>Gallery</div>
             <div>MapWithAddress</div>
