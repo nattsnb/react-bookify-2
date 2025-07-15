@@ -15,7 +15,6 @@ import {
   StyledCalendarPicker,
 } from "./Calendar.styled.ts";
 import { useCalendar } from "./useCalendar.ts";
-import { Container } from "@mui/system";
 import { SectionTitleContainer } from "../VenueDetailedView.styled.ts";
 import type { VenueDto } from "../../../shared/types/tables/venue/venue.dto.ts";
 import { useError } from "../../../contexts/errorContext.ts";
@@ -23,7 +22,7 @@ import { useCurrency } from "../../../contexts/currencyContext.tsx";
 import type { Dayjs } from "dayjs";
 
 interface CalendarProps {
-  venue: VenueDto | null;
+  venue: VenueDto;
 }
 
 export default function Calendar({ venue }: CalendarProps) {

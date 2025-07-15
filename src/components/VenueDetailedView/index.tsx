@@ -16,6 +16,7 @@ import { useError } from "../../contexts/errorContext.ts";
 import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import { ContactInfo } from "./ContactInfo";
+import { DetailsAndImageContainer } from "./DetailsAndImageContainer";
 
 const DisplayedContentValue = {
   description: "description",
@@ -58,7 +59,7 @@ export function VenueDetailedView() {
         {isViewportLargerThanLg && venue ? (
           <StyledWideBodyContainer>
             <StyledLeftColumnContainer>
-              <div>DetailsAndImageContainer</div>
+              <DetailsAndImageContainer venue={venue} />
               <div>WideBodyLinkBarAndContentContainer</div>
             </StyledLeftColumnContainer>
             <StyledRightColumnContainer>
