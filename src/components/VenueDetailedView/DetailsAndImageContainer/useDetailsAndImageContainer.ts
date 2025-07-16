@@ -1,6 +1,11 @@
 import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 
-export const useDetailsAndImageContainer = (images: string[]) => {
+export const useDetailsAndImageContainer = () => {
+  const { activeVenue } = useActiveVenue();
+
+  const images: string[] = activeVenue ? activeVenue.images : [];
+
   const { displayedPictureNumber, setDisplayedPictureNumber } =
     useDisplayedPictureNumber();
 

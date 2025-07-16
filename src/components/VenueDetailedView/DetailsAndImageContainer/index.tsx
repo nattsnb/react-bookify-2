@@ -20,34 +20,33 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useDetailsAndImageContainer } from "./useDetailsAndImageContainer";
 import { HiddenElement } from "../../../shared/styledComponents/hiddenElement.styled.js";
 import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.ts";
-import type { VenueDto } from "../../../shared/types/tables/venue/venue.dto.ts";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import React from "react";
 
-
-interface DetailsAndImageContainerProps {
-  venue: VenueDto;
-}
-
-export function DetailsAndImageContainer({
-  venue,
-}: DetailsAndImageContainerProps) {
-  const { handleClickForward, handleClickBack } = useDetailsAndImageContainer(
-    venue.images,
-  );
-  const cityName = venue.city;
-  const cityNameLowerCase = cityName.toLowerCase();
-  const numberOfStars = Math.round(venue.rating);
-  const stars = new Array(numberOfStars).map(() => uuidv4())
-
+export function DetailsAndImageContainer() {
+  const { activeVenue } = useActiveVenue();
+  const { handleClickForward, handleClickBack } = useDetailsAndImageContainer();
   const { displayedPictureNumber } = useDisplayedPictureNumber();
+
+  if (!activeVenue) {
+    return <></>;
+  }
+
+  const cityName = activeVenue.city;
+  const cityNameLowerCase = cityName.toLowerCase();
+  const numberOfStars = Math.round(activeVenue.rating);
+  const stars = new Array(numberOfStars).map(() => uuidv4());
 
   return (
     <StyledDetailsAndImageContainer>
       <StyledDetailsContainer>
         <StyledNameAndAddressContainer>
-          <StyledVenueNameTypography>{venue.name}</StyledVenueNameTypography>
+          <StyledVenueNameTypography>
+            {activeVenue.name}
+          </StyledVenueNameTypography>
           <StyledVenueAddressTypography>
-            {venue.postalCode}, {cityNameLowerCase}
+            {activeVenue.postalCode}, {cityNameLowerCase}
           </StyledVenueAddressTypography>
         </StyledNameAndAddressContainer>
         <StyledRatingContainer>
@@ -60,7 +59,7 @@ export function DetailsAndImageContainer({
         </StyledRatingContainer>
       </StyledDetailsContainer>
       <StyledImageContainer
-        backgroundUrl={venue.images[displayedPictureNumber]}
+        backgroundUrl={activeVenue.images[displayedPictureNumber]}
       >
         <StyledHeartDiv>
           <Typography variant="boldOnCard">

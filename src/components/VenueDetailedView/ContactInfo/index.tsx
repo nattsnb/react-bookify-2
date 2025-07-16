@@ -1,6 +1,6 @@
 import React from "react";
 import { Divider } from "@mui/material";
-import { SMLinks } from "../../SMLinks/index.jsx";
+import { SMLinks } from "../../SMLinks";
 import {
   StyledEntryContainer,
   StyledIconContainer,
@@ -15,32 +15,36 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LanguageIcon from "@mui/icons-material/Language";
-import type { VenueDto } from "../../../shared/types/tables/venue/venue.dto.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 
 interface ContactInfoProps {
-  venue: VenueDto;
   contactsRef?: React.RefObject<HTMLDivElement>;
 }
 
-export function ContactInfo({ venue, contactsRef }: ContactInfoProps) {
+export function ContactInfo({ contactsRef }: ContactInfoProps) {
+  const { activeVenue } = useActiveVenue();
+  if (!activeVenue) {
+    return <></>;
+  }
+
   const contactDetailsToList = [
     {
       id: 0,
       Icon: PhoneIcon,
-      string: venue.owner.phoneNumber,
+      string: activeVenue.owner.phoneNumber,
     },
     {
       id: 1,
       Icon: EmailIcon,
-      string: venue.owner.email,
+      string: activeVenue.owner.email,
     },
   ];
 
   const socialMediaLinks = [
-    { id: 0, path: venue.facebookUrl || "", Icon: FacebookIcon },
-    { id: 1, path: venue.instagramUrl || "", Icon: InstagramIcon },
-    { id: 2, path: venue.twitterUrl || "", Icon: TwitterIcon },
-    { id: 3, path: venue.websiteUrl || "", Icon: LanguageIcon },
+    { id: 0, path: activeVenue.facebookUrl || "", Icon: FacebookIcon },
+    { id: 1, path: activeVenue.instagramUrl || "", Icon: InstagramIcon },
+    { id: 2, path: activeVenue.twitterUrl || "", Icon: TwitterIcon },
+    { id: 3, path: activeVenue.websiteUrl || "", Icon: LanguageIcon },
   ];
 
   return (

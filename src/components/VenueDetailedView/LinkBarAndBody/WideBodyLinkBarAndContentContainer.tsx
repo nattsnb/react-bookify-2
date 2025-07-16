@@ -6,6 +6,9 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useLinkBar } from "./useLinkBar.js";
 import { VenueSection } from "../../../shared/constants.ts";
+import MapWithAddress from "../MapWithAddress";
+import { Gallery } from "../Gallery";
+import { Description } from "../Description";
 
 export function WideBodyLinkBarAndContentContainer() {
   const {
@@ -14,6 +17,7 @@ export function WideBodyLinkBarAndContentContainer() {
     handleGalleryClick,
     handleMapClick,
   } = useLinkBar();
+
   return (
     <>
       <StyledBodyLinkBarContainer>
@@ -22,15 +26,9 @@ export function WideBodyLinkBarAndContentContainer() {
         <Button onClick={handleMapClick}>map</Button>
       </StyledBodyLinkBarContainer>
       <StyledWideBodyClickedContentContainer>
-        {displayedContent === VenueSection.DESCRIPTION && (
-          <div>Description Placeholder</div>
-        )}
-        {displayedContent === VenueSection.GALLERY && (
-          <div>Gallery Placeholder</div>
-        )}
-        {displayedContent === VenueSection.MAP && (
-          <div>MapWithAddress Placeholder</div>
-        )}
+        {displayedContent === VenueSection.DESCRIPTION && <Description />}
+        {displayedContent === VenueSection.GALLERY && <Gallery />}
+        {displayedContent === VenueSection.MAP && <MapWithAddress />}
       </StyledWideBodyClickedContentContainer>
     </>
   );

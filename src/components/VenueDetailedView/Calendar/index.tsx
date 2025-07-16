@@ -16,16 +16,12 @@ import {
 } from "./Calendar.styled.ts";
 import { useCalendar } from "./useCalendar.ts";
 import { SectionTitleContainer } from "../VenueDetailedView.styled.ts";
-import type { VenueDto } from "../../../shared/types/tables/venue/venue.dto.ts";
 import { useError } from "../../../contexts/errorContext.ts";
 import { useCurrency } from "../../../contexts/currencyContext.tsx";
 import type { Dayjs } from "dayjs";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 
-interface CalendarProps {
-  venue: VenueDto;
-}
-
-export default function Calendar({ venue }: CalendarProps) {
+export default function Calendar() {
   const {
     whichCalendarIsActive,
     startDate,
@@ -42,14 +38,17 @@ export default function Calendar({ venue }: CalendarProps) {
 
   const { isError } = useError();
   const { currencyRate } = useCurrency();
+  const { activeVenue } = useActiveVenue();
 
-  if (!venue) return null;
+  if (!activeVenue) {
+    return <></>;
+  }
 
   const drawerOpen = false;
 
   let fullPriceInPLN: number | null;
   const priceInPLN = currencyRate
-    ? Math.round((venue.pricePerNightInEURCent / 100) * currencyRate)
+    ? Math.round((activeVenue.pricePerNightInEURCent / 100) * currencyRate)
     : null;
 
   if (isOneDayActive) {

@@ -19,6 +19,8 @@ import { ContactInfo } from "./ContactInfo";
 import { DetailsAndImageContainer } from "./DetailsAndImageContainer";
 import { WideBodyLinkBarAndContentContainer } from "./LinkBarAndBody/WideBodyLinkBarAndContentContainer.tsx";
 import { NarrowBodyLinkBar } from "./LinkBarAndBody/NarowBodyLinkBar.tsx";
+import { Gallery } from "./Gallery";
+import { Description } from "./Description";
 
 export function VenueDetailedView() {
   const query = useParams<{ venueId: string }>();
@@ -81,10 +83,10 @@ export function VenueDetailedView() {
                 contactsRef={contactsRef}
                 handleScroll={handleScroll}
               />
-              <div>Description</div>
-              <div>Gallery</div>
+              <Description venue={venue} descriptionRef={descriptionRef} />
+              <Gallery venue={venue} galleryRef={galleryRef} />
               <div>MapWithAddress</div>
-              <div>ContactInfo</div>
+              <ContactInfo venue={venue} contactsRef={contactsRef} />
               <div>BookDrawer</div>
             </>
           ))}
