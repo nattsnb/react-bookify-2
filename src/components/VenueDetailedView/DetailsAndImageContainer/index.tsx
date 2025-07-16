@@ -21,6 +21,8 @@ import { useDetailsAndImageContainer } from "./useDetailsAndImageContainer";
 import { HiddenElement } from "../../../shared/styledComponents/hiddenElement.styled.js";
 import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.ts";
 import type { VenueDto } from "../../../shared/types/tables/venue/venue.dto.ts";
+import { v4 as uuidv4 } from 'uuid';
+
 
 interface DetailsAndImageContainerProps {
   venue: VenueDto;
@@ -35,7 +37,7 @@ export function DetailsAndImageContainer({
   const cityName = venue.city;
   const cityNameLowerCase = cityName.toLowerCase();
   const numberOfStars = Math.round(venue.rating);
-  const stars = new Array(numberOfStars).fill("star");
+  const stars = new Array(numberOfStars).map(() => uuidv4())
 
   const { displayedPictureNumber } = useDisplayedPictureNumber();
 
@@ -51,8 +53,8 @@ export function DetailsAndImageContainer({
         <StyledRatingContainer>
           <StyledReviewsTypography>4 reviews</StyledReviewsTypography>
           <StyledVenueRatingTypography>
-            {stars.map((index) => (
-              <StarIcon key={index} />
+            {stars.map((starId) => (
+              <StarIcon key={starId} />
             ))}
           </StyledVenueRatingTypography>
         </StyledRatingContainer>

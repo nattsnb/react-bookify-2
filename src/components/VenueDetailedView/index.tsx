@@ -59,34 +59,35 @@ export function VenueDetailedView() {
             </StyledBackToResultsFlexDiv>
           </Link>
         </StyledBackToResultsLinkContainer>
-        {isViewportLargerThanLg && venue ? (
-          <StyledWideBodyContainer>
-            <StyledLeftColumnContainer>
+        {venue &&
+          (isViewportLargerThanLg ? (
+            <StyledWideBodyContainer>
+              <StyledLeftColumnContainer>
+                <DetailsAndImageContainer venue={venue} />
+                <WideBodyLinkBarAndContentContainer />
+              </StyledLeftColumnContainer>
+              <StyledRightColumnContainer>
+                <Calendar venue={venue} />
+                <ContactInfo venue={venue} />
+              </StyledRightColumnContainer>
+            </StyledWideBodyContainer>
+          ) : (
+            <>
               <DetailsAndImageContainer venue={venue} />
-              <WideBodyLinkBarAndContentContainer />
-            </StyledLeftColumnContainer>
-            <StyledRightColumnContainer>
-              <Calendar venue={venue} />
-              <ContactInfo venue={venue} />
-            </StyledRightColumnContainer>
-          </StyledWideBodyContainer>
-        ) : (
-          <>
-            <div>DetailsAndImageContainer</div>
-            <NarrowBodyLinkBar
-              mapRef={mapRef}
-              galleryRef={galleryRef}
-              descriptionRef={descriptionRef}
-              contactsRef={contactsRef}
-              handleScroll={handleScroll}
-            />
-            <div>Description</div>
-            <div>Gallery</div>
-            <div>MapWithAddress</div>
-            <div>ContactInfo</div>
-            <div>BookDrawer</div>
-          </>
-        )}
+              <NarrowBodyLinkBar
+                mapRef={mapRef}
+                galleryRef={galleryRef}
+                descriptionRef={descriptionRef}
+                contactsRef={contactsRef}
+                handleScroll={handleScroll}
+              />
+              <div>Description</div>
+              <div>Gallery</div>
+              <div>MapWithAddress</div>
+              <div>ContactInfo</div>
+              <div>BookDrawer</div>
+            </>
+          ))}
       </StyledBodyContainer>
     </PageWidthContainer>
   );
