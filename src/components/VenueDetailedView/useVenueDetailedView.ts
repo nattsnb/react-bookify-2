@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useError } from "../../contexts/errorContext.ts";
 import { venueApi } from "../../shared/api/venueApi.ts";
-import type { VenueDto } from "../../shared/types/tables/venue/venue.dto.ts";
+import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
 
 export const useVenueDetailedView = (venueId: number) => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
   const contactsRef = useRef<HTMLDivElement>(null);
-  const [venue, setVenue] = useState<VenueDto | null>(null);
+  const { setActiveVenue } = useActiveVenue();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [displayedPictureNumber, setDisplayedPictureNumber] =
     useState<number>(0);
@@ -32,7 +32,7 @@ export const useVenueDetailedView = (venueId: number) => {
       try {
         const venueDetailsResponse = await venueApi.getOneVenue(venueId);
         if (venueDetailsResponse) {
-          setVenue(venueDetailsResponse);
+          setActiveVenue(venueDetailsResponse);
         }
       } catch (error) {
         setIsError(true);
@@ -41,10 +41,9 @@ export const useVenueDetailedView = (venueId: number) => {
       setIsLoading(false);
     }
     getVenueDetails(venueId);
-  }, []);
+  });
 
   return {
-    venueDetails: venue,
     isLoading,
     descriptionRef,
     galleryRef,
@@ -53,6 +52,5 @@ export const useVenueDetailedView = (venueId: number) => {
     handleScroll,
     displayedPictureNumber,
     setDisplayedPictureNumber,
-    venue,
   };
 };

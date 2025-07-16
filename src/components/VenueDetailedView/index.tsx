@@ -12,7 +12,6 @@ import {
 import React from "react";
 import { useVenueDetailedView } from "./useVenueDetailedView.ts";
 import { VerticalContainer } from "../../shared/styledComponents/verticalContainer.styled.ts";
-import { useError } from "../../contexts/errorContext.ts";
 import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import { ContactInfo } from "./ContactInfo";
@@ -21,23 +20,29 @@ import { WideBodyLinkBarAndContentContainer } from "./LinkBarAndBody/WideBodyLin
 import { NarrowBodyLinkBar } from "./LinkBarAndBody/NarowBodyLinkBar.tsx";
 import { Gallery } from "./Gallery";
 import { Description } from "./Description";
+import MapWithAddress from "./MapWithAddress";
+import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
 
 export function VenueDetailedView() {
   const query = useParams<{ venueId: string }>();
   const venueId = Number(query.venueId);
   const {
     isLoading,
-    venue,
     descriptionRef,
     galleryRef,
     mapRef,
     contactsRef,
     handleScroll,
   } = useVenueDetailedView(venueId);
-  const { isError } = useError();
 
   const theme = useTheme();
   const isViewportLargerThanLg = useMediaQuery(theme.breakpoints.up("lg"));
+
+  const { activeVenue } = useActiveVenue();
+
+  if (!activeVenue) {
+    return <></>;
+  }
 
   if (isLoading) {
     return (
@@ -45,10 +50,6 @@ export function VenueDetailedView() {
         <CircularProgress />
       </VerticalContainer>
     );
-  }
-
-  if (isError) {
-    return null;
   }
 
   return (
@@ -61,21 +62,21 @@ export function VenueDetailedView() {
             </StyledBackToResultsFlexDiv>
           </Link>
         </StyledBackToResultsLinkContainer>
-        {venue &&
+        {activeVenue &&
           (isViewportLargerThanLg ? (
             <StyledWideBodyContainer>
               <StyledLeftColumnContainer>
-                <DetailsAndImageContainer venue={venue} />
+                <DetailsAndImageContainer />
                 <WideBodyLinkBarAndContentContainer />
               </StyledLeftColumnContainer>
               <StyledRightColumnContainer>
-                <Calendar venue={venue} />
-                <ContactInfo venue={venue} />
+                <Calendar />
+                <ContactInfo />
               </StyledRightColumnContainer>
             </StyledWideBodyContainer>
           ) : (
             <>
-              <DetailsAndImageContainer venue={venue} />
+              <DetailsAndImageContainer />
               <NarrowBodyLinkBar
                 mapRef={mapRef}
                 galleryRef={galleryRef}
@@ -83,10 +84,10 @@ export function VenueDetailedView() {
                 contactsRef={contactsRef}
                 handleScroll={handleScroll}
               />
-              <Description venue={venue} descriptionRef={descriptionRef} />
-              <Gallery venue={venue} galleryRef={galleryRef} />
-              <div>MapWithAddress</div>
-              <ContactInfo venue={venue} contactsRef={contactsRef} />
+              <Description descriptionRef={descriptionRef} />
+              <Gallery galleryRef={galleryRef} />
+              <MapWithAddress mapRef={mapRef} />
+              <ContactInfo contactsRef={contactsRef} />
               <div>BookDrawer</div>
             </>
           ))}
