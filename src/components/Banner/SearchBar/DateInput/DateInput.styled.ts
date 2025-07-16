@@ -21,29 +21,31 @@ export const StyledIconContainer = styled("div")`
   padding-right: ${({ theme }) => theme.spacing(2)};
 `;
 
-export const DateButton = styled(Button)<DateButtonProps>(({ isSet, theme }) => ({
-  flex: 1,
-  fontWeight: isSet ? 400 : 700,
-  color: theme.palette.text.secondary,
-  fontSize: isSet ? "0.9rem" : "1rem",
-  justifyContent: "center",
-  alignItems: "center",
-  textTransform: "none",
-  height: 48,
-  padding: 0,
-  boxShadow: "none",
-  border: "none",
-
-  "&:focus, &:focus-visible, &:active": {
-    outline: "none",
+export const DateButton = styled(Button)<DateButtonProps>(
+  ({ isSet, theme }) => ({
+    flex: 1,
+    fontWeight: isSet ? 400 : 700,
+    color: theme.palette.text.secondary,
+    fontSize: isSet ? "0.9rem" : "1rem",
+    justifyContent: "center",
+    alignItems: "center",
+    textTransform: "none",
+    height: 48,
+    padding: 0,
     boxShadow: "none",
     border: "none",
-  },
 
-  ".MuiTouchRipple-root": {
-    display: "none",
-  },
-}));
+    "&:focus, &:focus-visible, &:active": {
+      outline: "none",
+      boxShadow: "none",
+      border: "none",
+    },
+
+    ".MuiTouchRipple-root": {
+      display: "none",
+    },
+  }),
+);
 
 export const SplitButtonGroup = styled(ButtonGroup)(
   ({ theme }) => `
