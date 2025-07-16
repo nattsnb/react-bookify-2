@@ -1,7 +1,6 @@
 import { Button, type ButtonProps, styled } from "@mui/material";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { PickersActionBar } from "@mui/x-date-pickers/PickersActionBar";
-import { DesktopDateRangePicker } from "@mui/x-date-pickers-pro";
 
 interface DateButtonProps extends ButtonProps {
   isSet?: boolean;
@@ -22,9 +21,7 @@ export const StyledIconContainer = styled("div")`
   padding-right: ${({ theme }) => theme.spacing(2)};
 `;
 
-export const DateButton = styled(Button, {
-  shouldForwardProp: (prop) => prop !== "isSet",
-})<DateButtonProps>(({ isSet, theme }) => ({
+export const DateButton = styled(Button)<DateButtonProps>(({ isSet, theme }) => ({
   flex: 1,
   fontWeight: isSet ? 400 : 700,
   color: theme.palette.text.secondary,
