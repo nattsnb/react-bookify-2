@@ -3,64 +3,8 @@ import {
   TextField,
   FormControl,
   InputLabel,
-  List,
+  Button,
 } from "@mui/material";
-
-// export const StyledSearchBarTextField = styled(TextField, {
-//   shouldForwardProp: (prop) => prop !== "isCollapsed",
-// })<{ isCollapsed?: boolean }>`
-//     max-width: 220px;
-//     min-width: ${({ isCollapsed }) => (isCollapsed ? "0px" : "220px")};
-//     max-height: 48px;
-//     padding: 0;
-//     justify-content: center;
-//     border: 1px solid rgba(0, 0, 0, 0.2);
-//     box-shadow: 0 2px 6px 1px rgb(0 0 0 / 20%);
-//     border-radius: 15px;
-//     font-size: 1.2vw;
-//     background-color: ${({ theme }) => theme.palette.background.offDefault};
-//
-//     .MuiOutlinedInput-notchedOutline {
-//         border: none;
-//     }
-//
-//     &.MuiFormControl-root {
-//         margin: ${({ theme }) => theme.spacing(2)}
-//         ${({ theme }) => theme.spacing(3)};
-//     }
-//
-//     ${({ theme }) => theme.breakpoints.down("lg")} {
-//         &.MuiFormControl-root {
-//             margin: ${({ theme }) => theme.spacing(2)}
-//             ${({ theme }) => theme.spacing(1)};
-//             padding: 0;
-//         }
-//
-//         .MuiInputBase-root {
-//             padding: 0;
-//         }
-//
-//         .MuiInputAdornment-root {
-//             margin: 0;
-//         }
-//     }
-//
-//     ${({ theme }) => theme.breakpoints.down("md")} {
-//         &.MuiFormControl-root {
-//             margin: ${({ theme }) => theme.spacing(2)}
-//             ${({ theme }) => theme.spacing(3)};
-//             padding: ${({ theme }) => theme.spacing(1)};
-//         }
-//
-//         .MuiInputBase-root {
-//             padding: ${({ theme }) => theme.spacing(1)};
-//         }
-//
-//         .MuiInputAdornment-root {
-//             margin: ${({ theme }) => theme.spacing(1)};
-//         }
-//     }
-// `;
 
 export const StyledInputsContainer = styled("div")`
   width: 100%;
@@ -73,7 +17,7 @@ export const StyledInputsContainer = styled("div")`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: ${({ theme }) => theme.spacing(8)};
+    margin-top: ${({ theme }) => theme.spacing(1)};
   }
 `;
 
@@ -179,9 +123,8 @@ export const StyledInputLabel = styled(InputLabel)`
   }
 `;
 
-export const StyledDatesInputDiv = styled("div")`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
+export const StyledSearchButton = styled(Button)(
+  ({ theme }) => `
+    margin-top: ${theme.spacing(2)};
+`,
+);

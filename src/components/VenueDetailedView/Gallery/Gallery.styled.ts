@@ -1,12 +1,11 @@
 import { styled } from "@mui/material";
-import type { Theme } from "@mui/material";
 
 interface StyledImageContainerProps {
   imageUrl: string;
 }
 
 export const StyledGalleryContainer = styled("div")(
-  ({ theme }: { theme: Theme }) => `
+  ({ theme }) => `
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

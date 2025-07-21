@@ -10,6 +10,7 @@ import {
   StyledCollapseTypographyContainer,
   StyledInputsContainer,
   StyledSearchBarContainer,
+  StyledSearchButton,
 } from "./SearchBar.styled.ts";
 import { useSearchBar } from "./useSearchBar.ts";
 import { LocalizationInput } from "./LocalizationInput/LocalizationInput.tsx";
@@ -60,7 +61,7 @@ export const SearchBar = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <StyledSearchBarContainer>
           {isViewportSmallerThanMd && (
-            <Collapse in={isCollapsed} collapsedSize={95}>
+            <Collapse in={isCollapsed} collapsedSize={70}>
               <StyledInputsContainer>
                 <LocalizationInput />
                 <OccasionInput />
@@ -94,9 +95,9 @@ export const SearchBar = () => {
             </Button>
           </StyledCollapseTypographyContainer>
 
-          <Button variant="contained" type="submit">
+          <StyledSearchButton variant="contained" type="submit">
             Search for venue
-          </Button>
+          </StyledSearchButton>
         </StyledSearchBarContainer>
       </form>
     </FormProvider>
