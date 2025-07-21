@@ -50,7 +50,7 @@ export function NavBar() {
                 </StyledTypographyForHomeLink>
               </Link>
             </div>
-            <Link href={"/login/"} sx={{ color: "#67AA92" }} variant="boldLink">
+            <Link href={"/login/"} variant="boldLink">
               login
             </Link>
           </>
