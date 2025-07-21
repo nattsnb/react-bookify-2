@@ -138,5 +138,10 @@ export const StyledInputLabel = styled(InputLabel)(
 export const StyledSearchButton = styled(Button)(
   ({ theme }) => `
     margin-top: ${theme.spacing(2)};
+    margin-bottom: ${theme.spacing(10)};
+    
+     ${theme.breakpoints.down("md")} {
+     margin-bottom: 0};
+  }
 `,
 );
