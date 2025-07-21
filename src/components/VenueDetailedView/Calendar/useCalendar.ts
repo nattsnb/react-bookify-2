@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import type { Dayjs } from "dayjs";
+import { useCurrency } from "../../../contexts/currencyContext.tsx";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 
 export const useCalendar = () => {
+  const { activeVenue } = useActiveVenue();
   const [whichCalendarIsActive, setWhichCalendarIsActive] = useState<
     "start" | "end"
   >("start");
@@ -10,6 +13,7 @@ export const useCalendar = () => {
   const [isOneDayActive, setIsOneDayActive] = useState(false);
   const [isCalendarError, setIsCalendarError] = useState(false);
   const [daysBetween, setDaysBetween] = useState(0);
+  const { currencyRate } = useCurrency();
 
   useEffect(() => {
     if (!startDate || !endDate) {
@@ -58,17 +62,30 @@ export const useCalendar = () => {
     setEndDate(date);
   };
 
+  const priceInPLN =
+    activeVenue && currencyRate
+      ? Math.round((activeVenue.pricePerNightInEURCent / 100) * currencyRate)
+      : null;
+
+  const fullPriceInPLN =
+    activeVenue && priceInPLN !== null
+      ? isOneDayActive
+        ? priceInPLN
+        : daysBetween * priceInPLN
+      : null;
+
   return {
     whichCalendarIsActive,
     startDate,
     endDate,
     isOneDayActive,
     isCalendarError,
-    daysBetween,
     handleStartsAtClick,
     handleEndsAtClick,
     handleCheckboxChange,
     handleStartDateChange,
     handleEndDateChange,
+    fullPriceInPLN,
+    priceInPLN,
   };
 };

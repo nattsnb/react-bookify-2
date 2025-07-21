@@ -17,7 +17,6 @@ import {
 import { useCalendar } from "./useCalendar.ts";
 import { SectionTitleContainer } from "../VenueDetailedView.styled.ts";
 import { useError } from "../../../contexts/errorContext.ts";
-import { useCurrency } from "../../../contexts/currencyContext.tsx";
 import type { Dayjs } from "dayjs";
 import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 
@@ -28,16 +27,16 @@ export default function Calendar() {
     endDate,
     isOneDayActive,
     isCalendarError,
-    daysBetween,
     handleStartsAtClick,
     handleEndsAtClick,
     handleCheckboxChange,
     handleStartDateChange,
     handleEndDateChange,
+    fullPriceInPLN,
+    priceInPLN,
   } = useCalendar();
 
   const { isError } = useError();
-  const { currencyRate } = useCurrency();
   const { activeVenue } = useActiveVenue();
 
   if (!activeVenue) {
@@ -45,17 +44,6 @@ export default function Calendar() {
   }
 
   const drawerOpen = false;
-
-  let fullPriceInPLN: number | null;
-  const priceInPLN = currencyRate
-    ? Math.round((activeVenue.pricePerNightInEURCent / 100) * currencyRate)
-    : null;
-
-  if (isOneDayActive) {
-    fullPriceInPLN = priceInPLN;
-  } else {
-    fullPriceInPLN = daysBetween * (priceInPLN ?? 0);
-  }
 
   return (
     <>

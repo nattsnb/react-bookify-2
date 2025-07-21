@@ -1,3 +1,5 @@
+import type { RatingDto } from "../rating/rating.dto.ts";
+
 export class ReservationDto {
   id!: number;
   dateStart!: string;
@@ -5,4 +7,5 @@ export class ReservationDto {
   isPendingRating!: boolean;
   venueId!: number;
   userId!: number;
+  rating!: RatingDto | null;
 }

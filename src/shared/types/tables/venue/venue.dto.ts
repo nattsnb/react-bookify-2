@@ -35,7 +35,7 @@ export class VenueDto {
   longitude!: number;
   ownerId!: number;
   owner!: OwnerDto;
-  reservations?: ReservationDto[];
+  reservations!: ReservationDto[];
   favourites?: FavouriteDto[];
   venueType!: VenueTypeDto;
   amenityToVenues!: AmenityToVenueDto[];

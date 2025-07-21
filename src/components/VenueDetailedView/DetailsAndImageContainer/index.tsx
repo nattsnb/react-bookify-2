@@ -35,8 +35,15 @@ export function DetailsAndImageContainer() {
 
   const cityName = activeVenue.city;
   const cityNameLowerCase = cityName.toLowerCase();
-  const numberOfStars = Math.round(activeVenue.rating);
-  const stars = new Array(numberOfStars).map(() => uuidv4());
+  const scores = activeVenue.reservations
+    .map((reservation) => reservation.rating?.score)
+    .filter((score) => typeof score === "number");
+  const numberOfStars =
+    scores.length > 0
+      ? Math.round(scores.reduce((sum, val) => sum + val, 0) / scores.length)
+      : 0;
+  const stars = [...Array(numberOfStars)].map(() => uuidv4());
+  const reviewsString = `${scores.length} ${scores.length === 1 ? "review" : "reviews"}`;
 
   return (
     <StyledDetailsAndImageContainer>
@@ -50,7 +57,7 @@ export function DetailsAndImageContainer() {
           </StyledVenueAddressTypography>
         </StyledNameAndAddressContainer>
         <StyledRatingContainer>
-          <StyledReviewsTypography>4 reviews</StyledReviewsTypography>
+          <StyledReviewsTypography>{reviewsString}</StyledReviewsTypography>
           <StyledVenueRatingTypography>
             {stars.map((starId) => (
               <StarIcon key={starId} />
