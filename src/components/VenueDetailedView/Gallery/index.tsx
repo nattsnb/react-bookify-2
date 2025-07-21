@@ -4,7 +4,7 @@ import {
 } from "./Gallery.styled.js";
 import React from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { StyledContactInfoTypogrphy } from "../ContactInfo/ContactInfo.styled.js";
+import { StyledContactInfoTypography } from "../ContactInfo/ContactInfo.styled.js";
 import { useGallery } from "./useGallery.js";
 import { v4 as uuidv4 } from "uuid";
 import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
@@ -27,7 +27,7 @@ export function Gallery({ galleryRef }: GalleryProps) {
     <div ref={galleryRef}>
       {isViewportSmallerThanLg ? (
         <>
-          <StyledContactInfoTypogrphy>Gallery</StyledContactInfoTypogrphy>
+          <StyledContactInfoTypography>Gallery</StyledContactInfoTypography>
           <StyledGalleryContainer>
             {activeVenue.images.map((imageURL, index) => (
               <StyledImageContainer

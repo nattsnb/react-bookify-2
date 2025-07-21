@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { StyledMapContainer } from "./MapWithAddress.styled.js";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { StyledContactInfoTypogrphy } from "../ContactInfo/ContactInfo.styled.js";
+import { StyledContactInfoTypography } from "../ContactInfo/ContactInfo.styled.js";
 import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 import { FullscreenControl } from "./FullScreenControl.tsx";
 import "leaflet-fullscreen";
@@ -27,7 +27,7 @@ const MapWithAddress = ({ mapRef }: MapWithAddressProps) => {
   return (
     <div ref={mapRef}>
       {isViewportSmallerThanLg && (
-        <StyledContactInfoTypogrphy>Map</StyledContactInfoTypogrphy>
+        <StyledContactInfoTypography>Map</StyledContactInfoTypography>
       )}
       <StyledMapContainer>
         <MapContainer

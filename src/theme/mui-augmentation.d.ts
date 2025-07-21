@@ -17,6 +17,8 @@ declare module "@mui/material/styles" {
   }
   interface TypeBackground {
     offDefault?: string;
+    activeButton?: string;
+    inactiveButton?: string;
   }
 
   interface Palette {

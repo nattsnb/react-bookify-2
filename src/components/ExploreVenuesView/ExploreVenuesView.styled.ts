@@ -1,23 +1,26 @@
 import { styled, TextField, Toolbar } from "@mui/material";
 
-export const StyledWideContentContainer = styled("div")`
-  padding-top: ${({ theme }) => theme.spacing(31)};
+export const StyledWideContentContainer = styled("div")(
+  ({ theme }) => `
+  padding-top: ${theme.spacing(31)};
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding-left: ${({ theme }) => theme.spacing(30)};
-  padding-right: ${({ theme }) => theme.spacing(8)};
+  padding-left: ${theme.spacing(30)};
+  padding-right: ${theme.spacing(8)};
 
-  ${({ theme }) => theme.breakpoints.down("xl")} {
-    padding-left: ${({ theme }) => theme.spacing(25)};
+  ${theme.breakpoints.down("xl")} {
+    padding-left: ${theme.spacing(25)};
   }
 
-  ${({ theme }) => theme.breakpoints.down("lg")} {
-    padding-left: ${({ theme }) => theme.spacing(20)};
+  ${theme.breakpoints.down("lg")} {
+    padding-left: ${theme.spacing(20)};
   }
-`;
+`,
+);
 
-export const StyledDrawerToolbarBackground = styled(Toolbar)`
+export const StyledDrawerToolbarBackground = styled(Toolbar)(
+  ({ theme }) => `
   background-image: url("/images/toolbar.svg");
   display: flex;
   justify-content: center;
@@ -26,9 +29,10 @@ export const StyledDrawerToolbarBackground = styled(Toolbar)`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-bottom: ${({ theme }) => theme.spacing(4)};
-  box-shadow: 0 0 6px ${({ theme }) => theme.palette.secondary.light};
-`;
+  margin-bottom: ${theme.spacing(4)};
+  box-shadow: 0 0 6px ${theme.palette.secondary.light};
+`,
+);
 
 export const StyledDrawerToolbar = styled(Toolbar)`
   display: flex;
@@ -37,33 +41,38 @@ export const StyledDrawerToolbar = styled(Toolbar)`
   width: 100%;
 `;
 
-export const StyledResultsElementsWrapper = styled("div")`
+export const StyledResultsElementsWrapper = styled("div")(
+  ({ theme }) => `
   width: 100%;
-  margin-left: ${({ theme }) => theme.spacing(18)};
-`;
+  margin-left: ${theme.spacing(18)};
+`,
+);
 
-export const StyledResultsToolbarDiv = styled("div")`
+export const StyledResultsToolbarDiv = styled("div")(
+  ({ theme }) => `
   height: 35px;
-  margin-bottom: ${({ theme }) => theme.spacing(2)};
+  margin-bottom: ${theme.spacing(2)};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
+`,
+);
 
-export const StyledLimitTextFiled = styled(TextField)`
+export const StyledLimitTextFiled = styled(TextField)(
+  ({ theme }) => `
   & .MuiInputBase-input {
-    color: ${({ theme }) => theme.palette.primary.main};
+    color: ${theme.palette.primary.main};
     font-weight: 600;
     padding-right: 0;
   }
 
   & .MuiSelect-outlined {
-    padding: ${({ theme }) => theme.spacing(2)}
-      ${({ theme }) => theme.spacing(4)};
+    padding: ${theme.spacing(2)}
+      ${theme.spacing(4)};
   }
 
   & .MuiSelect-select {
-    padding-right: ${({ theme }) => theme.spacing(4)} !important;
+    padding-right: ${theme.spacing(4)} !important;
   }
 
   & .MuiOutlinedInput-root {
@@ -73,15 +82,19 @@ export const StyledLimitTextFiled = styled(TextField)`
   & .MuiSelect-icon {
     display: none;
   }
-`;
+`,
+);
 
-export const StyledLimitWrapper = styled("div")`
-  margin-right: ${({ theme }) => theme.spacing(3)};
-  margin-left: ${({ theme }) => theme.spacing(3)};
-`;
+export const StyledLimitWrapper = styled("div")(
+  ({ theme }) => `
+  margin-right: ${theme.spacing(3)};
+  margin-left: ${theme.spacing(3)};
+`,
+);
 
-export const StyledFiltersContainer = styled("div")`
-  box-shadow: 0 5px 4px ${({ theme }) => theme.palette.secondary.light};
+export const StyledFiltersContainer = styled("div")(
+  ({ theme }) => `
+  box-shadow: 0 5px 4px ${theme.palette.secondary.light};
   width: 285px;
   font-size: 16px;
 
@@ -94,17 +107,18 @@ export const StyledFiltersContainer = styled("div")`
   }
   
   & .MuiListItem-root {
-    padding-bottom: ${({ theme }) => theme.spacing(8)};
+    padding-bottom: ${theme.spacing(8)};
   }
   
   & .MuiSvgIcon-root {
     font-size: 40px;
-    color: ${({ theme }) => theme.palette.secondary.middle};
+    color: ${theme.palette.secondary.middle};
   }
   
-  ${({ theme }) => theme.breakpoints.down("md")} {
+  ${theme.breakpoints.down("md")} {
     height: 100%;
-`;
+`,
+);
 
 export const StyledLimitSettingsContainer = styled("div")`
   display: flex;
@@ -112,6 +126,8 @@ export const StyledLimitSettingsContainer = styled("div")`
   justify-content: flex-end;
 `;
 
-export const StyleThinContentContainer = styled("div")`
-  padding-top: ${({ theme }) => theme.spacing(21)};
-`;
+export const StyleThinContentContainer = styled("div")(
+  ({ theme }) => `
+  padding-top: ${theme.spacing(21)};
+`,
+);

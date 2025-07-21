@@ -94,12 +94,14 @@ export const StyledVenueRatingTypography = styled(Typography)(
   `,
 );
 
-export const StyledReviewsTypography = styled(Typography)`
+export const StyledReviewsTypography = styled(Typography)(
+  ({ theme }) => `
   font-size: 14px;
   opacity: 75%;
-  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+  @media (max-width: ${theme.breakpoints.values.md}px) {
     font-size: 12px;
-`;
+`,
+);
 
 export const StyledIconContainer = styled("div")(
   ({ theme }) => `

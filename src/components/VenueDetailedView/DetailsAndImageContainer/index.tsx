@@ -22,12 +22,23 @@ import { HiddenElement } from "../../../shared/styledComponents/hiddenElement.st
 import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.ts";
 import { v4 as uuidv4 } from "uuid";
 import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
-import React from "react";
+import React, { useMemo } from "react";
 
 export function DetailsAndImageContainer() {
   const { activeVenue } = useActiveVenue();
   const { handleClickForward, handleClickBack } = useDetailsAndImageContainer();
   const { displayedPictureNumber } = useDisplayedPictureNumber();
+  const scores = activeVenue!.reservations
+    .map((reservation) => reservation.rating?.score)
+    .filter((score) => typeof score === "number");
+  const numberOfStars =
+    scores.length > 0
+      ? Math.round(scores.reduce((sum, val) => sum + val, 0) / scores.length)
+      : 0;
+  const stars = useMemo(
+    () => Array.from({ length: numberOfStars }, () => uuidv4()),
+    [numberOfStars],
+  );
 
   if (!activeVenue) {
     return <></>;
@@ -35,14 +46,7 @@ export function DetailsAndImageContainer() {
 
   const cityName = activeVenue.city;
   const cityNameLowerCase = cityName.toLowerCase();
-  const scores = activeVenue.reservations
-    .map((reservation) => reservation.rating?.score)
-    .filter((score) => typeof score === "number");
-  const numberOfStars =
-    scores.length > 0
-      ? Math.round(scores.reduce((sum, val) => sum + val, 0) / scores.length)
-      : 0;
-  const stars = [...Array(numberOfStars)].map(() => uuidv4());
+
   const reviewsString = `${scores.length} ${scores.length === 1 ? "review" : "reviews"}`;
 
   return (

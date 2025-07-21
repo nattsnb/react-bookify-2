@@ -6,20 +6,24 @@ interface DateButtonProps extends ButtonProps {
   isSet?: boolean;
 }
 
-export const StyledDateInputDiv = styled("div")`
+export const StyledDateInputDiv = styled("div")(
+  ({ theme }) => `
   width: 220px;
-  background-color: ${({ theme }) => theme.palette.background.offDefault};
+  background-color: ${theme.palette.background.offDefault};
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   min-height: 48px;
   font-size: 1.2vw;
-`;
+`,
+);
 
-export const StyledIconContainer = styled("div")`
-  padding-right: ${({ theme }) => theme.spacing(2)};
-`;
+export const StyledIconContainer = styled("div")(
+  ({ theme }) => `
+  padding-right: ${theme.spacing(2)};
+`,
+);
 
 export const DateButton = styled(Button)<DateButtonProps>(
   ({ isSet, theme }) => ({

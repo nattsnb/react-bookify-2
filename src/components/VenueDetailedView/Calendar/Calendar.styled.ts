@@ -6,17 +6,15 @@ interface WhichCalendarIsActiveProp {
   whichCalendarIsActive: "start" | "end";
 }
 
-export const StyledStartsAtButton = styled(Button, {
-  shouldForwardProp: (prop) => prop !== "whichCalendarIsActive",
-})<WhichCalendarIsActiveProp>(
+export const StyledStartsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
   ({ theme, whichCalendarIsActive }) => `
   width: 111px;
   height: 48px;
   text-transform: lowercase;
   background-color: ${theme.palette.background.offDefault};
-  border: 1px solid #e5e5e5;
+  border: 1px solid ${theme.palette.background.offDefault};
   border-radius: 20px 0 0 20px;
-  color: ${whichCalendarIsActive === "start" ? "#747474" : "#9B9B9B"};
+  color: ${whichCalendarIsActive === "start" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
   font-weight: ${whichCalendarIsActive === "start" ? "600" : "300"};
   box-shadow: ${
     whichCalendarIsActive === "start"
@@ -25,22 +23,20 @@ export const StyledStartsAtButton = styled(Button, {
   };
 
   &:focus, &:focus-visible, &:active {
-    border: 1px solid #e5e5e5;
+    border: 1px solid ${theme.palette.background.offDefault};
   }
 `,
 );
 
-export const StyledEndsAtButton = styled(Button, {
-  shouldForwardProp: (prop) => prop !== "whichCalendarIsActive",
-})<WhichCalendarIsActiveProp>(
+export const StyledEndsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
   ({ theme, whichCalendarIsActive }) => `
   width: 111px;
   height: 48px;
   text-transform: lowercase;
   background-color: ${theme.palette.background.default};
-  border: 1px solid #e5e5e5;
+  border: 1px solid ${theme.palette.background.offDefault};
   border-radius: 0 20px 20px 0;
-  color: ${whichCalendarIsActive === "end" ? "#747474" : "#9B9B9B"};
+  color: ${whichCalendarIsActive === "end" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
   font-weight: ${whichCalendarIsActive === "end" ? "600" : "300"};
   box-shadow: ${
     whichCalendarIsActive === "end"
@@ -49,7 +45,7 @@ export const StyledEndsAtButton = styled(Button, {
   };
 
   &:focus, &:focus-visible, &:active {
-    border: 1px solid #e5e5e5;
+    border: 1px solid ${theme.palette.background.offDefault};
   }
 `,
 );
@@ -75,7 +71,7 @@ export const StyledOneDayContainer = styled("div")(
 export const StyledOneDayTypography = styled(Typography)(
   ({ theme }) => `
     font-size: 16px;
-    color: #747474;
+    color: ${theme.palette.background.activeButton};
     padding-right: ${theme.spacing(6)};
     padding-left: ${theme.spacing(2)};
   `,
@@ -109,15 +105,17 @@ export const StyledPerDayContainer = styled("div")(
   `,
 );
 
-export const StyledTotalContainer = styled("div")`
+export const StyledTotalContainer = styled("div")(
+  ({ theme }) => `
   font-size: 25px;
-  margin-top: ${({ theme }) => theme.spacing(8)};
+  margin-top: ${theme.spacing(8)};
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-`;
+`,
+);
 
 export const StyledBookButton = styled(Button)`
   width: 138px;
@@ -145,6 +143,5 @@ export const StyledCalendarPicker = styled(CalendarPicker)(
     font-size: 16px;
     margin: ${theme.spacing(1)} ${theme.spacing(2)};
   }
-
 `,
 );

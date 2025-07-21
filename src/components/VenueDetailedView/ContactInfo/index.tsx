@@ -6,7 +6,7 @@ import {
   StyledIconContainer,
   StyledContactDetailsList,
   StyledContactDetailsTextContainer,
-  StyledContactInfoTypogrphy,
+  StyledContactInfoTypography,
   StyledSMLinksContainer,
 } from "./ContactInfo.styled.js";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -49,9 +49,9 @@ export function ContactInfo({ contactsRef }: ContactInfoProps) {
 
   return (
     <div ref={contactsRef}>
-      <StyledContactInfoTypogrphy>
+      <StyledContactInfoTypography>
         Contact this venue
-      </StyledContactInfoTypogrphy>
+      </StyledContactInfoTypography>
       <Divider variant="dark" />
       <StyledContactDetailsList>
         {contactDetailsToList.map(({ id, Icon, string }) => (
@@ -67,9 +67,9 @@ export function ContactInfo({ contactsRef }: ContactInfoProps) {
           </StyledEntryContainer>
         ))}
       </StyledContactDetailsList>
-      <StyledContactInfoTypogrphy>
+      <StyledContactInfoTypography>
         Check out on social media
-      </StyledContactInfoTypogrphy>
+      </StyledContactInfoTypography>
       <Divider variant="dark" />
       <StyledSMLinksContainer>
         <SMLinks links={socialMediaLinks} />

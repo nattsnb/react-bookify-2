@@ -44,6 +44,8 @@ export const StyledBodyLinkBarContainer = styled("div")(
   `,
 );
 
-export const StyledWideBodyClickedContentContainer = styled("div")`
-  box-shadow: 0 0 2px 2px ${({ theme }) => theme.palette.secondary.light};
-`;
+export const StyledWideBodyClickedContentContainer = styled("div")(
+  ({ theme }) => `
+  box-shadow: 0 0 2px 2px ${theme.palette.secondary.light};
+`,
+);

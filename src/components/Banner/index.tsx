@@ -35,7 +35,7 @@ export function Banner() {
   return (
     <>
       {isDesktop ? (
-        <StyledBanner>
+        <StyledBanner bannerHeight={config.bannerHeight}>
           <StyledBannerContent>
             <StyledHeaderTypographyContainer>
               <StyledHeaderTypography>
@@ -67,7 +67,7 @@ export function Banner() {
             <SortDrawer />
           </Drawer>
           {config.banner && (
-            <StyledBanner>
+            <StyledBanner bannerHeight={config.bannerHeight}>
               <StyledBannerContent>
                 <StyledHeaderTypographyContainer>
                   <StyledHeaderTypography>

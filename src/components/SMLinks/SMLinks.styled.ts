@@ -12,11 +12,13 @@ export const StyledSMLinks = styled(Link)`
   }
 `;
 
-export const SMContainer = styled("div")`
+export const SMContainer = styled("div")(
+  ({ theme }) => `
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   max-width: 474px;
   width: 100%;
-  padding: 0 ${({ theme }) => theme.spacing(1)};
-`;
+  padding: 0 ${theme.spacing(1)};
+`,
+);

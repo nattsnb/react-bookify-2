@@ -18,6 +18,8 @@ const theme = createTheme({
     background: {
       default: "#FFFFFF",
       offDefault: "#FDFDFD",
+      activeButton: "#747474",
+      inactiveButton: "#9B9B9B",
     },
   },
   typography: {
