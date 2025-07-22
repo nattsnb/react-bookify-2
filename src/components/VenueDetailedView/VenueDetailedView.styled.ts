@@ -97,3 +97,23 @@ export const SectionTitleContainer = styled("div")(
     font-weight: 500;
   `,
 );
+
+export const HiddenIfMobileContainer = styled("div")(
+  ({ theme }) => `
+    display: flex;
+    flex-direction: column;
+    ${theme.breakpoints.down("lg")} {
+      display: none;
+    }
+  `,
+);
+
+export const HiddenIfDesktopContainer = styled("div")(
+  ({ theme }) => `
+    display: flex;
+    flex-direction: column;
+    ${theme.breakpoints.up("lg")} {
+      display: none;
+    }
+  `,
+);

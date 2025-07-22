@@ -8,6 +8,8 @@ import {
   StyledLeftColumnContainer,
   StyledRightColumnContainer,
   StyledColumnsContainer,
+  HiddenIfMobileContainer,
+  HiddenIfDesktopContainer,
 } from "./VenueDetailedView.styled.ts";
 import React from "react";
 import { useVenueDetailedView } from "./useVenueDetailedView.ts";
@@ -18,10 +20,9 @@ import { ContactInfo } from "./ContactInfo";
 import { DetailsAndImageContainer } from "./DetailsAndImageContainer";
 import { WideBodyLinkBarAndContentContainer } from "./LinkBarAndBody/WideBodyLinkBarAndContentContainer.tsx";
 import { NarrowBodyLinkBar } from "./LinkBarAndBody/NarowBodyLinkBar.tsx";
-import { Gallery } from "./Gallery";
-import { Description } from "./Description";
-import MapWithAddress from "./MapWithAddress";
 import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
+import {VenueSections} from "./VenueSections.tsx";
+import {useLinkBar} from "./LinkBarAndBody/useLinkBar.ts";
 
 export function VenueDetailedView() {
   const query = useParams<{ venueId: string }>();
@@ -34,7 +35,7 @@ export function VenueDetailedView() {
     contactsRef,
     handleScroll,
   } = useVenueDetailedView(venueId);
-
+  const {displayedContent} = useLinkBar()
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -66,20 +67,31 @@ export function VenueDetailedView() {
           <StyledColumnsContainer>
             <StyledLeftColumnContainer>
               <DetailsAndImageContainer />
-              <NarrowBodyLinkBar
-                handleScroll={handleScroll}
-                descriptionRef={descriptionRef}
-                galleryRef={galleryRef}
+              <HiddenIfMobileContainer>
+                <WideBodyLinkBarAndContentContainer />
+              </HiddenIfMobileContainer>
+              <HiddenIfDesktopContainer>
+                <NarrowBodyLinkBar
+                  handleScroll={handleScroll}
+                  descriptionRef={descriptionRef}
+                  galleryRef={galleryRef}
+                  mapRef={mapRef}
+                  contactsRef={contactsRef}
+                />
+              </HiddenIfDesktopContainer>
+              <VenueSections
                 mapRef={mapRef}
                 contactsRef={contactsRef}
+                galleryRef={galleryRef}
+                descriptionRef={descriptionRef}
+                displayedContent={displayedContent}
+                isMobile={isMobile}
               />
-              <WideBodyLinkBarAndContentContainer />
-              <Description descriptionRef={descriptionRef} />
-              <Gallery galleryRef={galleryRef} isMobile={isMobile} />
-              <MapWithAddress mapRef={mapRef} isMobile={isMobile} />
             </StyledLeftColumnContainer>
             <StyledRightColumnContainer>
-              <Calendar />
+              <HiddenIfMobileContainer>
+                <Calendar />
+              </HiddenIfMobileContainer>
               <ContactInfo contactsRef={contactsRef} />
             </StyledRightColumnContainer>
           </StyledColumnsContainer>
