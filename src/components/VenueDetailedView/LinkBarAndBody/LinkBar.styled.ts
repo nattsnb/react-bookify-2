@@ -43,5 +43,3 @@ export const StyledBodyLinkBarContainer = styled("div")(
     }
   `,
 );
-
-

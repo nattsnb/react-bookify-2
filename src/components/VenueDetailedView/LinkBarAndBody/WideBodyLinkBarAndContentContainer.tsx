@@ -1,16 +1,11 @@
-import {
-  StyledBodyLinkBarContainer,
-} from "./LinkBar.styled.js";
+import { StyledBodyLinkBarContainer } from "./LinkBar.styled.js";
 import { Button } from "@mui/material";
 import React from "react";
 import { useLinkBar } from "./useLinkBar.js";
 
 export function WideBodyLinkBarAndContentContainer() {
-  const {
-    handleDescriptionClick,
-    handleGalleryClick,
-    handleMapClick,
-  } = useLinkBar();
+  const { handleDescriptionClick, handleGalleryClick, handleMapClick } =
+    useLinkBar();
 
   return (
     <>
