@@ -1,9 +1,9 @@
 import React from "react";
-import {Description} from "./Description";
-import {VenueSection} from "../../shared/constants.ts";
-import {Gallery} from "./Gallery";
+import { Description } from "./Description";
+import { VenueSection } from "../../shared/constants.ts";
+import { Gallery } from "./Gallery";
 import MapWithAddress from "./MapWithAddress";
-import {ContactInfo} from "./ContactInfo";
+import { ContactInfo } from "./ContactInfo";
 
 interface VenueSectionsProps {
   isMobile: boolean;
@@ -15,18 +15,21 @@ interface VenueSectionsProps {
 }
 
 export function VenueSections({
-                                isMobile,
-                                displayedContent,
-                                descriptionRef,
-                                galleryRef,
-                                mapRef,
-                                contactsRef,
-                              }: VenueSectionsProps) {
+  isMobile,
+  displayedContent,
+  descriptionRef,
+  galleryRef,
+  mapRef,
+  contactsRef,
+}: VenueSectionsProps) {
   return (
     <>
       <section
         style={{
-          display: isMobile || displayedContent === VenueSection.DESCRIPTION ? "block" : "none",
+          display:
+            isMobile || displayedContent === VenueSection.DESCRIPTION
+              ? "block"
+              : "none",
         }}
         ref={descriptionRef}
       >
@@ -34,7 +37,10 @@ export function VenueSections({
       </section>
       <section
         style={{
-          display: isMobile || displayedContent === VenueSection.GALLERY ? "block" : "none",
+          display:
+            isMobile || displayedContent === VenueSection.GALLERY
+              ? "block"
+              : "none",
         }}
         ref={galleryRef}
       >
@@ -42,7 +48,10 @@ export function VenueSections({
       </section>
       <section
         style={{
-          display: isMobile || displayedContent === VenueSection.MAP ? "block" : "none",
+          display:
+            isMobile || displayedContent === VenueSection.MAP
+              ? "block"
+              : "none",
         }}
         ref={mapRef}
       >

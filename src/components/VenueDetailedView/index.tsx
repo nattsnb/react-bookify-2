@@ -21,8 +21,8 @@ import { DetailsAndImageContainer } from "./DetailsAndImageContainer";
 import { WideBodyLinkBarAndContentContainer } from "./LinkBarAndBody/WideBodyLinkBarAndContentContainer.tsx";
 import { NarrowBodyLinkBar } from "./LinkBarAndBody/NarowBodyLinkBar.tsx";
 import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
-import {VenueSections} from "./VenueSections.tsx";
-import {useLinkBar} from "./LinkBarAndBody/useLinkBar.ts";
+import { VenueSections } from "./VenueSections.tsx";
+import { useLinkBar } from "./LinkBarAndBody/useLinkBar.ts";
 
 export function VenueDetailedView() {
   const query = useParams<{ venueId: string }>();
@@ -35,15 +35,11 @@ export function VenueDetailedView() {
     contactsRef,
     handleScroll,
   } = useVenueDetailedView(venueId);
-  const {displayedContent} = useLinkBar()
+  const { displayedContent } = useLinkBar();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   const { activeVenue } = useActiveVenue();
-
-  if (!activeVenue) {
-    return <></>;
-  }
 
   if (isLoading) {
     return (
@@ -51,6 +47,10 @@ export function VenueDetailedView() {
         <CircularProgress />
       </VerticalContainer>
     );
+  }
+
+  if (!activeVenue) {
+    return <></>;
   }
 
   return (
@@ -91,8 +91,8 @@ export function VenueDetailedView() {
             <StyledRightColumnContainer>
               <HiddenIfMobileContainer>
                 <Calendar />
+                <ContactInfo />
               </HiddenIfMobileContainer>
-              <ContactInfo contactsRef={contactsRef} />
             </StyledRightColumnContainer>
           </StyledColumnsContainer>
         )}

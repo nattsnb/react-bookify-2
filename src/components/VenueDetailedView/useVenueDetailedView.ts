@@ -41,7 +41,7 @@ export const useVenueDetailedView = (venueId: number) => {
       setIsLoading(false);
     }
     getVenueDetails(venueId);
-  });
+  }, [venueId]);
 
   return {
     isLoading,
