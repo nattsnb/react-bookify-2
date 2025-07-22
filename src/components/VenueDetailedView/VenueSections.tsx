@@ -4,6 +4,7 @@ import { VenueSection } from "../../shared/constants.ts";
 import { Gallery } from "./Gallery";
 import MapWithAddress from "./MapWithAddress";
 import { ContactInfo } from "./ContactInfo";
+import { StyledSectionContainer } from "./VenueDetailedView.styled.ts";
 
 interface VenueSectionsProps {
   isMobile: boolean;
@@ -23,7 +24,7 @@ export function VenueSections({
   contactsRef,
 }: VenueSectionsProps) {
   return (
-    <>
+    <StyledSectionContainer>
       <section
         style={{
           display:
@@ -62,6 +63,6 @@ export function VenueSections({
           <ContactInfo contactsRef={contactsRef} />
         </section>
       )}
-    </>
+    </StyledSectionContainer>
   );
 }

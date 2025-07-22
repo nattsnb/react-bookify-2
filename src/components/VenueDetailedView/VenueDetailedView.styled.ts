@@ -41,6 +41,7 @@ export const StyledColumnsContainer = styled("div")(
 
     ${theme.breakpoints.down("lg")} {
         flex-direction: column;
+        align-items: center;
     }
   `,
 );
@@ -114,6 +115,17 @@ export const HiddenIfDesktopContainer = styled("div")(
     flex-direction: column;
     ${theme.breakpoints.up("lg")} {
       display: none;
+    }
+  `,
+);
+
+export const StyledSectionContainer = styled("div")(
+  ({ theme }) => `
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    ${theme.breakpoints.up("lg")} {
+      box-shadow: 0 0 2px 2px ${theme.palette.secondary.light};
     }
   `,
 );
