@@ -1,26 +1,23 @@
-import { useState } from "react";
 import { VenueSection } from "../../../shared/constants.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 
 export function useLinkBar() {
-  const [displayedContent, setDisplayedContent] = useState<VenueSection>(
-    VenueSection.DESCRIPTION,
-  );
+  const { setDisplayedSection } = useActiveVenue();
 
   const handleDescriptionClick = () => {
-    setDisplayedContent(VenueSection.DESCRIPTION);
+    setDisplayedSection(VenueSection.DESCRIPTION);
   };
   const handleGalleryClick = () => {
-    setDisplayedContent(VenueSection.GALLERY);
+    setDisplayedSection(VenueSection.GALLERY);
   };
   const handleMapClick = () => {
-    setDisplayedContent(VenueSection.MAP);
+    setDisplayedSection(VenueSection.MAP);
   };
   const handleContactsClick = () => {
-    setDisplayedContent(VenueSection.CONTACTS);
+    setDisplayedSection(VenueSection.CONTACTS);
   };
 
   return {
-    displayedContent,
     handleDescriptionClick,
     handleGalleryClick,
     handleMapClick,

@@ -16,6 +16,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { PictureCarouselContext } from "./contexts/pictureCaruselContext.ts";
 import { ActiveVenueContext } from "./contexts/activeVenueContext.ts";
 import type { VenueDto } from "./shared/types/tables/venue/venue.dto.ts";
+import { VenueSection } from "./shared/constants.ts";
 
 export function App() {
   const [isError, setIsError] = useState(false);
@@ -24,13 +25,23 @@ export function App() {
   );
   const [displayedPictureNumber, setDisplayedPictureNumber] = useState(0);
   const [activeVenue, setActiveVenue] = useState<VenueDto | null>(null);
+  const [displayedSection, setDisplayedSection] = useState<VenueSection>(
+    VenueSection.DESCRIPTION,
+  );
 
   return (
     <ErrorContext.Provider value={{ isError, setIsError }}>
       <PictureCarouselContext.Provider
         value={{ displayedPictureNumber, setDisplayedPictureNumber }}
       >
-        <ActiveVenueContext.Provider value={{ activeVenue, setActiveVenue }}>
+        <ActiveVenueContext.Provider
+          value={{
+            activeVenue,
+            setActiveVenue,
+            displayedSection,
+            setDisplayedSection,
+          }}
+        >
           <CurrencyProvider>
             <FilterParamsContext.Provider
               value={{ filterParams, setFilterParams }}

@@ -22,7 +22,6 @@ import { WideBodyLinkBarAndContentContainer } from "./LinkBarAndBody/WideBodyLin
 import { NarrowBodyLinkBar } from "./LinkBarAndBody/NarowBodyLinkBar.tsx";
 import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
 import { VenueSections } from "./VenueSections.tsx";
-import { useLinkBar } from "./LinkBarAndBody/useLinkBar.ts";
 
 export function VenueDetailedView() {
   const query = useParams<{ venueId: string }>();
@@ -35,7 +34,6 @@ export function VenueDetailedView() {
     contactsRef,
     handleScroll,
   } = useVenueDetailedView(venueId);
-  const { displayedContent } = useLinkBar();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -84,7 +82,6 @@ export function VenueDetailedView() {
                 contactsRef={contactsRef}
                 galleryRef={galleryRef}
                 descriptionRef={descriptionRef}
-                displayedContent={displayedContent}
                 isMobile={isMobile}
               />
             </StyledLeftColumnContainer>

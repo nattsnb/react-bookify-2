@@ -5,10 +5,10 @@ import { Gallery } from "./Gallery";
 import MapWithAddress from "./MapWithAddress";
 import { ContactInfo } from "./ContactInfo";
 import { StyledSectionContainer } from "./VenueDetailedView.styled.ts";
+import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
 
 interface VenueSectionsProps {
   isMobile: boolean;
-  displayedContent: VenueSection;
   descriptionRef: React.RefObject<HTMLDivElement>;
   galleryRef: React.RefObject<HTMLDivElement>;
   mapRef: React.RefObject<HTMLDivElement>;
@@ -17,18 +17,19 @@ interface VenueSectionsProps {
 
 export function VenueSections({
   isMobile,
-  displayedContent,
   descriptionRef,
   galleryRef,
   mapRef,
   contactsRef,
 }: VenueSectionsProps) {
+  const { displayedSection } = useActiveVenue();
+
   return (
     <StyledSectionContainer>
       <section
         style={{
           display:
-            isMobile || displayedContent === VenueSection.DESCRIPTION
+            isMobile || displayedSection === VenueSection.DESCRIPTION
               ? "block"
               : "none",
         }}
@@ -39,7 +40,7 @@ export function VenueSections({
       <section
         style={{
           display:
-            isMobile || displayedContent === VenueSection.GALLERY
+            isMobile || displayedSection === VenueSection.GALLERY
               ? "block"
               : "none",
         }}
@@ -50,7 +51,7 @@ export function VenueSections({
       <section
         style={{
           display:
-            isMobile || displayedContent === VenueSection.MAP
+            isMobile || displayedSection === VenueSection.MAP
               ? "block"
               : "none",
         }}
