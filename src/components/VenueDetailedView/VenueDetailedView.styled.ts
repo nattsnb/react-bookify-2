@@ -1,16 +1,14 @@
 import { styled } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-export const StyledBackToResultsFlexDiv = styled("div")(
-  () => `
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    font-size: 16px;
-  `,
-);
+export const StyledBackToResultsFlexDiv = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+`;
 
 export const StyledArrowBackIosIcon = styled(ArrowBackIosIcon)(
   ({ theme }) => `
@@ -33,13 +31,17 @@ export const StyledBackToResultsLinkContainer = styled("div")(
   `,
 );
 
-export const StyledWideBodyContainer = styled("div")(
-  () => `
+export const StyledColumnsContainer = styled("div")(
+  ({ theme }) => `
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+
+    ${theme.breakpoints.down("lg")} {
+        flex-direction: column;
+    }
   `,
 );
 
@@ -65,14 +67,12 @@ export const StyledBodyContainer = styled("div")(
   `,
 );
 
-export const StyledLeftColumnContainer = styled("div")(
-  () => `
-    display: flex;
-    flex-direction: column;
-    max-width: 692px;
-    width: 100%;
-  `,
-);
+export const StyledLeftColumnContainer = styled("div")`
+  display: flex;
+  flex-direction: column;
+  max-width: 692px;
+  width: 100%;
+`;
 
 export const StyledRightColumnContainer = styled("div")(
   ({ theme }) => `

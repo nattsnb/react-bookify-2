@@ -2,7 +2,6 @@ import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { StyledMapContainer } from "./MapWithAddress.styled.js";
-import { useMediaQuery, useTheme } from "@mui/material";
 import { StyledContactInfoTypography } from "../ContactInfo/ContactInfo.styled.js";
 import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 import { FullscreenControl } from "./FullScreenControl.tsx";
@@ -11,11 +10,10 @@ import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 
 interface MapWithAddressProps {
   mapRef?: React.RefObject<HTMLDivElement>;
+  isMobile: boolean;
 }
 
-const MapWithAddress = ({ mapRef }: MapWithAddressProps) => {
-  const theme = useTheme();
-  const isViewportSmallerThanLg = useMediaQuery(theme.breakpoints.down("lg"));
+const MapWithAddress = ({ mapRef, isMobile }: MapWithAddressProps) => {
   const { activeVenue } = useActiveVenue();
 
   if (!activeVenue) {
@@ -26,7 +24,7 @@ const MapWithAddress = ({ mapRef }: MapWithAddressProps) => {
 
   return (
     <div ref={mapRef}>
-      {isViewportSmallerThanLg && (
+      {isMobile && (
         <StyledContactInfoTypography>Map</StyledContactInfoTypography>
       )}
       <StyledMapContainer>

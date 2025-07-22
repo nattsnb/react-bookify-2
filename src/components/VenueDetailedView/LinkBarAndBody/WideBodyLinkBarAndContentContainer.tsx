@@ -27,8 +27,12 @@ export function WideBodyLinkBarAndContentContainer() {
       </StyledBodyLinkBarContainer>
       <StyledWideBodyClickedContentContainer>
         {displayedContent === VenueSection.DESCRIPTION && <Description />}
-        {displayedContent === VenueSection.GALLERY && <Gallery />}
-        {displayedContent === VenueSection.MAP && <MapWithAddress />}
+        {displayedContent === VenueSection.GALLERY && (
+          <Gallery isMobile={false} />
+        )}
+        {displayedContent === VenueSection.MAP && (
+          <MapWithAddress isMobile={false} />
+        )}
       </StyledWideBodyClickedContentContainer>
     </>
   );

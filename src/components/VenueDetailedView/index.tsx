@@ -7,7 +7,7 @@ import {
   StyledBodyContainer,
   StyledLeftColumnContainer,
   StyledRightColumnContainer,
-  StyledWideBodyContainer,
+  StyledColumnsContainer,
 } from "./VenueDetailedView.styled.ts";
 import React from "react";
 import { useVenueDetailedView } from "./useVenueDetailedView.ts";
@@ -36,7 +36,7 @@ export function VenueDetailedView() {
   } = useVenueDetailedView(venueId);
 
   const theme = useTheme();
-  const isViewportLargerThanLg = useMediaQuery(theme.breakpoints.up("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   const { activeVenue } = useActiveVenue();
 
@@ -62,35 +62,28 @@ export function VenueDetailedView() {
             </StyledBackToResultsFlexDiv>
           </Link>
         </StyledBackToResultsLinkContainer>
-        {activeVenue &&
-          (isViewportLargerThanLg ? (
-            <StyledWideBodyContainer>
-              <StyledLeftColumnContainer>
-                <DetailsAndImageContainer />
-                <WideBodyLinkBarAndContentContainer />
-              </StyledLeftColumnContainer>
-              <StyledRightColumnContainer>
-                <Calendar />
-                <ContactInfo />
-              </StyledRightColumnContainer>
-            </StyledWideBodyContainer>
-          ) : (
-            <>
+        {activeVenue && (
+          <StyledColumnsContainer>
+            <StyledLeftColumnContainer>
               <DetailsAndImageContainer />
               <NarrowBodyLinkBar
-                mapRef={mapRef}
-                galleryRef={galleryRef}
-                descriptionRef={descriptionRef}
-                contactsRef={contactsRef}
                 handleScroll={handleScroll}
+                descriptionRef={descriptionRef}
+                galleryRef={galleryRef}
+                mapRef={mapRef}
+                contactsRef={contactsRef}
               />
+              <WideBodyLinkBarAndContentContainer />
               <Description descriptionRef={descriptionRef} />
-              <Gallery galleryRef={galleryRef} />
-              <MapWithAddress mapRef={mapRef} />
+              <Gallery galleryRef={galleryRef} isMobile={isMobile} />
+              <MapWithAddress mapRef={mapRef} isMobile={isMobile} />
+            </StyledLeftColumnContainer>
+            <StyledRightColumnContainer>
+              <Calendar />
               <ContactInfo contactsRef={contactsRef} />
-              <div>BookDrawer</div>
-            </>
-          ))}
+            </StyledRightColumnContainer>
+          </StyledColumnsContainer>
+        )}
       </StyledBodyContainer>
     </PageWidthContainer>
   );

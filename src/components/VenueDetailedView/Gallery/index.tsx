@@ -3,7 +3,6 @@ import {
   StyledImageContainer,
 } from "./Gallery.styled.js";
 import React from "react";
-import { useMediaQuery, useTheme } from "@mui/material";
 import { StyledContactInfoTypography } from "../ContactInfo/ContactInfo.styled.js";
 import { useGallery } from "./useGallery.js";
 import { v4 as uuidv4 } from "uuid";
@@ -11,11 +10,10 @@ import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 
 interface GalleryProps {
   galleryRef?: React.RefObject<HTMLDivElement>;
+  isMobile: boolean;
 }
 
-export function Gallery({ galleryRef }: GalleryProps) {
-  const theme = useTheme();
-  const isViewportSmallerThanLg = useMediaQuery(theme.breakpoints.down("lg"));
+export function Gallery({ galleryRef, isMobile }: GalleryProps) {
   const handleOnClick = useGallery();
   const { activeVenue } = useActiveVenue();
 
@@ -25,30 +23,18 @@ export function Gallery({ galleryRef }: GalleryProps) {
 
   return (
     <div ref={galleryRef}>
-      {isViewportSmallerThanLg ? (
-        <>
-          <StyledContactInfoTypography>Gallery</StyledContactInfoTypography>
-          <StyledGalleryContainer>
-            {activeVenue.images.map((imageURL, index) => (
-              <StyledImageContainer
-                key={uuidv4()}
-                imageUrl={imageURL}
-                onClick={() => handleOnClick(index)}
-              />
-            ))}
-          </StyledGalleryContainer>
-        </>
-      ) : (
-        <StyledGalleryContainer>
-          {activeVenue.images.map((imageURL, index) => (
-            <StyledImageContainer
-              key={index}
-              imageUrl={imageURL}
-              onClick={() => handleOnClick(index)}
-            />
-          ))}
-        </StyledGalleryContainer>
+      {isMobile && (
+        <StyledContactInfoTypography>Gallery</StyledContactInfoTypography>
       )}
+      <StyledGalleryContainer>
+        {activeVenue.images.map((imageURL, index) => (
+          <StyledImageContainer
+            key={uuidv4()}
+            imageUrl={imageURL}
+            onClick={() => handleOnClick(index)}
+          />
+        ))}
+      </StyledGalleryContainer>
     </div>
   );
 }
