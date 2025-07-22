@@ -57,13 +57,13 @@ export default function Calendar() {
       <StyledButtonGroup>
         <StyledStartsAtButton
           onClick={handleStartsAtClick}
-          whichCalendarIsActive={whichCalendarIsActive}
+          whichcalendarisactive={whichCalendarIsActive}
         >
           starts at
         </StyledStartsAtButton>
         <StyledEndsAtButton
           onClick={handleEndsAtClick}
-          whichCalendarIsActive={whichCalendarIsActive}
+          whichcalendarisactive={whichCalendarIsActive}
         >
           ends at
         </StyledEndsAtButton>

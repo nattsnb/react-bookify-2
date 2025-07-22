@@ -3,21 +3,21 @@ import Typography from "@mui/material/Typography";
 import { CalendarPicker } from "@mui/x-date-pickers/CalendarPicker";
 
 interface WhichCalendarIsActiveProp {
-  whichCalendarIsActive: "start" | "end";
+  whichcalendarisactive: "start" | "end";
 }
 
 export const StyledStartsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
-  ({ theme, whichCalendarIsActive }) => `
+  ({ theme, whichcalendarisactive }) => `
   width: 111px;
   height: 48px;
   text-transform: lowercase;
   background-color: ${theme.palette.background.offDefault};
   border: 1px solid ${theme.palette.background.offDefault};
   border-radius: 20px 0 0 20px;
-  color: ${whichCalendarIsActive === "start" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
-  font-weight: ${whichCalendarIsActive === "start" ? "600" : "300"};
+  color: ${whichcalendarisactive === "start" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
+  font-weight: ${whichcalendarisactive === "start" ? "600" : "300"};
   box-shadow: ${
-    whichCalendarIsActive === "start"
+    whichcalendarisactive === "start"
       ? "inset 0 2px 8px -2px rgba(0,0,0,0.18)"
       : "0 1px 4px -2px rgba(0,0,0,0.08)"
   };
@@ -29,17 +29,17 @@ export const StyledStartsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
 );
 
 export const StyledEndsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
-  ({ theme, whichCalendarIsActive }) => `
+  ({ theme, whichcalendarisactive }) => `
   width: 111px;
   height: 48px;
   text-transform: lowercase;
   background-color: ${theme.palette.background.default};
   border: 1px solid ${theme.palette.background.offDefault};
   border-radius: 0 20px 20px 0;
-  color: ${whichCalendarIsActive === "end" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
-  font-weight: ${whichCalendarIsActive === "end" ? "600" : "300"};
+  color: ${whichcalendarisactive === "end" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
+  font-weight: ${whichcalendarisactive === "end" ? "600" : "300"};
   box-shadow: ${
-    whichCalendarIsActive === "end"
+    whichcalendarisactive === "end"
       ? "inset 0 2px 8px -2px rgba(0,0,0,0.18)"
       : "0 1px 4px -2px rgba(0,0,0,0.08)"
   };
