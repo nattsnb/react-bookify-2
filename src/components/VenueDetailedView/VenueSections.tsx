@@ -6,9 +6,9 @@ import MapWithAddress from "./MapWithAddress";
 import { ContactInfo } from "./ContactInfo";
 import { StyledSectionContainer } from "./VenueDetailedView.styled.ts";
 import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 interface VenueSectionsProps {
-  isMobile: boolean;
   descriptionRef: React.RefObject<HTMLDivElement>;
   galleryRef: React.RefObject<HTMLDivElement>;
   mapRef: React.RefObject<HTMLDivElement>;
@@ -16,13 +16,15 @@ interface VenueSectionsProps {
 }
 
 export function VenueSections({
-  isMobile,
   descriptionRef,
   galleryRef,
   mapRef,
   contactsRef,
 }: VenueSectionsProps) {
   const { displayedSection } = useActiveVenue();
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <StyledSectionContainer>
@@ -46,7 +48,7 @@ export function VenueSections({
         }}
         ref={galleryRef}
       >
-        <Gallery galleryRef={galleryRef} isMobile={isMobile} />
+        <Gallery galleryRef={galleryRef} />
       </section>
       <section
         style={{
@@ -57,7 +59,7 @@ export function VenueSections({
         }}
         ref={mapRef}
       >
-        <MapWithAddress mapRef={mapRef} isMobile={isMobile} />
+        <MapWithAddress mapRef={mapRef} />
       </section>
       {isMobile && (
         <section ref={contactsRef}>

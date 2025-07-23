@@ -157,6 +157,7 @@ export const StyledBottomMountedContainer = styled("div")<isHiddenProp>(
     bottom: 0;
     flex-direction: column;
     display: ${isHidden ? "none" : "flex"};
+    z-index: 1200;
   `,
 );
 

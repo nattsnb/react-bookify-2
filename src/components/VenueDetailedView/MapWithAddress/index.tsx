@@ -7,14 +7,16 @@ import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
 import { FullscreenControl } from "./FullScreenControl.tsx";
 import "leaflet-fullscreen";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 interface MapWithAddressProps {
   mapRef?: React.RefObject<HTMLDivElement>;
-  isMobile: boolean;
 }
 
-const MapWithAddress = ({ mapRef, isMobile }: MapWithAddressProps) => {
+const MapWithAddress = ({ mapRef }: MapWithAddressProps) => {
   const { activeVenue } = useActiveVenue();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.up("lg"));
 
   if (!activeVenue) {
     return <></>;

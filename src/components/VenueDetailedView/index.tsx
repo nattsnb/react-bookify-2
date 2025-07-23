@@ -1,10 +1,5 @@
 import { PageWidthContainer } from "../../shared/styledComponents/pageWidthContainer.js";
-import {
-  CircularProgress,
-  Link,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { CircularProgress, Link, useMediaQuery, useTheme } from "@mui/material";
 import {
   StyledArrowBackIosIcon,
   StyledBackToResultsFlexDiv,
@@ -92,7 +87,6 @@ export function VenueDetailedView() {
                 contactsRef={contactsRef}
                 galleryRef={galleryRef}
                 descriptionRef={descriptionRef}
-                isMobile={isMobile}
               />
             </StyledLeftColumnContainer>
             {isMobile ? (

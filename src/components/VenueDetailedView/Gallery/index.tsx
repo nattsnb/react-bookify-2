@@ -7,15 +7,17 @@ import { StyledContactInfoTypography } from "../ContactInfo/ContactInfo.styled.j
 import { useGallery } from "./useGallery.js";
 import { v4 as uuidv4 } from "uuid";
 import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 interface GalleryProps {
   galleryRef?: React.RefObject<HTMLDivElement>;
-  isMobile: boolean;
 }
 
-export function Gallery({ galleryRef, isMobile }: GalleryProps) {
+export function Gallery({ galleryRef }: GalleryProps) {
   const handleOnClick = useGallery();
   const { activeVenue } = useActiveVenue();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.up("lg"));
 
   if (!activeVenue) {
     return <></>;
