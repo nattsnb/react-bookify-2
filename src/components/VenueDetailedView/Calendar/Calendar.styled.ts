@@ -11,10 +11,10 @@ export const StyledStartsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
   width: 111px;
   height: 48px;
   text-transform: lowercase;
-  background-color: ${theme.palette.background.offDefault};
-  border: 1px solid ${theme.palette.background.offDefault};
+  color: ${theme.palette.primary.fontLight};
+  border: 1px solid ${theme.palette.primary.border};
   border-radius: 20px 0 0 20px;
-  color: ${whichcalendarisactive === "start" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
+  background-color: ${whichcalendarisactive === "start" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
   font-weight: ${whichcalendarisactive === "start" ? "600" : "300"};
   box-shadow: ${
     whichcalendarisactive === "start"
@@ -23,7 +23,7 @@ export const StyledStartsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
   };
 
   &:focus, &:focus-visible, &:active {
-    border: 1px solid ${theme.palette.background.offDefault};
+    border: 1px solid ${theme.palette.primary.border};
   }
 `,
 );
@@ -33,10 +33,10 @@ export const StyledEndsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
   width: 111px;
   height: 48px;
   text-transform: lowercase;
-  background-color: ${theme.palette.background.default};
-  border: 1px solid ${theme.palette.background.offDefault};
+  color: ${theme.palette.primary.fontLight};
+  border: 1px solid ${theme.palette.primary.border};
   border-radius: 0 20px 20px 0;
-  color: ${whichcalendarisactive === "end" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
+  background-color:: ${whichcalendarisactive === "end" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
   font-weight: ${whichcalendarisactive === "end" ? "600" : "300"};
   box-shadow: ${
     whichcalendarisactive === "end"
@@ -45,7 +45,7 @@ export const StyledEndsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
   };
 
   &:focus, &:focus-visible, &:active {
-    border: 1px solid ${theme.palette.background.offDefault};
+    border: 1px solid ${theme.palette.primary.border};
   }
 `,
 );
@@ -133,7 +133,7 @@ export const StyledCalendarPicker = styled(CalendarPicker)(
     width: 100%;
     height: 100%;
     background-color: ${theme.palette.background.offDefault};
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid ${theme.palette.primary.border};
     border-radius: 15px;
     padding-left: ${theme.spacing(4)};
         padding-top:  0;
