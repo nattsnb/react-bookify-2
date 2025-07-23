@@ -1,5 +1,10 @@
 import { PageWidthContainer } from "../../shared/styledComponents/pageWidthContainer.js";
-import { CircularProgress, Link, useMediaQuery, useTheme } from "@mui/material";
+import {
+  CircularProgress,
+  Link,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import {
   StyledArrowBackIosIcon,
   StyledBackToResultsFlexDiv,
@@ -10,6 +15,9 @@ import {
   StyledColumnsContainer,
   HiddenIfMobileContainer,
   HiddenIfDesktopContainer,
+  StyledBookThisVenueContainer,
+  StyledBottomMountedContainer,
+  StyledDrawer,
 } from "./VenueDetailedView.styled.ts";
 import React from "react";
 import { useVenueDetailedView } from "./useVenueDetailedView.ts";
@@ -24,6 +32,8 @@ import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
 import { VenueSections } from "./VenueSections.tsx";
 
 export function VenueDetailedView() {
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const toggleDrawer = () => setDrawerOpen((prev) => !prev);
   const query = useParams<{ venueId: string }>();
   const venueId = Number(query.venueId);
   const {
@@ -85,12 +95,32 @@ export function VenueDetailedView() {
                 isMobile={isMobile}
               />
             </StyledLeftColumnContainer>
-            <StyledRightColumnContainer>
-              <HiddenIfMobileContainer>
+            {isMobile ? (
+              <>
+                <StyledBottomMountedContainer isHidden={drawerOpen}>
+                  <StyledBookThisVenueContainer onClick={toggleDrawer}>
+                    Book this venue
+                  </StyledBookThisVenueContainer>
+                </StyledBottomMountedContainer>
+                <StyledDrawer
+                  anchor="bottom"
+                  open={drawerOpen}
+                  onClose={() => setDrawerOpen(false)}
+                >
+                  <StyledBookThisVenueContainer onClick={toggleDrawer}>
+                    Book this venue
+                  </StyledBookThisVenueContainer>
+                  <Calendar />
+                </StyledDrawer>
+              </>
+            ) : (
+              <StyledRightColumnContainer>
                 <Calendar />
-                <ContactInfo />
-              </HiddenIfMobileContainer>
-            </StyledRightColumnContainer>
+                <HiddenIfMobileContainer>
+                  <ContactInfo />
+                </HiddenIfMobileContainer>
+              </StyledRightColumnContainer>
+            )}
           </StyledColumnsContainer>
         )}
       </StyledBodyContainer>

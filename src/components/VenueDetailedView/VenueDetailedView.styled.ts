@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { Drawer, styled } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export const StyledBackToResultsFlexDiv = styled("div")`
@@ -129,3 +129,42 @@ export const StyledSectionContainer = styled("div")(
     }
   `,
 );
+
+export const StyledBookThisVenueContainer = styled("div")(
+  ({ theme }) => `
+    background-color: ${theme.palette.primary.main};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: ${theme.palette.background.default}; 
+    width: 100%;
+    height: 56px;
+      min-height: 56px; 
+    font-size 16px;
+  `,
+);
+
+interface isHiddenProp {
+  isHidden: boolean;
+}
+
+export const StyledBottomMountedContainer = styled("div")<isHiddenProp>(
+  ({ isHidden }) => `
+   position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    display: ${isHidden ? "none" : "flex"};
+  `,
+);
+
+export const StyledDrawer = styled(Drawer)`
+  .MuiPaper-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+`;

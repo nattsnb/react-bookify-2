@@ -1,5 +1,11 @@
 import * as React from "react";
-import { Checkbox, Divider, FormControlLabel } from "@mui/material";
+import {
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import {
   StyledEndsAtButton,
   StyledStartsAtButton,
@@ -13,6 +19,7 @@ import {
   StyledBookButton,
   StyledBookButtonContainer,
   StyledCalendarPicker,
+  StyledCalendarAndButtonsContainer,
 } from "./Calendar.styled.ts";
 import { useCalendar } from "./useCalendar.ts";
 import { SectionTitleContainer } from "../VenueDetailedView.styled.ts";
@@ -36,6 +43,9 @@ export default function Calendar() {
     priceInPLN,
   } = useCalendar();
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+
   const { isError } = useError();
   const { activeVenue } = useActiveVenue();
 
@@ -43,11 +53,9 @@ export default function Calendar() {
     return <></>;
   }
 
-  const drawerOpen = false;
-
   return (
-    <>
-      {!drawerOpen && (
+    <StyledCalendarAndButtonsContainer>
+      {!isMobile && (
         <>
           <SectionTitleContainer>Book this venue</SectionTitleContainer>
           <Divider variant="dark" />
@@ -117,6 +125,6 @@ export default function Calendar() {
           <StyledBookButton variant="contained">Book</StyledBookButton>
         </StyledBookButtonContainer>
       </StyledPriceContainer>
-    </>
+    </StyledCalendarAndButtonsContainer>
   );
 }

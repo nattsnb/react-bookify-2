@@ -145,3 +145,7 @@ export const StyledCalendarPicker = styled(CalendarPicker)(
   }
 `,
 );
+
+export const StyledCalendarAndButtonsContainer = styled("div")`
+  max-width: 500px;
+`;
