@@ -17,7 +17,7 @@ export function Gallery({ galleryRef }: GalleryProps) {
   const handleOnClick = useGallery();
   const { activeVenue } = useActiveVenue();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.up("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   if (!activeVenue) {
     return <></>;

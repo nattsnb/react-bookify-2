@@ -10,11 +10,11 @@ import {
 
 export function NavBar() {
   const theme = useTheme();
-  const isViewportLargerThanMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <div>
       <StyledNavBarContainer>
-        {isViewportLargerThanMd ? (
+        {isMobile ? (
           <>
             <div>
               <Link href={"/"}>

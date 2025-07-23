@@ -16,7 +16,7 @@ interface MapWithAddressProps {
 const MapWithAddress = ({ mapRef }: MapWithAddressProps) => {
   const { activeVenue } = useActiveVenue();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.up("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   if (!activeVenue) {
     return <></>;

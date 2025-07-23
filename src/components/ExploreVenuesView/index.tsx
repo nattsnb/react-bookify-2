@@ -15,11 +15,11 @@ export function ExploreVenuesView() {
   const [limit, setLimit] = useState(INITIAL_LIMIT);
 
   const theme = useTheme();
-  const isViewportLargerThanMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <PageWidthContainer>
-      {isViewportLargerThanMd ? (
+      {isMobile ? (
         <StyledWideContentContainer>
           <FiltersDrawer />
           <ElementsWrapper limit={limit} setLimit={setLimit} />

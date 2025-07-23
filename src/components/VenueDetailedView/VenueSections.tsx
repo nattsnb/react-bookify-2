@@ -24,7 +24,7 @@ export function VenueSections({
   const { displayedSection } = useActiveVenue();
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.up("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   return (
     <StyledSectionContainer>
