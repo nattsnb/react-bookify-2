@@ -8,6 +8,7 @@ const theme = createTheme({
       fontLight: "#74747474",
       fontExtraLight: "#9B9B9B9B",
       detail: "#C7981E",
+      border: "#E5E5E5",
     },
     secondary: {
       main: "#595959",
