@@ -16,9 +16,10 @@ import { LocalizationInput } from "./LocalizationInput/LocalizationInput.tsx";
 import { OccasionInput } from "./OccasionInput.tsx";
 import { VenueTypeInput } from "./VenueTypeInput.tsx";
 import { DateInput } from "./DateInput";
-import { GuestsNumberInput } from "./GuestsNumberInput.tsx";
+import { GuestsNumberInput } from "./GuestsNumberInput/GuestsNumberInput.tsx";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { FormProvider } from "react-hook-form";
+import { GuestsController } from "./GuestsNumberInput/GuestsController.tsx";
 
 export const SearchBar = () => {
   const {
@@ -65,7 +66,7 @@ export const SearchBar = () => {
                 <LocalizationInput />
                 <OccasionInput />
                 <VenueTypeInput />
-                <GuestsNumberInput />
+                <GuestsController />
                 <DateInput />
               </StyledInputsContainer>
             </Collapse>
@@ -81,7 +82,7 @@ export const SearchBar = () => {
                 <OccasionInput />
                 <VenueTypeInput />
                 <DateInput />
-                <GuestsNumberInput />
+                <GuestsController />
               </StyledInputsContainer>
             </Collapse>
           )}
