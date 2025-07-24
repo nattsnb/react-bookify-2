@@ -50,7 +50,7 @@ export default function Calendar() {
   const { activeVenue } = useActiveVenue();
 
   if (!activeVenue) {
-    return <></>;
+    return null;
   }
 
   return (

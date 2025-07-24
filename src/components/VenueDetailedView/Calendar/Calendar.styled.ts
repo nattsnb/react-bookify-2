@@ -136,9 +136,9 @@ export const StyledCalendarPicker = styled(CalendarPicker)(
     border: 1px solid ${theme.palette.primary.border};
     border-radius: 15px;
     padding-left: ${theme.spacing(4)};
-        padding-top:  0;
-        padding-bottom:  0;
-        padding-right:  ${theme.spacing(4)};
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: ${theme.spacing(4)};
     & .MuiPickersDay-root {
     font-size: 16px;
     margin: ${theme.spacing(1)} ${theme.spacing(2)};
