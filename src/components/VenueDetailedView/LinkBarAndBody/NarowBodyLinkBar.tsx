@@ -1,6 +1,7 @@
 import { StyledBodyLinkBarContainer } from "./LinkBar.styled.js";
 import { Button } from "@mui/material";
 import React, { type RefObject } from "react";
+import { useLinkBar } from "./useLinkBar.ts";
 
 interface NarrowBodyLinkBarProps {
   handleScroll: (ref: RefObject<HTMLElement>) => void;
@@ -17,12 +18,19 @@ export function NarrowBodyLinkBar({
   mapRef,
   contactsRef,
 }: NarrowBodyLinkBarProps) {
+  const { sentinelRef, narrowBarRef } = useLinkBar();
+
   return (
-    <StyledBodyLinkBarContainer>
-      <Button onClick={() => handleScroll(descriptionRef)}>description</Button>
-      <Button onClick={() => handleScroll(galleryRef)}>gallery</Button>
-      <Button onClick={() => handleScroll(mapRef)}>map</Button>
-      <Button onClick={() => handleScroll(contactsRef)}>contacts</Button>
-    </StyledBodyLinkBarContainer>
+    <>
+      <div ref={sentinelRef} />
+      <StyledBodyLinkBarContainer ref={narrowBarRef}>
+        <Button onClick={() => handleScroll(descriptionRef)}>
+          description
+        </Button>
+        <Button onClick={() => handleScroll(galleryRef)}>gallery</Button>
+        <Button onClick={() => handleScroll(mapRef)}>map</Button>
+        <Button onClick={() => handleScroll(contactsRef)}>contacts</Button>
+      </StyledBodyLinkBarContainer>
+    </>
   );
 }
