@@ -20,6 +20,7 @@ import { DateInput } from "./DateInput";
 import { GuestsNumberInput } from "./GuestsNumberInput.tsx";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { FormProvider } from "react-hook-form";
+import { FormController } from "./FormController.tsx";
 
 export const SearchBar = () => {
   const {
@@ -66,7 +67,14 @@ export const SearchBar = () => {
                 <LocalizationInput />
                 <OccasionInput />
                 <VenueTypeInput />
-                <GuestsNumberInput />
+                <FormController name="guests">
+                  {(field) => (
+                    <GuestsNumberInput
+                      value={field.value as number | null | undefined}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
                 <DateInput />
               </StyledInputsContainer>
             </Collapse>
@@ -82,7 +90,14 @@ export const SearchBar = () => {
                 <OccasionInput />
                 <VenueTypeInput />
                 <DateInput />
-                <GuestsNumberInput />
+                <FormController name="guests">
+                  {(field) => (
+                    <GuestsNumberInput
+                      value={field.value as number | null | undefined}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
               </StyledInputsContainer>
             </Collapse>
           )}
