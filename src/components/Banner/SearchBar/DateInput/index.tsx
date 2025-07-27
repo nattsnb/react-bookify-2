@@ -1,7 +1,5 @@
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { useFormContext } from "react-hook-form";
 import { StyledFormControl, StyledInputLabel } from "../SearchBar.styled.ts";
-import type { SearchBarFormValuesDto } from "../../../../shared/types/forms/search-bar-form-values.dto.ts";
 import {
   StyledDateInputDiv,
   DateButton,
@@ -9,21 +7,26 @@ import {
   StyledActionBar,
 } from "./DateInput.styled.ts";
 import { StyledIconContainer } from "./DateInput.styled.ts";
-import { useDateInput } from "./useDateInput.ts";
+import {
+  type DateRange,
+  DesktopDateRangePicker,
+} from "@mui/x-date-pickers-pro";
 import type { Dayjs } from "dayjs";
-import { DesktopDateRangePicker } from "@mui/x-date-pickers-pro";
+import { useState } from "react";
 
-export const DateInput = () => {
-  const { isPickerOpen, setIsPickerOpen } = useDateInput();
-  const { watch, setValue } = useFormContext<SearchBarFormValuesDto>();
-  const range = watch("dateRange") ?? [null, null];
+type DateInputProps = {
+  value: DateRange<Dayjs>;
+  onChange: (value: DateRange<Dayjs>) => void;
+};
+
+export const DateInput = ({ value, onChange }: DateInputProps) => {
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const [startDate, endDate] = value ?? [null, null];
 
   return (
     <DesktopDateRangePicker
-      value={range}
-      onChange={(newValue) => {
-        setValue("dateRange", newValue as [Dayjs | null, Dayjs | null]);
-      }}
+      value={value}
+      onChange={onChange}
       open={isPickerOpen}
       onOpen={() => setIsPickerOpen(true)}
       onClose={() => setIsPickerOpen(false)}
@@ -41,17 +44,17 @@ export const DateInput = () => {
       renderInput={() => {
         return (
           <StyledFormControl fullWidth>
-            {isPickerOpen || range[0] || range[0] ? (
+            {isPickerOpen || startDate ? (
               <SplitButtonGroup
                 variant="outlined"
                 fullWidth
                 onClick={() => setIsPickerOpen(true)}
               >
-                <DateButton isSet={!!range[0]}>
-                  {range[0] ? range[0].format("YYYY-MM-DD") : "starts at"}
+                <DateButton isSet={!!startDate}>
+                  {startDate ? startDate.format("YYYY-MM-DD") : "starts at"}
                 </DateButton>
-                <DateButton isSet={!!range[1]}>
-                  {range[1] ? range[1].format("YYYY-MM-DD") : "ends at"}
+                <DateButton isSet={!!endDate}>
+                  {endDate ? endDate.format("YYYY-MM-DD") : "ends at"}
                 </DateButton>
               </SplitButtonGroup>
             ) : (

@@ -13,7 +13,7 @@ import {
   StyledSearchButton,
 } from "./SearchBar.styled.ts";
 import { useSearchBar } from "./useSearchBar.ts";
-import { LocalizationInput } from "./LocalizationInput/LocalizationInput.tsx";
+import { LocalizationInput } from "./LocalizationInput/";
 import { OccasionInput } from "./OccasionInput.tsx";
 import { VenueTypeInput } from "./VenueTypeInput.tsx";
 import { DateInput } from "./DateInput";
@@ -21,6 +21,7 @@ import { GuestsNumberInput } from "./GuestsNumberInput.tsx";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { FormProvider } from "react-hook-form";
 import { FormController } from "./FormController.tsx";
+import type { Dayjs } from "dayjs";
 
 export const SearchBar = () => {
   const {
@@ -64,9 +65,38 @@ export const SearchBar = () => {
           {isViewportSmallerThanMd && (
             <Collapse in={isCollapsed} collapsedSize={70}>
               <StyledInputsContainer>
-                <LocalizationInput />
-                <OccasionInput />
-                <VenueTypeInput />
+                <FormController name="localization">
+                  {(field) => (
+                    <LocalizationInput
+                      value={typeof field.value === "string" ? field.value : ""}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="occasionIds">
+                  {(field) => (
+                    <OccasionInput
+                      value={
+                        Array.isArray(field.value)
+                          ? field.value.map(Number)
+                          : []
+                      }
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="venueTypeId">
+                  {(field) => (
+                    <VenueTypeInput
+                      value={
+                        typeof field.value === "number"
+                          ? field.value
+                          : undefined
+                      }
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
                 <FormController name="guests">
                   {(field) => (
                     <GuestsNumberInput
@@ -75,7 +105,19 @@ export const SearchBar = () => {
                     />
                   )}
                 </FormController>
-                <DateInput />
+                <FormController name="dateRange">
+                  {(field) => (
+                    <DateInput
+                      value={
+                        (field.value ?? [null, null]) as [
+                          Dayjs | null,
+                          Dayjs | null,
+                        ]
+                      }
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
               </StyledInputsContainer>
             </Collapse>
           )}
@@ -86,10 +128,51 @@ export const SearchBar = () => {
               collapsedSize={isViewportSmallerThanLg ? 228 : 245}
             >
               <StyledInputsContainer>
-                <LocalizationInput />
-                <OccasionInput />
-                <VenueTypeInput />
-                <DateInput />
+                <FormController name="localization">
+                  {(field) => (
+                    <LocalizationInput
+                      value={typeof field.value === "string" ? field.value : ""}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="occasionIds">
+                  {(field) => (
+                    <OccasionInput
+                      value={
+                        Array.isArray(field.value)
+                          ? field.value.map(Number)
+                          : []
+                      }
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="venueTypeId">
+                  {(field) => (
+                    <VenueTypeInput
+                      value={
+                        typeof field.value === "number"
+                          ? field.value
+                          : undefined
+                      }
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="dateRange">
+                  {(field) => (
+                    <DateInput
+                      value={
+                        (field.value ?? [null, null]) as [
+                          Dayjs | null,
+                          Dayjs | null,
+                        ]
+                      }
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
                 <FormController name="guests">
                   {(field) => (
                     <GuestsNumberInput

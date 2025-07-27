@@ -2,11 +2,13 @@ import { MenuItem, Select, InputAdornment } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { StyledFormControl, StyledInputLabel } from "./SearchBar.styled.ts";
-import { useFormContext, Controller } from "react-hook-form";
-import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-bar-form-values.dto.ts";
 
-export const VenueTypeInput = () => {
-  const { control } = useFormContext<SearchBarFormValuesDto>();
+type VenueTypeInputProps = {
+  value: number | undefined;
+  onChange: (value: number | undefined) => void;
+};
+
+export const VenueTypeInput = ({ value, onChange }: VenueTypeInputProps) => {
   const { venueTypes } = useSearchDropdownData();
 
   return (
@@ -17,37 +19,30 @@ export const VenueTypeInput = () => {
         </InputAdornment>
         venue type
       </StyledInputLabel>
-
-      <Controller
-        name="venueTypeId"
-        control={control}
-        render={({ field }) => (
-          <Select
-            labelId="venue-type-label"
-            id="venue-type"
-            value={field.value ?? ""}
-            onChange={(event) => {
-              const value = event.target.value;
-              field.onChange(value === "" ? undefined : value);
-            }}
-            displayEmpty
-            renderValue={(selected) => {
-              if (!selected) return;
-              const type = venueTypes.find((t) => t.id === selected);
-              return type?.name ?? "";
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {venueTypes.map((type) => (
-              <MenuItem key={type.id} value={type.id}>
-                {type.name}
-              </MenuItem>
-            ))}
-          </Select>
-        )}
-      />
+      <Select
+        labelId="venue-type-label"
+        id="venue-type"
+        value={value}
+        onChange={(event) => {
+          const eventValue = event.target.value;
+          onChange(eventValue === "" ? undefined : Number(eventValue));
+        }}
+        displayEmpty
+        renderValue={(selected) => {
+          if (!selected) return;
+          const type = venueTypes.find((t) => t.id === selected);
+          return type?.name ?? "";
+        }}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        {venueTypes.map((type) => (
+          <MenuItem key={type.id} value={type.id}>
+            {type.name}
+          </MenuItem>
+        ))}
+      </Select>
     </StyledFormControl>
   );
 };

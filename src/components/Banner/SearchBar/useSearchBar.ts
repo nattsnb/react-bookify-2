@@ -9,7 +9,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 const DEFAULT_RADIUS_KM = 10;
 
 export function useSearchBar() {
-  const form = useForm<SearchBarFormValuesDto>();
+  const form = useForm<SearchBarFormValuesDto>({
+    defaultValues: {
+      localization: "",
+      occasionIds: [],
+      dateRange: [null, null],
+      guests: undefined,
+      venueTypeId: undefined,
+      radiusKm: 10,
+    },
+  });
   const { filterParams, setFilterParams } = useFilter();
   const navigate = useNavigate();
   const location = useLocation();
