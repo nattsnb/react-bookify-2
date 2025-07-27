@@ -69,7 +69,8 @@ export const useFiltersDrawer = () => {
 
   const toggleAmenity = (id: number) => {
     const currentAmenities = filterParams?.amenities || [];
-    const updatedAmenities = currentAmenities.includes(id)
+    const exists = currentAmenities.find((item) => item === id);
+    const updatedAmenities = exists
       ? currentAmenities.filter((item) => item !== id)
       : [...currentAmenities, id];
 

@@ -17,9 +17,9 @@ export function useLocalizationInput(localizationValue: string | undefined) {
     if (!localizationValue) {
       return [...cityNames].sort().slice(0, MAX_SUGGESTIONS);
     }
-    const q = localizationValue.toLowerCase();
+    const query = localizationValue.toLowerCase();
     return cityNames
-      .filter((name) => name.toLowerCase().includes(q))
+      .filter((name) => name.toLowerCase().includes(query))
       .sort()
       .slice(0, MAX_SUGGESTIONS);
   }, [cityNames, localizationValue, loading]);
