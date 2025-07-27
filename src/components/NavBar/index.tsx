@@ -50,9 +50,9 @@ export function NavBar() {
                 </StyledTypographyForHomeLink>
               </Link>
             </div>
-            <Link href={"/login/"} variant="boldLink">
+            <StyledLoginLink href={"/login/"} variant="boldLink">
               login
-            </Link>
+            </StyledLoginLink>
           </>
         )}
       </StyledNavBarContainer>
