@@ -53,7 +53,7 @@ export function VenueDetailedView() {
   }
 
   if (!activeVenue) {
-    return <></>;
+    return null;
   }
 
   return (

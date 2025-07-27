@@ -20,7 +20,7 @@ export function Gallery({ galleryRef }: GalleryProps) {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   if (!activeVenue) {
-    return <></>;
+    return null;
   }
 
   return (

@@ -23,7 +23,7 @@ export function Description({ descriptionRef }: DescriptionProps) {
   const { activeVenue } = useActiveVenue();
 
   if (!activeVenue) {
-    return <></>;
+    return null;
   }
 
   const sleepingDetailsToList = produceSleepingDetailsToList(activeVenue);

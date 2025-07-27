@@ -41,7 +41,7 @@ export function DetailsAndImageContainer() {
   );
 
   if (!activeVenue) {
-    return <></>;
+    return null;
   }
 
   const cityName = activeVenue.city;

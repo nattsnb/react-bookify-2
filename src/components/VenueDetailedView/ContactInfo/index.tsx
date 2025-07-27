@@ -24,7 +24,7 @@ interface ContactInfoProps {
 export function ContactInfo({ contactsRef }: ContactInfoProps) {
   const { activeVenue } = useActiveVenue();
   if (!activeVenue) {
-    return <></>;
+    return null;
   }
 
   const contactDetailsToList = [

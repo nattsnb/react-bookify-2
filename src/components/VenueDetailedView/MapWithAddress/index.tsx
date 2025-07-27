@@ -19,7 +19,7 @@ const MapWithAddress = ({ mapRef }: MapWithAddressProps) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   if (!activeVenue) {
-    return <></>;
+    return null;
   }
 
   const address = `${activeVenue.streetName} ${activeVenue.streetNumber}, ${activeVenue.postalCode} ${activeVenue.city}`;
