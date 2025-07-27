@@ -10,11 +10,11 @@ import {
 
 export function NavBar() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.up("md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <div>
       <StyledNavBarContainer>
-        {isMobile ? (
+        {isDesktop ? (
           <>
             <div>
               <Link href={"/"}>
