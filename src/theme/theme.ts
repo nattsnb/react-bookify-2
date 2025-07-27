@@ -5,8 +5,8 @@ const theme = createTheme({
     primary: {
       main: "#67AA92",
       font: "#000000",
-      fontLight: "#74747474",
-      fontExtraLight: "#9B9B9B9B",
+      fontLight: "#747474",
+      fontExtraLight: "#9B9B9B",
       detail: "#C7981E",
       border: "#E5E5E5",
     },
@@ -19,8 +19,7 @@ const theme = createTheme({
     background: {
       default: "#FFFFFF",
       offDefault: "#FDFDFD",
-      activeButton: "#747474",
-      inactiveButton: "#9B9B9B",
+      activeButton: "#9B9B9B",
     },
   },
   typography: {

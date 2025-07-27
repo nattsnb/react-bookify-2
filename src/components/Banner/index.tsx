@@ -23,6 +23,7 @@ export function Banner() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const location = useLocation();
   const config = getBannerConfig(location.pathname, isDesktop);
+  const isLocationExploreVenues = location.pathname === "/";
 
   const toggleFiltersDrawer = (isOpen: boolean) => () => {
     setIsFilterDrawerOpen(isOpen);
@@ -47,25 +48,29 @@ export function Banner() {
         </StyledBanner>
       ) : (
         <>
-          <StyledDrawerButtonsContainer>
-            <FiltersButton onClick={toggleFiltersDrawer(true)}>
-              filters
-            </FiltersButton>
-            <SortButton onClick={toggleSortDrawer(true)}>sort</SortButton>
-          </StyledDrawerButtonsContainer>
-          <Drawer
-            open={isFilterDrawerOpen}
-            onClose={toggleFiltersDrawer(false)}
-          >
-            <FiltersDrawer />
-          </Drawer>
-          <Drawer
-            anchor="right"
-            open={isSortDrawerOpen}
-            onClose={toggleSortDrawer(false)}
-          >
-            <SortDrawer />
-          </Drawer>
+          {isLocationExploreVenues && (
+            <>
+              <StyledDrawerButtonsContainer>
+                <FiltersButton onClick={toggleFiltersDrawer(true)}>
+                  filters
+                </FiltersButton>
+                <SortButton onClick={toggleSortDrawer(true)}>sort</SortButton>
+              </StyledDrawerButtonsContainer>
+              <Drawer
+                open={isFilterDrawerOpen}
+                onClose={toggleFiltersDrawer(false)}
+              >
+                <FiltersDrawer />
+              </Drawer>
+              <Drawer
+                anchor="right"
+                open={isSortDrawerOpen}
+                onClose={toggleSortDrawer(false)}
+              >
+                <SortDrawer />
+              </Drawer>
+            </>
+          )}
           {config.banner && (
             <StyledBanner bannerHeight={config.bannerHeight}>
               <StyledBannerContent>

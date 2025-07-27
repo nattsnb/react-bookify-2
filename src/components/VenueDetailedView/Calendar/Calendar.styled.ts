@@ -8,46 +8,46 @@ interface WhichCalendarIsActiveProp {
 
 export const StyledStartsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
   ({ theme, whichcalendarisactive }) => `
-  width: 111px;
-  height: 48px;
-  text-transform: lowercase;
-  color: ${theme.palette.primary.fontLight};
-  border: 1px solid ${theme.palette.primary.border};
-  border-radius: 20px 0 0 20px;
-  background-color: ${whichcalendarisactive === "start" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
-  font-weight: ${whichcalendarisactive === "start" ? "600" : "300"};
-  box-shadow: ${
-    whichcalendarisactive === "start"
-      ? "inset 0 2px 8px -2px rgba(0,0,0,0.18)"
-      : "0 1px 4px -2px rgba(0,0,0,0.08)"
-  };
-
-  &:focus, &:focus-visible, &:active {
+    width: 111px;
+    height: 48px;
+    text-transform: lowercase;
+    color: ${whichcalendarisactive === "start" ? theme.palette.primary.fontLight : theme.palette.primary.fontExtraLight};
     border: 1px solid ${theme.palette.primary.border};
-  }
-`,
+    border-radius: 20px 0 0 20px;
+    background-color: ${theme.palette.background.offDefault};
+    font-weight: ${whichcalendarisactive === "start" ? "600" : "300"};
+    box-shadow: ${
+      whichcalendarisactive === "start"
+        ? "inset 0px 2px 4px 0px rgba(0, 0, 0, 0.1);"
+        : "0px 2px 4px 0px rgba(0, 0, 0, 0.1);"
+    };
+
+    &:focus, &:focus-visible, &:active {
+      border: 1px solid ${theme.palette.primary.border};
+    }
+  `,
 );
 
 export const StyledEndsAtButton = styled(Button)<WhichCalendarIsActiveProp>(
   ({ theme, whichcalendarisactive }) => `
-  width: 111px;
-  height: 48px;
-  text-transform: lowercase;
-  color: ${theme.palette.primary.fontLight};
-  border: 1px solid ${theme.palette.primary.border};
-  border-radius: 0 20px 20px 0;
-  background-color:: ${whichcalendarisactive === "end" ? "${theme.palette.background.activeButton}" : "${theme.palette.background.inactiveButton}"};
-  font-weight: ${whichcalendarisactive === "end" ? "600" : "300"};
-  box-shadow: ${
-    whichcalendarisactive === "end"
-      ? "inset 0 2px 8px -2px rgba(0,0,0,0.18)"
-      : "0 1px 4px -2px rgba(0,0,0,0.08)"
-  };
-
-  &:focus, &:focus-visible, &:active {
+    width: 111px;
+    height: 48px;
+    text-transform: lowercase;
+    color: ${whichcalendarisactive === "end" ? theme.palette.primary.fontLight : theme.palette.primary.fontExtraLight};
     border: 1px solid ${theme.palette.primary.border};
-  }
-`,
+    border-radius: 0 20px 20px 0;
+    background-color: ${theme.palette.background.offDefault};
+    font-weight: ${whichcalendarisactive === "end" ? "600" : "300"};
+    box-shadow: ${
+      whichcalendarisactive === "end"
+        ? "inset 0px 2px 4px 0px rgba(0, 0, 0, 0.1);"
+        : "0px 2px 4px 0px rgba(0, 0, 0, 0.1);"
+    };
+
+    &:focus, &:focus-visible, &:active {
+      border: 1px solid ${theme.palette.primary.border};
+    }
+  `,
 );
 
 export const StyledButtonGroup = styled(ButtonGroup)(
