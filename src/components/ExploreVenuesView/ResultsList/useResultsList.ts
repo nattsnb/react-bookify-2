@@ -23,14 +23,12 @@ export const useResultsList = (limit: number) => {
             ? filteredVenuesResponse.slice(0, limit)
             : null;
           setVenuesOnPage(venuesPerPage);
-          console.log("filtered response");
         } else {
           const allVenuesResponse = await venueApi.getAllVenues();
           const venuesPerPage = Array.isArray(allVenuesResponse)
             ? allVenuesResponse.slice(0, limit)
             : null;
           setVenuesOnPage(venuesPerPage);
-          console.log("not filtered response");
         }
       } catch (error) {
         setIsError(true);

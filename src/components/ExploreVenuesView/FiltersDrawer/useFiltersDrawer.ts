@@ -61,8 +61,9 @@ export const useFiltersDrawer = () => {
     }
   };
 
-  const handleDropClick = (section: keyof typeof openSections) => {
+  const handleDropClick = (section: string) => {
     setOpenSections((previousState) => ({
+      ...previousState,
       [section]: !previousState[section],
     }));
   };
