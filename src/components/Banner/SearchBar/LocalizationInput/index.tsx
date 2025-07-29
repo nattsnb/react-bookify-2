@@ -1,5 +1,5 @@
 import { Search } from "@mui/icons-material";
-import { InputLabel, ListItem } from "@mui/material";
+import { ListItem, InputAdornment } from "@mui/material";
 import { StyledFormControl, StyledTextField } from "../SearchBar.styled.ts";
 import { useLocalizationInput } from "./useLocalizationInput";
 import { StyledSuggestionList } from "./LocalizationInput.styled.ts";
@@ -13,29 +13,28 @@ export const LocalizationInput = ({
   value,
   onChange,
 }: LocalizationInputProps) => {
-  const {
-    isLabelShrunk,
-    suggestions,
-    isAutocompleteOpen,
-    setIsAutocompleteOpen,
-  } = useLocalizationInput(value);
+  const { suggestions, isAutocompleteOpen, setIsAutocompleteOpen } =
+    useLocalizationInput(value);
 
   return (
     <StyledFormControl fullWidth>
-      <InputLabel shrink={isLabelShrunk}>
-        <Search />
-        localization
-      </InputLabel>
       <StyledTextField
         id="localization"
         fullWidth
         value={value ?? ""}
-        onChange={(e) => {
-          onChange(e.target.value);
+        onChange={(event) => {
+          onChange(event.target.value);
         }}
         onFocus={() => setIsAutocompleteOpen(true)}
         onBlur={() => setIsAutocompleteOpen(false)}
-        label=""
+        placeholder="localization"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Search />
+            </InputAdornment>
+          ),
+        }}
       />
       {isAutocompleteOpen && suggestions.length > 0 && (
         <StyledSuggestionList>

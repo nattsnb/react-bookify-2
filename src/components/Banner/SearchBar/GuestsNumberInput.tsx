@@ -44,13 +44,10 @@ export const GuestsNumberInput = ({
       <StyledGuestInputTextField
         id="guests"
         type="number"
-        label="guests"
+        placeholder="guests"
         fullWidth
         value={value ?? ""}
         onChange={handleManualInput}
-        InputLabelProps={{
-          shrink: Boolean(value),
-        }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

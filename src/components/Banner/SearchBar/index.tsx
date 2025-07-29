@@ -186,7 +186,7 @@ export const SearchBar = () => {
           )}
 
           <StyledCollapseTypographyContainer>
-            <Button variant="outlined" onClick={collapseSearchBar}>
+            <Button onClick={collapseSearchBar}>
               {!isCollapsed
                 ? "I want to be more specific (4)"
                 : "I don’t want to be that specific"}

@@ -145,3 +145,7 @@ export const StyledSearchButton = styled(Button)(
   }
 `,
 );
+
+export const StyledInputPlaceholderContainer = styled("div")`
+  opacity: 0.6;
+`;
