@@ -34,6 +34,7 @@ export const LocalizationInput = ({
               <Search />
             </InputAdornment>
           ),
+          autoComplete: "off",
         }}
       />
       {isAutocompleteOpen && suggestions.length > 0 && (
