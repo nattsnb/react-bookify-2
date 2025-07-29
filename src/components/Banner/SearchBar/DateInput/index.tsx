@@ -2,7 +2,8 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { StyledFormControl, StyledInputLabel } from "../SearchBar.styled.ts";
 import {
   StyledDateInputDiv,
-  DateButton,
+  StartDateButton,
+  EndDateButton,
   SplitButtonGroup,
   StyledActionBar,
 } from "./DateInput.styled.ts";
@@ -12,7 +13,7 @@ import {
   DesktopDateRangePicker,
 } from "@mui/x-date-pickers-pro";
 import type { Dayjs } from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type DateInputProps = {
   value: DateRange<Dayjs>;
@@ -22,14 +23,42 @@ type DateInputProps = {
 export const DateInput = ({ value, onChange }: DateInputProps) => {
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [startDate, endDate] = value ?? [null, null];
+  const [activeDateButton, setActiveDateButton] = useState<
+    "start" | "end" | null
+  >(null);
+
+  useEffect(() => {
+    if (isPickerOpen) {
+      setActiveDateButton("start");
+    }
+  }, [isPickerOpen]);
+
+  const startIsActive =
+    activeDateButton === "start" || (isPickerOpen && !startDate && !endDate);
+
+  const endIsActive = activeDateButton === "end";
 
   return (
     <DesktopDateRangePicker
       value={value}
-      onChange={onChange}
+      onChange={(newValue) => {
+        onChange(newValue);
+        const [newStart, newEnd] = newValue;
+        if (newStart && !newEnd) {
+          setActiveDateButton("end");
+        }
+        if (newStart && newEnd) {
+          setActiveDateButton("start");
+        }
+      }}
       open={isPickerOpen}
-      onOpen={() => setIsPickerOpen(true)}
-      onClose={() => setIsPickerOpen(false)}
+      onOpen={() => {
+        setIsPickerOpen(true);
+      }}
+      onClose={() => {
+        setIsPickerOpen(false);
+        setActiveDateButton(null);
+      }}
       calendars={1}
       showDaysOutsideCurrentMonth
       closeOnSelect={false}
@@ -50,12 +79,12 @@ export const DateInput = ({ value, onChange }: DateInputProps) => {
                 fullWidth
                 onClick={() => setIsPickerOpen(true)}
               >
-                <DateButton isSet={!!startDate}>
+                <StartDateButton isactive={startIsActive}>
                   {startDate ? startDate.format("YYYY-MM-DD") : "starts at"}
-                </DateButton>
-                <DateButton isSet={!!endDate}>
+                </StartDateButton>
+                <EndDateButton isactive={endIsActive}>
                   {endDate ? endDate.format("YYYY-MM-DD") : "ends at"}
-                </DateButton>
+                </EndDateButton>
               </SplitButtonGroup>
             ) : (
               <StyledDateInputDiv onClick={() => setIsPickerOpen(true)}>

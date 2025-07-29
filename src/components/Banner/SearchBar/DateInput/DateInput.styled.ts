@@ -3,7 +3,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import { PickersActionBar } from "@mui/x-date-pickers/PickersActionBar";
 
 interface DateButtonProps extends ButtonProps {
-  isSet?: boolean;
+  isactive?: boolean;
 }
 
 export const StyledDateInputDiv = styled("div")(
@@ -25,30 +25,52 @@ export const StyledIconContainer = styled("div")(
 `,
 );
 
-export const DateButton = styled(Button)<DateButtonProps>(
-  ({ isSet, theme }) => ({
-    flex: 1,
-    fontWeight: isSet ? 400 : 700,
-    color: theme.palette.text.secondary,
-    fontSize: isSet ? "0.9rem" : "1rem",
-    justifyContent: "center",
-    alignItems: "center",
-    textTransform: "none",
-    height: 48,
-    padding: 0,
-    boxShadow: "none",
-    border: "none",
+export const StartDateButton = styled(Button, {
+  shouldForwardProp: (props) => props !== "isactive",
+})<DateButtonProps>(
+  ({ theme, isactive }) => `
+    height: 48px;
+    padding: 0;
+    text-transform: lowercase;
+    color: ${isactive ? theme.palette.primary.fontLight : theme.palette.primary.fontExtraLight};
+    border: 1px solid ${theme.palette.primary.border};
+    border-radius: 20px 0 0 20px;
+    background-color: ${theme.palette.background.offDefault};
+    font-weight: ${isactive ? "600" : "300"};
+    box-shadow: ${
+      isactive
+        ? "inset 0px 2px 4px 0px rgba(0, 0, 0, 0.1);"
+        : "0px 2px 4px 0px rgba(0, 0, 0, 0.1);"
+    };
 
-    "&:focus, &:focus-visible, &:active": {
-      outline: "none",
-      boxShadow: "none",
-      border: "none",
-    },
+    &:focus, &:focus-visible, &:active {
+      border: 1px solid ${theme.palette.primary.border};
+    }
+  `,
+);
 
-    ".MuiTouchRipple-root": {
-      display: "none",
-    },
-  }),
+export const EndDateButton = styled(Button, {
+  shouldForwardProp: (props) => props !== "isactive",
+})<DateButtonProps>(
+  ({ theme, isactive }) => `
+    height: 48px;
+    padding: 0;
+    text-transform: lowercase;
+    color: ${isactive ? theme.palette.primary.fontLight : theme.palette.primary.fontExtraLight};
+    border: 1px solid ${theme.palette.primary.border};
+    border-radius: 0 20px 20px 0;
+    background-color: ${theme.palette.background.offDefault};
+    font-weight: ${isactive ? "600" : "300"};
+    box-shadow: ${
+      isactive
+        ? "inset 0px 2px 4px 0px rgba(0, 0, 0, 0.1);"
+        : "0px 2px 4px 0px rgba(0, 0, 0, 0.1);"
+    };
+
+    &:focus, &:focus-visible, &:active {
+      border: 1px solid ${theme.palette.primary.border};
+    }
+  `,
 );
 
 export const SplitButtonGroup = styled(ButtonGroup)(
