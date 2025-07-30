@@ -17,6 +17,7 @@ import { PictureCarouselContext } from "./contexts/pictureCaruselContext.ts";
 import { ActiveVenueContext } from "./contexts/activeVenueContext.ts";
 import type { VenueDto } from "./shared/types/tables/venue/venue.dto.ts";
 import { VenueSection } from "./shared/constants.ts";
+import { LoginView } from "./components/LoginView";
 
 export function App() {
   const [isError, setIsError] = useState(false);
@@ -68,7 +69,7 @@ export function App() {
                         path="/start-hosting/"
                         element={<p>start hosting</p>}
                       />
-                      <Route path="/login/" element={<p>log in</p>} />
+                      <Route path="/login/" element={<LoginView />} />
                       <Route path="/contact/" element={<p>contact</p>} />
                       <Route path="/assistance/" element={<p>assistance</p>} />
                     </Routes>

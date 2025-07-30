@@ -1,4 +1,4 @@
-import {styled} from "@mui/material";
+import { styled } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export const StyledBackButtonContainer = styled("div")(
