@@ -1,9 +1,6 @@
 import { PageWidthContainer } from "../../shared/styledComponents/pageWidthContainer.js";
-import { CircularProgress, Link, useMediaQuery, useTheme } from "@mui/material";
+import { CircularProgress, useMediaQuery, useTheme } from "@mui/material";
 import {
-  StyledArrowBackIosIcon,
-  StyledBackToResultsFlexDiv,
-  StyledBackToResultsLinkContainer,
   StyledBodyContainer,
   StyledLeftColumnContainer,
   StyledRightColumnContainer,
@@ -25,6 +22,7 @@ import { WideBodyLinkBarAndContentContainer } from "./LinkBarAndBody/WideBodyLin
 import { NarrowBodyLinkBar } from "./LinkBarAndBody/NarowBodyLinkBar.tsx";
 import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
 import { VenueSections } from "./VenueSections.tsx";
+import { BackButton } from "../BackButton";
 
 export function VenueDetailedView() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -59,13 +57,7 @@ export function VenueDetailedView() {
   return (
     <PageWidthContainer>
       <StyledBodyContainer>
-        <StyledBackToResultsLinkContainer>
-          <Link href={"/"}>
-            <StyledBackToResultsFlexDiv>
-              <StyledArrowBackIosIcon /> <p>back to results</p>
-            </StyledBackToResultsFlexDiv>
-          </Link>
-        </StyledBackToResultsLinkContainer>
+        <BackButton message={"back to results"} />
         {activeVenue && (
           <StyledColumnsContainer>
             <StyledLeftColumnContainer>
