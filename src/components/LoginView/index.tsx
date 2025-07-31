@@ -13,9 +13,50 @@ import {
   StyledFacebookIcon,
   StyledDividersContainer,
 } from "./LoginView.styled.ts";
+import { useForm } from "react-hook-form";
+import { authenticationApi } from "../../shared/api/authenticationApi.ts";
+
+interface LoginFormValuesDto {
+  email: string;
+  password: string;
+}
+
+interface RegisterFormValuesDto {
+  email: string;
+  password: string;
+  retypePassword: string;
+}
 
 export function LoginView() {
   const [activeMode, setActiveMode] = useState<"login" | "register">("login");
+
+  const loginForm = useForm<LoginFormValuesDto>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmitLoginForm = () => {
+    authenticationApi
+      .loginUser({
+        email: "jane.doe@example.com",
+        password: "securePassword123",
+      })
+      .then((user) => {
+        if (user) {
+          console.log(user);
+        }
+      });
+  };
+
+  const registerForm = useForm<RegisterFormValuesDto>({
+    defaultValues: {
+      email: "",
+      password: "",
+      retypePassword: "",
+    },
+  });
 
   const toggleToLoginMode = () => {
     if (activeMode === "register") {
