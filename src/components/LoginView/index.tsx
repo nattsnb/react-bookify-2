@@ -15,22 +15,13 @@ import {
 } from "./LoginView.styled.ts";
 import { useForm } from "react-hook-form";
 import { authenticationApi } from "../../shared/api/authenticationApi.ts";
-
-interface LoginFormValuesDto {
-  email: string;
-  password: string;
-}
-
-interface RegisterFormValuesDto {
-  email: string;
-  password: string;
-  retypePassword: string;
-}
+import type {RegisterFormValuesDto} from "../../shared/types/forms/register-form.dto.ts";
+import {LoginAndSignUpDto} from "../../shared/types/tables/authentication/login-and-sign-up.dto.ts";
 
 export function LoginView() {
   const [activeMode, setActiveMode] = useState<"login" | "register">("login");
 
-  const loginForm = useForm<LoginFormValuesDto>({
+  const loginForm = useForm<LoginAndSignUpDto>({
     defaultValues: {
       email: "",
       password: "",
@@ -49,6 +40,7 @@ export function LoginView() {
         }
       });
   };
+  onSubmitLoginForm()
 
   const registerForm = useForm<RegisterFormValuesDto>({
     defaultValues: {

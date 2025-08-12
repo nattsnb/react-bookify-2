@@ -1,10 +1,10 @@
 import type { AuthenticationResponseDto } from "../types/tables/authentication/authentication-response.dto.ts";
-import type { LogInAndSignUpDto } from "../types/tables/authentication/log-in-and-sign-up.dto.ts";
+import type { LoginAndSignUpDto } from "../types/tables/authentication/login-and-sign-up.dto.ts";
 
 const API_URL = "http://localhost:3000";
 
 const loginUser = async (
-  credentials: LogInAndSignUpDto,
+  credentials: LoginAndSignUpDto,
 ): Promise<AuthenticationResponseDto | undefined> => {
   try {
     const response = await fetch(`${API_URL}/authentication/log-in`, {
@@ -25,7 +25,7 @@ const loginUser = async (
 };
 
 const registerUser = async (
-  credentials: LogInAndSignUpDto,
+  credentials: LoginAndSignUpDto,
 ): Promise<AuthenticationResponseDto | undefined> => {
   try {
     const response = await fetch(`${API_URL}/authentication/log-in`, {
