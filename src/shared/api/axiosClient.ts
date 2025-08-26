@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const http = axios.create({
+export const axiosClient = axios.create({
   baseURL: "http://localhost:3000",
   withCredentials: true,
   headers: {

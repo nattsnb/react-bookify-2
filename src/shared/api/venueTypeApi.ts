@@ -1,15 +1,14 @@
 import type { VenueTypeDto } from "../types/tables/venue-type/venue-type.dto.ts";
+import { axiosClient } from "./axiosClient.ts";
 
-const API_URL = "http://localhost:3000";
-
-const getAllVenueTypes = (): Promise<VenueTypeDto[] | undefined> => {
-  return fetch(`${API_URL}/venue-type/`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .catch((error: unknown) =>
-      console.error("Error fetching venue types:", error),
-    );
+const getAllVenueTypes = async (): Promise<VenueTypeDto[] | undefined> => {
+  try {
+    const { data } = await axiosClient.get<VenueTypeDto[]>("/venue-type");
+    return data;
+  } catch (error) {
+    console.error("Error fetching venue types:", error);
+    return undefined;
+  }
 };
 
 export const venueTypeApi = {
