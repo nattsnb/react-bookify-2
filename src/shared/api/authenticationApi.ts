@@ -14,6 +14,16 @@ const loginUser = async (
   }
 };
 
+const logoutUser = async (): Promise<void | undefined> => {
+  try {
+    const { data } = await axiosClient.post("/authentication/log-out");
+    return data;
+  } catch (error) {
+    console.error("Error logging user:", error);
+    return undefined;
+  }
+};
+
 const registerUser = async (
   credentials: LoginAndSignUpDto,
 ): Promise<AuthenticationResponseDto | undefined> => {
@@ -26,7 +36,19 @@ const registerUser = async (
   }
 };
 
+const getAuthenticatedUser = async (): Promise<AuthenticationResponseDto | undefined> => {
+  try {
+    const { data } = await axiosClient.get<AuthenticationResponseDto>("/authentication");
+    return data;
+  } catch (error) {
+    console.error("Error fetching authenticated user:", error);
+    return undefined;
+  }
+};
+
 export const authenticationApi = {
   loginUser,
+  logoutUser,
   registerUser,
+  getAuthenticatedUser,
 };
