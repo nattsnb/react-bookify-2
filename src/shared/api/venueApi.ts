@@ -45,7 +45,9 @@ const getFilteredVenues = async (
   filterQueryString: string,
 ): Promise<VenueDto[] | undefined> => {
   try {
-    const { data } = await axiosClient.get<VenueDto[]>(`/venue/filter?${filterQueryString}`);
+    const { data } = await axiosClient.get<VenueDto[]>(
+      `/venue/filter?${filterQueryString}`,
+    );
     return data;
   } catch (error) {
     console.error("Error fetching filtered venues:", error);

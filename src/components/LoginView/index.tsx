@@ -15,8 +15,8 @@ import {
 } from "./LoginView.styled.ts";
 import { useForm } from "react-hook-form";
 import { authenticationApi } from "../../shared/api/authenticationApi.ts";
-import type {RegisterFormValuesDto} from "../../shared/types/forms/register-form.dto.ts";
-import {LoginAndSignUpDto} from "../../shared/types/tables/authentication/login-and-sign-up.dto.ts";
+import type { RegisterFormValuesDto } from "../../shared/types/forms/register-form.dto.ts";
+import { LoginAndSignUpDto } from "../../shared/types/tables/authentication/login-and-sign-up.dto.ts";
 
 export function LoginView() {
   const [activeMode, setActiveMode] = useState<"login" | "register">("login");
@@ -40,7 +40,7 @@ export function LoginView() {
         }
       });
   };
-  onSubmitLoginForm()
+  onSubmitLoginForm();
 
   const registerForm = useForm<RegisterFormValuesDto>({
     defaultValues: {

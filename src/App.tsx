@@ -18,6 +18,7 @@ import { ActiveVenueContext } from "./contexts/activeVenueContext.ts";
 import type { VenueDto } from "./shared/types/tables/venue/venue.dto.ts";
 import { VenueSection } from "./shared/constants.ts";
 import { LoginView } from "./components/LoginView";
+import { AuthenticationProvider } from "./contexts/authenticationContext.tsx";
 
 export function App() {
   const [isError, setIsError] = useState(false);
@@ -44,39 +45,44 @@ export function App() {
           }}
         >
           <CurrencyProvider>
-            <FilterParamsContext.Provider
-              value={{ filterParams, setFilterParams }}
-            >
-              <LocalizationProvider
-                dateAdapter={AdapterDayjs}
-                localeText={{ okButtonLabel: "Done" }}
+            <AuthenticationProvider>
+              <FilterParamsContext.Provider
+                value={{ filterParams, setFilterParams }}
               >
-                <ThemeProvider theme={theme}>
-                  <CssBaseline />
-                  <Layout>
-                    <Routes>
-                      <Route path="/" element={<ExploreVenuesView />} />
-                      <Route
-                        path="/venue/:venueId"
-                        element={<VenueDetailedView />}
-                      />
-                      <Route path="/about-us/" element={<p>about us</p>} />
-                      <Route
-                        path="/your-favourites/"
-                        element={<p>your favourites</p>}
-                      />
-                      <Route
-                        path="/start-hosting/"
-                        element={<p>start hosting</p>}
-                      />
-                      <Route path="/login/" element={<LoginView />} />
-                      <Route path="/contact/" element={<p>contact</p>} />
-                      <Route path="/assistance/" element={<p>assistance</p>} />
-                    </Routes>
-                  </Layout>
-                </ThemeProvider>
-              </LocalizationProvider>
-            </FilterParamsContext.Provider>
+                <LocalizationProvider
+                  dateAdapter={AdapterDayjs}
+                  localeText={{ okButtonLabel: "Done" }}
+                >
+                  <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Layout>
+                      <Routes>
+                        <Route path="/" element={<ExploreVenuesView />} />
+                        <Route
+                          path="/venue/:venueId"
+                          element={<VenueDetailedView />}
+                        />
+                        <Route path="/about-us/" element={<p>about us</p>} />
+                        <Route
+                          path="/your-favourites/"
+                          element={<p>your favourites</p>}
+                        />
+                        <Route
+                          path="/start-hosting/"
+                          element={<p>start hosting</p>}
+                        />
+                        <Route path="/login/" element={<LoginView />} />
+                        <Route path="/contact/" element={<p>contact</p>} />
+                        <Route
+                          path="/assistance/"
+                          element={<p>assistance</p>}
+                        />
+                      </Routes>
+                    </Layout>
+                  </ThemeProvider>
+                </LocalizationProvider>
+              </FilterParamsContext.Provider>
+            </AuthenticationProvider>
           </CurrencyProvider>
         </ActiveVenueContext.Provider>
       </PictureCarouselContext.Provider>

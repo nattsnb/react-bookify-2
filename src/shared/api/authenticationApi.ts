@@ -6,7 +6,10 @@ const loginUser = async (
   credentials: LoginAndSignUpDto,
 ): Promise<AuthenticationResponseDto | undefined> => {
   try {
-    const { data } = await axiosClient.post<AuthenticationResponseDto>("/authentication/log-in", credentials);
+    const { data } = await axiosClient.post<AuthenticationResponseDto>(
+      "/authentication/log-in",
+      credentials,
+    );
     return data;
   } catch (error) {
     console.error("Error logging user:", error);
@@ -28,7 +31,10 @@ const registerUser = async (
   credentials: LoginAndSignUpDto,
 ): Promise<AuthenticationResponseDto | undefined> => {
   try {
-    const { data } = await axiosClient.post<AuthenticationResponseDto>("/authentication/sign-up", credentials);
+    const { data } = await axiosClient.post<AuthenticationResponseDto>(
+      "/authentication/sign-up",
+      credentials,
+    );
     return data;
   } catch (error) {
     console.error("Error registering user:", error);
@@ -36,9 +42,12 @@ const registerUser = async (
   }
 };
 
-const getAuthenticatedUser = async (): Promise<AuthenticationResponseDto | undefined> => {
+const getAuthenticatedUser = async (): Promise<
+  AuthenticationResponseDto | undefined
+> => {
   try {
-    const { data } = await axiosClient.get<AuthenticationResponseDto>("/authentication");
+    const { data } =
+      await axiosClient.get<AuthenticationResponseDto>("/authentication");
     return data;
   } catch (error) {
     console.error("Error fetching authenticated user:", error);
