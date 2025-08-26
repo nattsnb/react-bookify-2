@@ -1,10 +1,24 @@
-import { Button, Divider, styled } from "@mui/material";
+import { Button, styled, TextField } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
-export const StyledLogInContainer = styled("div")`
+export const StyledLogInContainer = styled("div")(
+  ({ theme }) => `
   width: 458px;
-  height: 666px;
-`;
+  height: 613px;
+  margin-bottom: ${theme.spacing(16)};
+  
+   ${theme.breakpoints.down("md")} {
+      width: 382px;
+      height: auto;
+      margin-bottom: ${theme.spacing(0)};
+    }
+    ${theme.breakpoints.down("sm")} {
+      width: 302px;
+      height: auto;
+    }
+  
+`,
+);
 
 export const StyledLoginAndRegisterButtonsContainer = styled("div")`
   display: flex;
@@ -32,6 +46,15 @@ export const StyledModeButton = styled(Button, {
       &:focus, &:focus-visible, &:active {
         border-color: rgba(0, 0, 0, 0.4);
         text-decoration: ${isactive ? "underline" : "none"};
+    }
+    
+    ${theme.breakpoints.down("md")} {
+      width: 190px;
+    height: 66px;
+    }
+    ${theme.breakpoints.down("sm")} {
+      width: 170px;
+    height: 59px;
     }
   `,
 );
@@ -88,6 +111,17 @@ export const StyledGoogleButton = styled(Button)(
     padding-left: ${theme.spacing(6.5)};
     justify-content: flex-start;
     margin-bottom: ${theme.spacing(5)};
+    
+     ${theme.breakpoints.down("md")} {
+      width: 284px;
+    height: 44px;
+    font-size: 15px;
+    }
+    ${theme.breakpoints.down("sm")} {
+      width: 263px;
+    height: 40px;
+    font-size: 14px;
+    }
   `,
 );
 
@@ -104,6 +138,17 @@ export const StyledFacebookButton = styled(Button)(
     padding-left: ${theme.spacing(6.5)};
     justify-content: flex-start;
     margin-bottom: ${theme.spacing(10)};
+    
+    ${theme.breakpoints.down("md")} {
+      width: 284px;
+    height: 44px;
+    font-size: 15px;
+    }
+    ${theme.breakpoints.down("sm")} {
+      width: 263px;
+    height: 40px;
+    font-size: 14px;
+    }
   `,
 );
 
@@ -131,6 +176,12 @@ export const StyledDividersContainer = styled("div")(
       width: 120px;
       height: 2px;
       background-color: rgba(0, 0, 0, 0.2);
+      ${theme.breakpoints.down("md")} {
+      width: 100px;
+    }
+    ${theme.breakpoints.down("sm")} {
+      width: 80px;
+    }
     },
     & .text {
       margin: 0 ${theme.spacing(7)};
@@ -138,13 +189,36 @@ export const StyledDividersContainer = styled("div")(
 `,
 );
 
-export const StyledDivider = styled(Divider)(
+export const StyledForm = styled("form")(
   ({ theme }) => `
-    font-size: 32px;
-    color:  rgba(0, 0, 0, 0.2);
-    align-items: center;
-    justify-content: center;
-    padding-bottom: ${theme.spacing(10)};
-    width: 100px;
+  display: flex;
+  flex-direction: column; 
+  padding: ${theme.spacing(8)};
+  align-items: center;
 `,
 );
+
+export const StyledTextField = styled(TextField)(
+  ({ theme }) => `
+  padding: ${theme.spacing(2)};
+  `,
+);
+
+export const StyledSubmitButton = styled(Button)(
+  ({ theme }) => `
+  background-color: ${theme.palette.primary.main};
+  color: ${theme.palette.background.default};
+  font-weight: 600;  
+  font-size: 18px;
+  border-radius: 15px;
+  width: 135px;
+  height: 46px;
+  margin-top: ${theme.spacing(6)};
+  `,
+);
+
+export const StyledParagraph = styled("p")(
+  `height: 18px;
+  margin: 0;
+  padding: 0;`
+)

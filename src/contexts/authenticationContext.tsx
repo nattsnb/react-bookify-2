@@ -19,7 +19,7 @@ type AuthenticationContextType = {
 export const AuthenticationContext =
   createContext<AuthenticationContextType | null>(null);
 
-export const useAuthenticationContext = () => {
+export const useAuthentication = () => {
   const context = useContext(AuthenticationContext);
 
   if (!context) {

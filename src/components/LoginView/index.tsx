@@ -12,43 +12,63 @@ import {
   StyledLogoContainer,
   StyledFacebookIcon,
   StyledDividersContainer,
+  StyledForm,
+  StyledTextField,
+  StyledSubmitButton,
+  StyledParagraph,
 } from "./LoginView.styled.ts";
-import { useForm } from "react-hook-form";
-import { authenticationApi } from "../../shared/api/authenticationApi.ts";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import type { RegisterFormValuesDto } from "../../shared/types/forms/register-form.dto.ts";
 import { LoginAndSignUpDto } from "../../shared/types/tables/authentication/login-and-sign-up.dto.ts";
+import { useAuthentication } from "../../contexts/authenticationContext.tsx";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function LoginView() {
   const [activeMode, setActiveMode] = useState<"login" | "register">("login");
+  const { login, register: registerUser } = useAuthentication();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const redirectTo = (location.state as any)?.from?.pathname ?? "/account/";
 
   const loginForm = useForm<LoginAndSignUpDto>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    defaultValues: { email: "", password: "" },
   });
 
-  const onSubmitLoginForm = () => {
-    authenticationApi
-      .loginUser({
-        email: "jane.doe@example.com",
-        password: "securePassword123",
-      })
-      .then((user) => {
-        if (user) {
-          console.log(user);
-        }
-      });
+  const onSubmitLoginForm: SubmitHandler<LoginAndSignUpDto> = async (
+    values,
+  ) => {
+    try {
+      const user = await login(values);
+      if (user) navigate(redirectTo, { replace: true });
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
-  onSubmitLoginForm();
 
   const registerForm = useForm<RegisterFormValuesDto>({
-    defaultValues: {
-      email: "",
-      password: "",
-      retypePassword: "",
-    },
+    defaultValues: { email: "", password: "", retypePassword: "" },
   });
+
+  const onSubmitRegisterForm: SubmitHandler<RegisterFormValuesDto> = async (
+    values,
+  ) => {
+    try {
+      if (values.password !== values.retypePassword) {
+        registerForm.setError("retypePassword", {
+          type: "validate",
+          message: "Passwords do not match",
+        });
+        return;
+      }
+      const user = await registerUser({
+        email: values.email,
+        password: values.password,
+      });
+      if (user) navigate(redirectTo, { replace: true });
+    } catch (error) {
+      console.error("Register error:", error);
+    }
+  };
 
   const toggleToLoginMode = () => {
     if (activeMode === "register") {
@@ -106,6 +126,28 @@ export function LoginView() {
                   <div className="text">or</div>
                   <div className="line" />
                 </StyledDividersContainer>
+                <StyledForm
+                  onSubmit={loginForm.handleSubmit(onSubmitLoginForm)}
+                >
+                  <StyledTextField
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Email"
+                    {...loginForm.register("email", { required: true })}
+                  />
+                  <StyledTextField
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="Password"
+                    {...loginForm.register("password", { required: true })}
+                  />
+                  <StyledSubmitButton
+                    type="submit"
+                    disabled={loginForm.formState.isSubmitting}
+                  >
+                    Log in
+                  </StyledSubmitButton>
+                </StyledForm>
               </>
             ) : (
               <>
@@ -130,6 +172,41 @@ export function LoginView() {
                   <div className="text">or</div>
                   <div className="line" />
                 </StyledDividersContainer>
+                <StyledForm
+                  onSubmit={registerForm.handleSubmit(onSubmitRegisterForm)}
+                >
+                  <StyledTextField
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Email"
+                    {...registerForm.register("email", { required: true })}
+                  />
+                  <StyledTextField
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="Password"
+                    {...registerForm.register("password", { required: true })}
+                  />
+                  <StyledTextField
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="Retype password"
+                    {...registerForm.register("retypePassword", {
+                      required: true,
+                    })}
+                  />
+                  {registerForm.formState.errors.retypePassword?.message && (
+                    <StyledParagraph>
+                      {registerForm.formState.errors.retypePassword.message}
+                    </StyledParagraph>
+                  )}
+                  <StyledSubmitButton
+                    type="submit"
+                    disabled={registerForm.formState.isSubmitting}
+                  >
+                    Register
+                  </StyledSubmitButton>
+                </StyledForm>
               </>
             )}
           </StyledFormContainer>
