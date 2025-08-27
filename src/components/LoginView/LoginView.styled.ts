@@ -220,5 +220,5 @@ export const StyledSubmitButton = styled(Button)(
 export const StyledParagraph = styled("p")(
   `height: 18px;
   margin: 0;
-  padding: 0;`
-)
+  padding: 0;`,
+);

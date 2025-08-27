@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { CircularProgress, CssBaseline } from "@mui/material";
 import theme from "./theme/theme.ts";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
@@ -19,6 +19,8 @@ import type { VenueDto } from "./shared/types/tables/venue/venue.dto.ts";
 import { VenueSection } from "./shared/constants.ts";
 import { LoginView } from "./components/LoginView";
 import { AuthenticationProvider } from "./contexts/authenticationContext.tsx";
+import { AccountView } from "./components/AccountView";
+import { ProtectedRoute } from "./routes/ProtectedRoute.tsx";
 
 export function App() {
   const [isError, setIsError] = useState(false);
@@ -76,6 +78,17 @@ export function App() {
                         <Route
                           path="/assistance/"
                           element={<p>assistance</p>}
+                        />
+                        <Route
+                          path="/account/"
+                          element={
+                            <ProtectedRoute
+                              placeholder={<CircularProgress />}
+                              redirectTo="/login/"
+                            >
+                              <AccountView />
+                            </ProtectedRoute>
+                          }
                         />
                       </Routes>
                     </Layout>
