@@ -16,12 +16,16 @@ import {
   StyledTextField,
   StyledSubmitButton,
   StyledParagraph,
+  StyledErrorMessageContainer,
 } from "./LoginView.styled.ts";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import type { RegisterFormValuesDto } from "../../shared/types/forms/register-form.dto.ts";
 import { LoginAndSignUpDto } from "../../shared/types/tables/authentication/login-and-sign-up.dto.ts";
 import { useAuthentication } from "../../contexts/authenticationContext.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
+
+const googleLogoImageSrc =
+  "https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw";
 
 export function LoginView() {
   const [activeMode, setActiveMode] = useState<"login" | "register">("login");
@@ -39,7 +43,14 @@ export function LoginView() {
   ) => {
     try {
       const user = await login(values);
-      if (user) navigate(redirectTo, { replace: true });
+      if (user) {
+        navigate(redirectTo, { replace: true });
+        return;
+      }
+      loginForm.setError("root", {
+        type: "server",
+        message: "Wrong credentials",
+      });
     } catch (error) {
       console.error("Login error:", error);
     }
@@ -108,7 +119,7 @@ export function LoginView() {
                 <StyledGoogleButton>
                   <StyledLogoContainer>
                     <img
-                      src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw"
+                      src={googleLogoImageSrc}
                       alt="Google Logo"
                       width="32"
                     />
@@ -141,6 +152,14 @@ export function LoginView() {
                     placeholder="Password"
                     {...loginForm.register("password", { required: true })}
                   />
+                  <StyledErrorMessageContainer>
+                    {loginForm.formState.errors.root?.message && (
+                      <StyledParagraph role="alert" aria-live="polite">
+                        {loginForm.formState.errors.root.message}
+                      </StyledParagraph>
+                    )}
+                  </StyledErrorMessageContainer>
+
                   <StyledSubmitButton
                     type="submit"
                     disabled={loginForm.formState.isSubmitting}
@@ -154,7 +173,7 @@ export function LoginView() {
                 <StyledGoogleButton>
                   <StyledLogoContainer>
                     <img
-                      src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw"
+                      src={googleLogoImageSrc}
                       alt="Google Logo"
                       width="32"
                     />
@@ -195,11 +214,13 @@ export function LoginView() {
                       required: true,
                     })}
                   />
-                  {registerForm.formState.errors.retypePassword?.message && (
-                    <StyledParagraph>
-                      {registerForm.formState.errors.retypePassword.message}
-                    </StyledParagraph>
-                  )}
+                  <StyledErrorMessageContainer>
+                    {registerForm.formState.errors.retypePassword?.message && (
+                      <StyledParagraph>
+                        {registerForm.formState.errors.retypePassword.message}
+                      </StyledParagraph>
+                    )}
+                  </StyledErrorMessageContainer>
                   <StyledSubmitButton
                     type="submit"
                     disabled={registerForm.formState.isSubmitting}
