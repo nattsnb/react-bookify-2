@@ -4,6 +4,7 @@ import {
   StyledContainer,
   StyledEditDetailsButton,
   StyledLogoutButton,
+  StyledReservationCardsContainer,
   StyledSectionContainer,
   StyledSectionTittle,
 } from "./AccountView.styled";
@@ -47,16 +48,20 @@ export function AccountView() {
             <StyledSectionContainer>
               <StyledSectionTittle>my reservations</StyledSectionTittle>
               <Divider variant="light" />
-              {isLoading && <CircularProgress />}
-              {!isLoading && myReservationsData && myReservationsData.length > 0
-                ? myReservationsData.map((item) => (
-                    <ReservationCard
-                      key={item.reservation.id}
-                      reservation={item.reservation}
-                      venue={item.venue}
-                    />
-                  ))
-                : !isLoading && <p>No reservations found.</p>}
+              <StyledReservationCardsContainer>
+                {isLoading && <CircularProgress />}
+                {!isLoading &&
+                myReservationsData &&
+                myReservationsData.length > 0
+                  ? myReservationsData.map((item) => (
+                      <ReservationCard
+                        key={item.reservation.id}
+                        reservation={item.reservation}
+                        venue={item.venue}
+                      />
+                    ))
+                  : !isLoading && <p>No reservations found.</p>}
+              </StyledReservationCardsContainer>
             </StyledSectionContainer>
           </StyledContainer>
           <StyledLogoutButton onClick={onClickLogoutButton}>

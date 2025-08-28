@@ -2,7 +2,7 @@ import { styled } from "@mui/material";
 
 export const StyledVenueCardWrapper = styled("div")(
   ({ theme }) => `
-  width: 282px;
+  min-width: 282px;
   height: 228px;
   box-shadow: 0 0 0.4vw ${theme.palette.secondary.light};
 `,

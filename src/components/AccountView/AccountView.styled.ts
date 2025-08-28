@@ -58,9 +58,8 @@ export const StyledEditDetailsButton = styled(Button)(
   `,
 );
 
-export const StyledButtonContainer = styled("div")(
-  `
-  align-items: center;
-  justify-content: center;
-  `,
+export const StyledReservationCardsContainer = styled("div")(
+  ({ theme }) => `
+    margin-top: ${theme.spacing(2)};
+`,
 );
