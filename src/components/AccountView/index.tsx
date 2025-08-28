@@ -1,5 +1,5 @@
 import { PageWidthContainer } from "../../shared/styledComponents/pageWidthContainer";
-import { Divider } from "@mui/material";
+import { CircularProgress, Divider } from "@mui/material";
 import {
   StyledContainer,
   StyledEditDetailsButton,
@@ -10,24 +10,12 @@ import {
 import { useAuthentication } from "../../contexts/authenticationContext.tsx";
 import { useNavigate } from "react-router-dom";
 import { VerticalContainer } from "../../shared/styledComponents/verticalContainer.styled.ts";
-import { useEffect, useState } from "react";
-import type { ReservationDto } from "../../shared/types/tables/reservation/reservation.dto.ts";
-import { reservationApi } from "../../shared/api/reservationApi.ts";
+import { ReservationCard } from "./ReservationCard";
+import { useAccountView } from "./useAccountView.ts";
 
 export function AccountView() {
+  const { myReservationsData, isLoading } = useAccountView();
   const { user, logout } = useAuthentication();
-  const [reservations, setReservations] = useState<ReservationDto[] | null>(
-    null,
-  );
-
-  useEffect(() => {
-    if (!user?.id) return;
-    (async () => {
-      const data = await reservationApi.getReservationsByUser(user.id);
-      setReservations(data ?? []);
-    })();
-  }, [user?.id]);
-
   const navigate = useNavigate();
 
   const onClickLogoutButton = async () => {
@@ -59,21 +47,16 @@ export function AccountView() {
             <StyledSectionContainer>
               <StyledSectionTittle>my reservations</StyledSectionTittle>
               <Divider variant="light" />
-              {reservations === null ? (
-                <p>loading your reservations…</p>
-              ) : reservations.length > 0 ? (
-                <ul>
-                  {reservations.map((reservation) => (
-                    <li key={reservation.id}>
-                      #{reservation.id} • venue: {reservation.venueId} •{" "}
-                      {new Date(reservation.dateStart).toLocaleDateString()} –{" "}
-                      {new Date(reservation.dateEnd).toLocaleDateString()}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>you have no reservations</p>
-              )}
+              {isLoading && <CircularProgress />}
+              {!isLoading && myReservationsData && myReservationsData.length > 0
+                ? myReservationsData.map((item) => (
+                    <ReservationCard
+                      key={item.reservation.id}
+                      reservation={item.reservation}
+                      venue={item.venue}
+                    />
+                  ))
+                : !isLoading && <p>No reservations found.</p>}
             </StyledSectionContainer>
           </StyledContainer>
           <StyledLogoutButton onClick={onClickLogoutButton}>

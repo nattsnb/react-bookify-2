@@ -17,7 +17,7 @@ export const StyledLogInContainer = styled("div")(
       height: auto;
     }
   
-`,
+  `,
 );
 
 export const StyledLoginAndRegisterButtonsContainer = styled("div")`
@@ -112,6 +112,10 @@ export const StyledGoogleButton = styled(Button)(
     justify-content: flex-start;
     margin-bottom: ${theme.spacing(5)};
     
+    &:focus, &:focus-visible, &:active, &:hover {
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    }
+    
      ${theme.breakpoints.down("md")} {
       width: 284px;
     height: 44px;
@@ -139,6 +143,12 @@ export const StyledFacebookButton = styled(Button)(
     justify-content: flex-start;
     margin-bottom: ${theme.spacing(10)};
     
+    &:focus, &:focus-visible, &:active, &:hover {
+      background-color: #2F55A4; 
+      color: ${theme.palette.background.default};   
+      border: 2px solid rgba(0, 0, 0, 0.4);
+    }
+    
     ${theme.breakpoints.down("md")} {
       width: 284px;
     height: 44px;
@@ -156,14 +166,14 @@ export const StyledLogoContainer = styled("div")(
   ({ theme }) => `
     display: flex;
     margin-right: ${theme.spacing(5.5)};
-`,
+  `,
 );
 
 export const StyledFacebookIcon = styled(FacebookIcon)(
   ({ theme }) => `
     font-size: 32px;
     color: ${theme.palette.background.default};
-`,
+  `,
 );
 
 export const StyledDividersContainer = styled("div")(
@@ -182,11 +192,10 @@ export const StyledDividersContainer = styled("div")(
     ${theme.breakpoints.down("sm")} {
       width: 80px;
     }
-    },
     & .text {
       margin: 0 ${theme.spacing(7)};
-},
-`,
+    },
+  `,
 );
 
 export const StyledForm = styled("form")(
@@ -195,7 +204,7 @@ export const StyledForm = styled("form")(
   flex-direction: column; 
   padding: ${theme.spacing(8)};
   align-items: center;
-`,
+  `,
 );
 
 export const StyledTextField = styled(TextField)(
@@ -214,6 +223,12 @@ export const StyledSubmitButton = styled(Button)(
   width: 135px;
   height: 46px;
   margin-top: ${theme.spacing(6)};
+  
+   &:focus, &:focus-visible, &:active, &:hover {
+       background-color: ${theme.palette.primary.main}; 
+    color: ${theme.palette.background.default};    
+     border: 2px solid rgba(0, 0, 0, 0.4);
+    }
   `,
 );
 
@@ -221,4 +236,8 @@ export const StyledParagraph = styled("p")(
   `height: 18px;
   margin: 0;
   padding: 0;`,
+);
+
+export const StyledErrorMessageContainer = styled("div")(
+  `min-height: 22px;`,
 );
