@@ -2,13 +2,16 @@ import Typography from "@mui/material/Typography";
 import { Link, useMediaQuery, useTheme } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  StyledAccountCircleIcon,
   StyledLoginLink,
   StyledNavBarContainer,
   StyledNavBarLinksContainer,
   StyledTypographyForHomeLink,
 } from "./NavBar.styled.ts";
+import { useAuthentication } from "../../contexts/authenticationContext.tsx";
 
 export function NavBar() {
+  const { user } = useAuthentication();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
@@ -33,9 +36,15 @@ export function NavBar() {
               <Link href={"/start-hosting/"} variant="link">
                 start hosting
               </Link>
-              <StyledLoginLink href={"/login/"} variant="boldLink">
-                login
-              </StyledLoginLink>
+              {user ? (
+                <Link href={"/account/"}>
+                  <StyledAccountCircleIcon />
+                </Link>
+              ) : (
+                <StyledLoginLink href={"/login/"} variant="boldLink">
+                  login
+                </StyledLoginLink>
+              )}
             </StyledNavBarLinksContainer>
           </>
         ) : (
@@ -50,9 +59,15 @@ export function NavBar() {
                 </StyledTypographyForHomeLink>
               </Link>
             </div>
-            <StyledLoginLink href={"/login/"} variant="boldLink">
-              login
-            </StyledLoginLink>
+            {user ? (
+              <Link href={"/account/"}>
+                <StyledAccountCircleIcon />
+              </Link>
+            ) : (
+              <StyledLoginLink href={"/login/"} variant="boldLink">
+                login
+              </StyledLoginLink>
+            )}
           </>
         )}
       </StyledNavBarContainer>

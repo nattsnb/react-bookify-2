@@ -1,5 +1,6 @@
 import { Link, styled } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export const StyledNavBarContainer = styled("div")(
   ({ theme }) => `
@@ -44,3 +45,10 @@ export const StyledLoginLink = styled(Link)(
 export const StyledTypographyForHomeLink = styled(Typography)`
   font-size: 37px;
 `;
+
+export const StyledAccountCircleIcon = styled(AccountCircleIcon)(
+  ({ theme }) => `
+  color: ${theme.palette.primary.main};
+  font-size: 40px;
+`,
+);
