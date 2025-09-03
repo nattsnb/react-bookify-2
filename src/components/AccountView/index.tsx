@@ -33,7 +33,7 @@ export function AccountView() {
       {user && (
         <>
           <StyledContainer>
-            <StyledSectionContainer>
+            <StyledSectionContainer className="one-third">
               <StyledSectionTittle>user data</StyledSectionTittle>
               <Divider variant="light" />
               <p>name: {user.name ?? "-"}</p>
@@ -45,7 +45,7 @@ export function AccountView() {
                 </StyledEditDetailsButton>
               </VerticalContainer>
             </StyledSectionContainer>
-            <StyledSectionContainer>
+            <StyledSectionContainer className="two-thirds">
               <StyledSectionTittle>my reservations</StyledSectionTittle>
               <Divider variant="light" />
               <StyledReservationCardsContainer>

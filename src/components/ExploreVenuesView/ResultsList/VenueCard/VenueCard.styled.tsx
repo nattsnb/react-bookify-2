@@ -4,6 +4,7 @@ export const StyledVenueCardWrapper = styled("div")(
   ({ theme }) => `
   min-width: 282px;
   height: 228px;
+  max-width: 360px;
   box-shadow: 0 0 0.4vw ${theme.palette.secondary.light};
 `,
 );

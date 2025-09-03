@@ -9,6 +9,8 @@ export const StyledSectionContainer = styled("div")(
     padding: ${theme.spacing(5)} ${theme.spacing(8)};
   margin: ${theme.spacing(2)};
   width: 100%;
+  height: fit-content;
+  max-width: 700px;
   `,
 );
 
@@ -17,10 +19,21 @@ export const StyledContainer = styled("div")(
   display: flex;
   flex-direction: row;
   width: 100%;
-  ${theme.breakpoints.down("md")} {
+  align-items: start;
+  gap: ${theme.spacing(2)};
+
+    & .one-third  { flex: 1 1 33.333%; }
+    & .two-thirds { flex: 2 1 66.666%; }
+
+  ${theme.breakpoints.down("lg")} {
     flex-direction: column;
+    align-items: center;
+    & .one-third,
+    & .two-thirds {
+      flex: 1 1 100%;
+    }
   }
-  `,
+`,
 );
 
 export const StyledLogoutButton = styled(Button)(
