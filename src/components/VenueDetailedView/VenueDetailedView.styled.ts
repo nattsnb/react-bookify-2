@@ -138,3 +138,12 @@ export const StyledDrawer = styled(Drawer)`
     width: 100%;
   }
 `;
+
+export const StyledDialogButtonsContainer = styled("div")(
+  ({ theme }) => `
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    margin: ${theme.spacing(8)};
+  `,
+);

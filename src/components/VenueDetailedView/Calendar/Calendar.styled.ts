@@ -109,6 +109,7 @@ export const StyledTotalContainer = styled("div")(
   ({ theme }) => `
   font-size: 25px;
   margin-top: ${theme.spacing(8)};
+  margin-bottom: ${theme.spacing(5)};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -124,8 +125,8 @@ export const StyledBookButton = styled(Button)`
 
 export const StyledBookButtonContainer = styled("div")`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: end;
 `;
 
 export const StyledCalendarPicker = styled(CalendarPicker)(
