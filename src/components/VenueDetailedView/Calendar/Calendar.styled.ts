@@ -130,18 +130,21 @@ export const StyledBookButtonContainer = styled("div")`
 
 export const StyledCalendarPicker = styled(CalendarPicker)(
   ({ theme }) => `
-    width: 100%;
-    height: 100%;
-    background-color: ${theme.palette.background.offDefault};
-    border: 1px solid ${theme.palette.primary.border};
-    border-radius: 15px;
-    padding-left: ${theme.spacing(4)};
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: ${theme.spacing(4)};
-    & .MuiPickersDay-root {
+  width: 100%;
+  background-color: ${theme.palette.background.offDefault};
+  border: 1px solid ${theme.palette.primary.border};
+  border-radius: 15px;
+  padding-left: ${theme.spacing(4)};
+  padding-right: ${theme.spacing(4)};
+
+  & .MuiPickersDay-root {
     font-size: 16px;
     margin: ${theme.spacing(1)} ${theme.spacing(2)};
+  }
+
+  & .MuiDayPicker-monthContainer:has(> .MuiDayPicker-weekContainer:nth-of-type(6)) .MuiPickersDay-root,
+  & .MuiDayCalendar-monthContainer:has(> .MuiDayCalendar-weekContainer:nth-of-type(6)) .MuiPickersDay-root {
+    margin: ${theme.spacing(0.5)} ${theme.spacing(1)};
   }
 `,
 );
