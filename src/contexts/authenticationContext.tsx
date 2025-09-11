@@ -53,7 +53,6 @@ export function AuthenticationProvider({
       return undefined;
     } finally {
       setLoading(false);
-      console.log("user refreshed");
     }
   };
 
@@ -74,7 +73,6 @@ export function AuthenticationProvider({
       return undefined;
     } finally {
       setLoading(false);
-      console.log("user logged in");
     }
   };
 
@@ -91,7 +89,6 @@ export function AuthenticationProvider({
       return undefined;
     } finally {
       setLoading(false);
-      console.log("user registered");
     }
   };
 
@@ -104,7 +101,6 @@ export function AuthenticationProvider({
       console.error("Logout error:", error);
     } finally {
       setLoading(false);
-      console.log("user logged out");
     }
   };
 
