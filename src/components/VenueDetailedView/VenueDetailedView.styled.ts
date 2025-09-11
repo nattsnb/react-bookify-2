@@ -138,3 +138,16 @@ export const StyledDrawer = styled(Drawer)`
     width: 100%;
   }
 `;
+
+interface StyledSectionProps {
+  isMobile?: boolean;
+  isDisplayed?: boolean;
+}
+
+export const StyledSection = styled("section", {
+  shouldForwardProp: (prop) => prop !== "isMobile" && prop !== "isDisplayed",
+})<StyledSectionProps>(
+  ({ isMobile, isDisplayed }) => `
+    display: ${isMobile || isDisplayed ? "block" : "none"};
+  `,
+);
