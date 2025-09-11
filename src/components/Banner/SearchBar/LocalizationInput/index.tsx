@@ -39,9 +39,9 @@ export const LocalizationInput = ({
       />
       {isAutocompleteOpen && suggestions.length > 0 && (
         <StyledSuggestionList>
-          {suggestions.map((name, idx) => (
+          {suggestions.map((name) => (
             <ListItem
-              key={idx}
+              key={name}
               onMouseDown={() => {
                 onChange(name);
                 setIsAutocompleteOpen(false);
