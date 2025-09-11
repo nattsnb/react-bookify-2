@@ -10,6 +10,14 @@ const getAllVenues = (): Promise<VenueDto[] | undefined> => {
     .catch((error: unknown) => console.error("Error fetching venues:", error));
 };
 
+const getOneVenue = (venueId: number): Promise<VenueDto | undefined> => {
+  return fetch(`${API_URL}/venue/${venueId}/`, {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .catch((error: unknown) => console.error("Error fetching venues:", error));
+};
+
 const getCities = (): Promise<string[] | undefined> => {
   return fetch(`${API_URL}/venue/cities/`, {
     method: "GET",
@@ -39,4 +47,5 @@ export const venueApi = {
   getCities,
   getHead,
   getFilteredVenues,
+  getOneVenue,
 };

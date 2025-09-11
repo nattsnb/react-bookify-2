@@ -3,7 +3,7 @@ import { Add, Remove } from "@mui/icons-material";
 import {
   StyledFormControl,
   StyledGuestInputTextField,
-} from "../SearchBar.styled.ts";
+} from "./SearchBar.styled.ts";
 
 type GuestsNumberInputProps = {
   value: number | null | undefined;
@@ -44,13 +44,10 @@ export const GuestsNumberInput = ({
       <StyledGuestInputTextField
         id="guests"
         type="number"
-        label="guests"
+        placeholder="guests"
         fullWidth
         value={value ?? ""}
         onChange={handleManualInput}
-        InputLabelProps={{
-          shrink: Boolean(value),
-        }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

@@ -5,6 +5,7 @@ declare module "@mui/material/styles" {
     font?: string;
     fontLight?: string;
     fontExtraLight?: string;
+    border?: string;
     detail?: string;
     middle?: string;
   }
@@ -12,11 +13,13 @@ declare module "@mui/material/styles" {
     font?: string;
     fontLight?: string;
     fontExtraLight?: string;
+    border?: string;
     detail?: string;
     middle?: string;
   }
   interface TypeBackground {
     offDefault?: string;
+    activeButton?: string;
   }
 
   interface Palette {

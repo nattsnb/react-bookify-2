@@ -10,16 +10,17 @@ import {
   StyledCollapseTypographyContainer,
   StyledInputsContainer,
   StyledSearchBarContainer,
+  StyledSearchButton,
 } from "./SearchBar.styled.ts";
 import { useSearchBar } from "./useSearchBar.ts";
-import { LocalizationInput } from "./LocalizationInput/LocalizationInput.tsx";
+import { LocalizationInput } from "./LocalizationInput/";
 import { OccasionInput } from "./OccasionInput.tsx";
 import { VenueTypeInput } from "./VenueTypeInput.tsx";
 import { DateInput } from "./DateInput";
-import { GuestsNumberInput } from "./GuestsNumberInput/GuestsNumberInput.tsx";
+import { GuestsNumberInput } from "./GuestsNumberInput.tsx";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { FormProvider } from "react-hook-form";
-import { GuestsController } from "./GuestsNumberInput/GuestsController.tsx";
+import { FormController } from "./FormController.tsx";
 
 export const SearchBar = () => {
   const {
@@ -61,13 +62,48 @@ export const SearchBar = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <StyledSearchBarContainer>
           {isViewportSmallerThanMd && (
-            <Collapse in={isCollapsed} collapsedSize={95}>
+            <Collapse in={isCollapsed} collapsedSize={70}>
               <StyledInputsContainer>
-                <LocalizationInput />
-                <OccasionInput />
-                <VenueTypeInput />
-                <GuestsController />
-                <DateInput />
+                <FormController name="localization">
+                  {(field) => (
+                    <LocalizationInput
+                      value={field.value ?? ""}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="occasionIds">
+                  {(field) => (
+                    <OccasionInput
+                      value={field.value ?? []}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="venueTypeId">
+                  {(field) => (
+                    <VenueTypeInput
+                      value={field.value ?? undefined}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="guests">
+                  {(field) => (
+                    <GuestsNumberInput
+                      value={field.value ?? undefined}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="dateRange">
+                  {(field) => (
+                    <DateInput
+                      value={field.value ?? [null, null]}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
               </StyledInputsContainer>
             </Collapse>
           )}
@@ -78,26 +114,60 @@ export const SearchBar = () => {
               collapsedSize={isViewportSmallerThanLg ? 228 : 245}
             >
               <StyledInputsContainer>
-                <LocalizationInput />
-                <OccasionInput />
-                <VenueTypeInput />
-                <DateInput />
-                <GuestsController />
+                <FormController name="localization">
+                  {(field) => (
+                    <LocalizationInput
+                      value={field.value ?? ""}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="occasionIds">
+                  {(field) => (
+                    <OccasionInput
+                      value={field.value ?? []}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="venueTypeId">
+                  {(field) => (
+                    <VenueTypeInput
+                      value={field.value ?? undefined}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="dateRange">
+                  {(field) => (
+                    <DateInput
+                      value={field.value ?? [null, null]}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
+                <FormController name="guests">
+                  {(field) => (
+                    <GuestsNumberInput
+                      value={field.value ?? undefined}
+                      onChange={field.onChange}
+                    />
+                  )}
+                </FormController>
               </StyledInputsContainer>
             </Collapse>
           )}
-
           <StyledCollapseTypographyContainer>
-            <Button variant="outlined" onClick={collapseSearchBar}>
+            <Button onClick={collapseSearchBar}>
               {!isCollapsed
                 ? "I want to be more specific (4)"
                 : "I don’t want to be that specific"}
             </Button>
           </StyledCollapseTypographyContainer>
 
-          <Button variant="contained" type="submit">
+          <StyledSearchButton variant="contained" type="submit">
             Search for venue
-          </Button>
+          </StyledSearchButton>
         </StyledSearchBarContainer>
       </form>
     </FormProvider>

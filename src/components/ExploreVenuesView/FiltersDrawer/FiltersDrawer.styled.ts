@@ -6,43 +6,45 @@ import {
   styled,
 } from "@mui/material";
 
-export const StyledResetButton = styled("button")`
+export const StyledResetButton = styled("button")(
+  ({ theme }) => `
   background: none;
   border: none;
   padding: 0;
   margin: 0;
   font: inherit;
-  color: ${({ theme }) => theme.palette.primary.main};
+  color: ${theme.palette.primary.main};
   font-weight: bold;
-`;
+`,
+);
 
 export const StyledSlider = styled(Slider)(
   ({ theme }) => `
-    & .MuiSlider-valueLabel {
-      background-color: ${theme.palette.primary.main};
-    }
-    & .MuiSlider-track {
-      background: linear-gradient(
-        to bottom,
-        ${theme.palette.primary.main},
-        ${theme.palette.secondary.light}
-      );
-      border: none;
-    }
+  & .MuiSlider-valueLabel {
+    background-color: ${theme.palette.primary.main};
+  }
+  & .MuiSlider-track {
+    background: linear-gradient(
+      to bottom,
+      ${theme.palette.primary.main},
+      ${theme.palette.secondary.light}
+    );
+    border: none;
+  }
 
-    & .MuiSlider-thumb {
-      background: linear-gradient(
-        to bottom,
-        ${theme.palette.primary.main},
-        ${theme.palette.secondary.light}
-      );
-      border: 2px solid white;
-    }
-    padding-left: ${theme.spacing(13)};
-    padding-right: ${theme.spacing(13)};
-    margin-top: ${theme.spacing(12)};
-    width: 70%;
-  `,
+  & .MuiSlider-thumb {
+    background: linear-gradient(
+      to bottom,
+      ${theme.palette.primary.main},
+      ${theme.palette.secondary.light}
+    );
+    border: 2px solid white;
+  }
+  padding-left: ${theme.spacing(13)};
+  padding-right: ${theme.spacing(13)};
+  margin-top: ${theme.spacing(12)};
+  width: 70%;
+`,
 );
 
 export const StyledSliderContainer = styled("div")`
@@ -51,18 +53,22 @@ export const StyledSliderContainer = styled("div")`
   align-items: center;
 `;
 
-export const StyledAmenityButton = styled(ListItemButton)`
+export const StyledAmenityButton = styled(ListItemButton)(
+  ({ theme }) => `
   align-items: center;
-  gap: ${({ theme }) => theme.spacing(3)};
-`;
+  gap: ${theme.spacing(3)};
+`,
+);
 
 export const StyledCheckbox = styled(Checkbox)`
   align-self: flex-end;
 `;
 
-export const StyledAmenityText = styled(ListItemText)`
+export const StyledAmenityText = styled(ListItemText)(
+  ({ theme }) => `
   margin: 0;
   display: flex;
   align-items: flex-end;
-  padding-top: ${({ theme }) => theme.spacing(3)};
-`;
+  padding-top: ${theme.spacing(3)};
+`,
+);

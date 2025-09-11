@@ -33,7 +33,7 @@ export const ResultsList = ({ limit }: ResultsListProps) => {
   return (
     <ListWrapper>
       <CardsWrapper>
-        {venuesOnPage ? (
+        {venuesOnPage && venuesOnPage.length > 0 ? (
           venuesOnPage.map((venue: VenueDto) => (
             <CardContainer key={venue.id}>
               <VenueCard venue={venue} />

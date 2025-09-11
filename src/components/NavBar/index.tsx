@@ -10,11 +10,11 @@ import {
 
 export function NavBar() {
   const theme = useTheme();
-  const isViewportLargerThanMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <div>
       <StyledNavBarContainer>
-        {isViewportLargerThanMd ? (
+        {isDesktop ? (
           <>
             <div>
               <Link href={"/"}>
@@ -50,9 +50,9 @@ export function NavBar() {
                 </StyledTypographyForHomeLink>
               </Link>
             </div>
-            <Link href={"/login/"} sx={{ color: "#67AA92" }} variant="boldLink">
+            <StyledLoginLink href={"/login/"} variant="boldLink">
               login
-            </Link>
+            </StyledLoginLink>
           </>
         )}
       </StyledNavBarContainer>
