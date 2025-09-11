@@ -35,7 +35,7 @@ export function Description({ descriptionRef }: DescriptionProps) {
       <StyledSectionContainer>
         <StyledAmenitiesList>
           {activeVenue.amenityToVenues.map(
-            (amenityToVenue: AmenityToVenueDto) => (
+            (amenityToVenue) => (
               <ListItem key={amenityToVenue.amenity.id}>
                 <ListItemIcon>
                   <StyledDoneIcon />
