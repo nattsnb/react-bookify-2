@@ -31,7 +31,7 @@ export function Gallery({ galleryRef }: GalleryProps) {
       <StyledGalleryContainer>
         {activeVenue.images.map((imageURL, index) => (
           <StyledImageContainer
-            key={`${activeVenue.id}-${imageURL}`}
+            key={uuidv4()}
             imageUrl={imageURL}
             onClick={() => handleOnClick(index)}
           />

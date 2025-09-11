@@ -4,10 +4,7 @@ import { VenueSection } from "../../shared/constants.ts";
 import { Gallery } from "./Gallery";
 import MapWithAddress from "./MapWithAddress";
 import { ContactInfo } from "./ContactInfo";
-import {
-  StyledSection,
-  StyledSectionContainer,
-} from "./VenueDetailedView.styled.ts";
+import { StyledSectionContainer } from "./VenueDetailedView.styled.ts";
 import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
 import { useMediaQuery, useTheme } from "@mui/material";
 
@@ -31,27 +28,39 @@ export function VenueSections({
 
   return (
     <StyledSectionContainer>
-      <StyledSection
-        isMobile={isMobile}
-        isDisplayed={displayedSection === VenueSection.DESCRIPTION}
+      <section
+        style={{
+          display:
+            isMobile || displayedSection === VenueSection.DESCRIPTION
+              ? "block"
+              : "none",
+        }}
         ref={descriptionRef}
       >
         <Description descriptionRef={descriptionRef} />
-      </StyledSection>
-      <StyledSection
-        isMobile={isMobile}
-        isDisplayed={displayedSection === VenueSection.GALLERY}
+      </section>
+      <section
+        style={{
+          display:
+            isMobile || displayedSection === VenueSection.GALLERY
+              ? "block"
+              : "none",
+        }}
         ref={galleryRef}
       >
         <Gallery galleryRef={galleryRef} />
-      </StyledSection>
-      <StyledSection
-        isMobile={isMobile}
-        isDisplayed={displayedSection === VenueSection.MAP}
+      </section>
+      <section
+        style={{
+          display:
+            isMobile || displayedSection === VenueSection.MAP
+              ? "block"
+              : "none",
+        }}
         ref={mapRef}
       >
         <MapWithAddress mapRef={mapRef} />
-      </StyledSection>
+      </section>
       {isMobile && (
         <section ref={contactsRef}>
           <ContactInfo contactsRef={contactsRef} />

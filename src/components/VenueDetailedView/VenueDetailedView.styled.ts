@@ -139,19 +139,6 @@ export const StyledDrawer = styled(Drawer)`
   }
 `;
 
-interface StyledSectionProps {
-  isMobile?: boolean;
-  isDisplayed?: boolean;
-}
-
-export const StyledSection = styled("section", {
-  shouldForwardProp: (prop) => prop !== "isMobile" && prop !== "isDisplayed",
-})<StyledSectionProps>(
-  ({ isMobile, isDisplayed }) => `
-    display: ${isMobile || isDisplayed ? "block" : "none"};
-  `,
-);
-
 export const StyledDialogButtonsContainer = styled("div")(
   ({ theme }) => `
     box-shadow: none;
