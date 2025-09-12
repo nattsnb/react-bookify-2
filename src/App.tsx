@@ -18,6 +18,7 @@ import { ProtectedRoute } from "./routes/ProtectedRoute.tsx";
 import { ActiveVenueProvider } from "./contexts/activeVenueContext.tsx";
 import { FilterParamsProvider } from "./contexts/filterParamsContext.tsx";
 import { PictureCarouselProvider } from "./contexts/pictureCaruselContext.tsx";
+import { NoUserRoute } from "./routes/NoUserdRoute.tsx";
 
 export function App() {
   const [isError, setIsError] = useState(false);
@@ -51,7 +52,17 @@ export function App() {
                           path="/start-hosting/"
                           element={<p>start hosting</p>}
                         />
-                        <Route path="/login/" element={<LoginView />} />
+                        <Route
+                          path="/login/"
+                          element={
+                            <NoUserRoute
+                              placeholder={<CircularProgress />}
+                              redirectTo="/login/"
+                            >
+                              <LoginView />
+                            </NoUserRoute>
+                          }
+                        />
                         <Route path="/contact/" element={<p>contact</p>} />
                         <Route
                           path="/assistance/"
