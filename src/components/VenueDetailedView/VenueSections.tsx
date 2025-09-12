@@ -5,7 +5,7 @@ import { Gallery } from "./Gallery";
 import MapWithAddress from "./MapWithAddress";
 import { ContactInfo } from "./ContactInfo";
 import { StyledSectionContainer } from "./VenueDetailedView.styled.ts";
-import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../contexts/activeVenueContext.tsx";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 interface VenueSectionsProps {

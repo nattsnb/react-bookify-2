@@ -1,5 +1,5 @@
-import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.ts";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.tsx";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 
 export const useDetailsAndImageContainer = () => {
   const { activeVenue } = useActiveVenue();

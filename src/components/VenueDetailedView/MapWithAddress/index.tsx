@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { StyledMapContainer } from "./MapWithAddress.styled.js";
 import { StyledContactInfoTypography } from "../ContactInfo/ContactInfo.styled.js";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 import { FullscreenControl } from "./FullScreenControl.tsx";
 import "leaflet-fullscreen";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";

@@ -17,9 +17,7 @@ export const BackButton = ({ message }: BackButtonProps) => {
     <StyledBackButtonContainer>
       <StyledBackButtonFlexDiv onClick={() => navigate(-1)}>
         <StyledArrowBackIosIcon />
-        <p>
-          {message}
-        </p>
+        <p>{message}</p>
       </StyledBackButtonFlexDiv>
     </StyledBackButtonContainer>
   );

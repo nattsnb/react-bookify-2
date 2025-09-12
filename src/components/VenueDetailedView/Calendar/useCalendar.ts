@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Dayjs } from "dayjs";
 import { useCurrency } from "../../../contexts/currencyContext.tsx";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 import { reservationApi } from "../../../shared/api/reservationApi.ts";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";

@@ -32,7 +32,7 @@ import {
 } from "../VenueDetailedView.styled.ts";
 import { useError } from "../../../contexts/errorContext.ts";
 import type { Dayjs } from "dayjs";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 import { StyledErrorMessageContainer } from "../../LoginView/LoginView.styled.ts";
 import { useNavigate } from "react-router-dom";
 

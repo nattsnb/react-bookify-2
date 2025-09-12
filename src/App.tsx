@@ -9,48 +9,26 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { ErrorContext } from "./contexts/errorContext";
 import { ExploreVenuesView } from "./components/ExploreVenuesView";
 import { VenueDetailedView } from "./components/VenueDetailedView";
-import { FilterParamsContext } from "./contexts/filterParamsContext.ts";
-import type { VenueFilterDto } from "./shared/types/tables/venue/venue-filter.dto.ts";
 import { CurrencyProvider } from "./contexts/currencyContext.tsx";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { PictureCarouselContext } from "./contexts/pictureCaruselContext.ts";
-import { ActiveVenueContext } from "./contexts/activeVenueContext.ts";
-import type { VenueDto } from "./shared/types/tables/venue/venue.dto.ts";
-import { VenueSection } from "./shared/constants.ts";
 import { LoginView } from "./components/LoginView";
 import { AuthenticationProvider } from "./contexts/authenticationContext.tsx";
 import { AccountView } from "./components/AccountView";
 import { ProtectedRoute } from "./routes/ProtectedRoute.tsx";
+import { ActiveVenueProvider } from "./contexts/activeVenueContext.tsx";
+import { FilterParamsProvider } from "./contexts/filterParamsContext.tsx";
+import { PictureCarouselProvider } from "./contexts/pictureCaruselContext.tsx";
 
 export function App() {
   const [isError, setIsError] = useState(false);
-  const [filterParams, setFilterParams] = useState<VenueFilterDto | undefined>(
-    undefined,
-  );
-  const [displayedPictureNumber, setDisplayedPictureNumber] = useState(0);
-  const [activeVenue, setActiveVenue] = useState<VenueDto | null>(null);
-  const [displayedSection, setDisplayedSection] = useState<VenueSection>(
-    VenueSection.DESCRIPTION,
-  );
 
   return (
     <ErrorContext.Provider value={{ isError, setIsError }}>
-      <PictureCarouselContext.Provider
-        value={{ displayedPictureNumber, setDisplayedPictureNumber }}
-      >
-        <ActiveVenueContext.Provider
-          value={{
-            activeVenue,
-            setActiveVenue,
-            displayedSection,
-            setDisplayedSection,
-          }}
-        >
+      <PictureCarouselProvider>
+        <ActiveVenueProvider>
           <CurrencyProvider>
             <AuthenticationProvider>
-              <FilterParamsContext.Provider
-                value={{ filterParams, setFilterParams }}
-              >
+              <FilterParamsProvider>
                 <LocalizationProvider
                   dateAdapter={AdapterDayjs}
                   localeText={{ okButtonLabel: "Done" }}
@@ -94,11 +72,11 @@ export function App() {
                     </Layout>
                   </ThemeProvider>
                 </LocalizationProvider>
-              </FilterParamsContext.Provider>
+              </FilterParamsProvider>
             </AuthenticationProvider>
           </CurrencyProvider>
-        </ActiveVenueContext.Provider>
-      </PictureCarouselContext.Provider>
+        </ActiveVenueProvider>
+      </PictureCarouselProvider>
     </ErrorContext.Provider>
   );
 }

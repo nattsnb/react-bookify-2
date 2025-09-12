@@ -238,6 +238,4 @@ export const StyledParagraph = styled("p")(
   padding: 0;`,
 );
 
-export const StyledErrorMessageContainer = styled("div")(
-  `min-height: 22px;`,
-);
+export const StyledErrorMessageContainer = styled("div")(`min-height: 22px;`);

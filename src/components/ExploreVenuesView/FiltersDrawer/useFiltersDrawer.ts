@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useError } from "../../../contexts/errorContext.ts";
 import { categoryApi } from "../../../shared/api/categoryApi.ts";
 import type { CategoryDto } from "../../../shared/types/tables/category/category.dto.ts";
-import { useFilter } from "../../../contexts/filterParamsContext.ts";
+import { useFilter } from "../../../contexts/filterParamsContext.tsx";
 import {
   getEuroCentLimitForPLN,
   useCurrency,

@@ -1,4 +1,4 @@
-import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.ts";
+import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.tsx";
 
 export const useGallery = () => {
   const { setDisplayedPictureNumber } = useDisplayedPictureNumber();

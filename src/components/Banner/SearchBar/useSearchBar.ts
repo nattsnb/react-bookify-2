@@ -3,7 +3,7 @@ import type { VenueFilterDto } from "../../../shared/types/tables/venue/venue-fi
 import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-bar-form-values.dto";
 import { geocodeCity } from "../../../shared/utils/geocodeCity.ts";
 import type { Dayjs } from "dayjs";
-import { useFilter } from "../../../contexts/filterParamsContext.ts";
+import { useFilter } from "../../../contexts/filterParamsContext.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const DEFAULT_RADIUS_KM = 10;
