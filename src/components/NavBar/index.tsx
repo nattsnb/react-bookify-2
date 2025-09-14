@@ -9,6 +9,7 @@ import {
   StyledTypographyForHomeLink,
 } from "./NavBar.styled.ts";
 import { useAuthentication } from "../../contexts/authenticationContext.tsx";
+import { Urls } from "../../shared/constants/urls.ts";
 
 export function NavBar() {
   const { user } = useAuthentication();
@@ -20,28 +21,28 @@ export function NavBar() {
         {isDesktop ? (
           <>
             <div>
-              <Link href={"/"}>
+              <Link href={Urls.HOME}>
                 <StyledTypographyForHomeLink variant="homeLink">
                   bookify
                 </StyledTypographyForHomeLink>
               </Link>
             </div>
             <StyledNavBarLinksContainer>
-              <Link href={"/about-us/"} variant="link">
+              <Link href={Urls.ABOUT_US} variant="link">
                 <Typography variant="aboutUsLink">about us</Typography>
               </Link>
-              <Link href={"/your-favourites/"} variant="link">
+              <Link href={Urls.YOUR_FAVOURITES} variant="link">
                 your favourites
               </Link>
-              <Link href={"/start-hosting/"} variant="link">
+              <Link href={Urls.START_HOSTING} variant="link">
                 start hosting
               </Link>
               {user ? (
-                <Link href={"/account/"}>
+                <Link href={Urls.ACCOUNT}>
                   <StyledAccountCircleIcon />
                 </Link>
               ) : (
-                <StyledLoginLink href={"/login/"} variant="boldLink">
+                <StyledLoginLink href={Urls.LOGIN} variant="boldLink">
                   login
                 </StyledLoginLink>
               )}
@@ -53,18 +54,18 @@ export function NavBar() {
               <MenuIcon />
             </div>
             <div>
-              <Link href={"/"}>
+              <Link href={Urls.HOME}>
                 <StyledTypographyForHomeLink variant="homeLink">
                   bookify
                 </StyledTypographyForHomeLink>
               </Link>
             </div>
             {user ? (
-              <Link href={"/account/"}>
+              <Link href={Urls.ACCOUNT}>
                 <StyledAccountCircleIcon />
               </Link>
             ) : (
-              <StyledLoginLink href={"/login/"} variant="boldLink">
+              <StyledLoginLink href={Urls.LOGIN} variant="boldLink">
                 login
               </StyledLoginLink>
             )}

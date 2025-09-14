@@ -1,5 +1,6 @@
 import type { VenueDto } from "../types/tables/venue/venue.dto.ts";
 import { axiosClient } from "./axiosClient.ts";
+import { Urls } from "../constants/urls.ts";
 
 const getAllVenues = async (): Promise<VenueDto[] | undefined> => {
   try {
@@ -13,7 +14,9 @@ const getAllVenues = async (): Promise<VenueDto[] | undefined> => {
 
 const getOneVenue = async (venueId: number): Promise<VenueDto | undefined> => {
   try {
-    const { data } = await axiosClient.get<VenueDto>(`/venue/${venueId}`);
+    const { data } = await axiosClient.get<VenueDto>(
+      `${Urls.VENUE_DETAILS}/${venueId}`,
+    );
     return data;
   } catch (error) {
     console.error("Error fetching venue:", error);

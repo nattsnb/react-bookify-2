@@ -19,6 +19,7 @@ import { ActiveVenueProvider } from "./contexts/activeVenueContext.tsx";
 import { FilterParamsProvider } from "./contexts/filterParamsContext.tsx";
 import { PictureCarouselProvider } from "./contexts/pictureCaruselContext.tsx";
 import { NoUserRoute } from "./routes/NoUserdRoute.tsx";
+import { Urls } from "./shared/constants/urls.ts";
 
 export function App() {
   const [isError, setIsError] = useState(false);
@@ -38,42 +39,45 @@ export function App() {
                     <CssBaseline />
                     <Layout>
                       <Routes>
-                        <Route path="/" element={<ExploreVenuesView />} />
                         <Route
-                          path="/venue/:venueId"
+                          path={Urls.HOME}
+                          element={<ExploreVenuesView />}
+                        />
+                        <Route
+                          path={`${Urls.VENUE_DETAILS}/:venueId`}
                           element={<VenueDetailedView />}
                         />
-                        <Route path="/about-us/" element={<p>about us</p>} />
+                        <Route path={Urls.ABOUT_US} element={<p>about us</p>} />
                         <Route
-                          path="/your-favourites/"
+                          path={Urls.YOUR_FAVOURITES}
                           element={<p>your favourites</p>}
                         />
                         <Route
-                          path="/start-hosting/"
+                          path={Urls.START_HOSTING}
                           element={<p>start hosting</p>}
                         />
                         <Route
-                          path="/login/"
+                          path={Urls.LOGIN}
                           element={
                             <NoUserRoute
                               placeholder={<CircularProgress />}
-                              redirectTo="/login/"
+                              redirectTo={Urls.LOGIN}
                             >
                               <LoginView />
                             </NoUserRoute>
                           }
                         />
-                        <Route path="/contact/" element={<p>contact</p>} />
+                        <Route path={Urls.CONTACT} element={<p>contact</p>} />
                         <Route
-                          path="/assistance/"
+                          path={Urls.ASSISTANCE}
                           element={<p>assistance</p>}
                         />
                         <Route
-                          path="/account/"
+                          path={Urls.ACCOUNT}
                           element={
                             <ProtectedRoute
                               placeholder={<CircularProgress />}
-                              redirectTo="/login/"
+                              redirectTo={Urls.LOGIN}
                             >
                               <AccountView />
                             </ProtectedRoute>

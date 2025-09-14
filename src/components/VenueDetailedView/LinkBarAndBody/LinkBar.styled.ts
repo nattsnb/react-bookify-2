@@ -58,6 +58,6 @@ export const StyledBodyLinkBarContainer = styled("div")(
       z-index: 1200;
       background-color: ${theme.palette.background.default};
       box-shadow: 0 0 2px 2px ${theme.palette.secondary.light};
-  }
+    }
   `,
 );

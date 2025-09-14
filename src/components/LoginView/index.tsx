@@ -23,6 +23,7 @@ import type { RegisterFormValuesDto } from "../../shared/types/forms/register-fo
 import { LoginAndSignUpDto } from "../../shared/types/tables/authentication/login-and-sign-up.dto.ts";
 import { useAuthentication } from "../../contexts/authenticationContext.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Urls } from "../../shared/constants/urls.ts";
 
 const googleLogoImageSrc =
   "https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw";
@@ -32,7 +33,7 @@ export function LoginView() {
   const { login, register: registerUser } = useAuthentication();
   const navigate = useNavigate();
   const location = useLocation();
-  const redirectTo = (location.state as any)?.from?.pathname ?? "/account/";
+  const redirectTo = (location.state as any)?.from?.pathname ?? Urls.ACCOUNT;
 
   const loginForm = useForm<LoginAndSignUpDto>({
     defaultValues: { email: "", password: "" },

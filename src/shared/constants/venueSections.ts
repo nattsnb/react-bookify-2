@@ -4,5 +4,3 @@ export const VenueSection = {
   MAP: "map",
   CONTACTS: "contacts",
 } as const;
-
-export type VenueSection = (typeof VenueSection)[keyof typeof VenueSection];

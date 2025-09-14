@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { VerticalContainer } from "../../shared/styledComponents/verticalContainer.styled.ts";
 import { ReservationCard } from "./ReservationCard";
 import { useAccountView } from "./useAccountView.ts";
+import { Urls } from "../../shared/constants/urls.ts";
 
 export function AccountView() {
   const { myReservationsData, isLoading } = useAccountView();
@@ -22,7 +23,7 @@ export function AccountView() {
   const onClickLogoutButton = async () => {
     try {
       await logout();
-      navigate("/login/", { replace: true });
+      navigate(Urls.LOGIN, { replace: true });
     } catch (error) {
       console.error("Logout error:", error);
     }

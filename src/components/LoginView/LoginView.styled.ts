@@ -16,7 +16,6 @@ export const StyledLogInContainer = styled("div")(
       width: 302px;
       height: auto;
     }
-  
   `,
 );
 
@@ -43,18 +42,20 @@ export const StyledModeButton = styled(Button, {
     width: 220px;
     height: 78px;
     text-decoration: ${isactive ? "underline" : "none"};
-      &:focus, &:focus-visible, &:active {
-        border-color: rgba(0, 0, 0, 0.4);
-        text-decoration: ${isactive ? "underline" : "none"};
+    
+    &:focus, &:focus-visible, &:active {
+      border-color: rgba(0, 0, 0, 0.4);
+      text-decoration: ${isactive ? "underline" : "none"};
     }
     
     ${theme.breakpoints.down("md")} {
       width: 190px;
-    height: 66px;
+      height: 66px;
     }
+    
     ${theme.breakpoints.down("sm")} {
       width: 170px;
-    height: 59px;
+      height: 59px;
     }
   `,
 );
@@ -113,18 +114,18 @@ export const StyledGoogleButton = styled(Button)(
     margin-bottom: ${theme.spacing(5)};
     
     &:focus, &:focus-visible, &:active, &:hover {
-    border: 2px solid rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(0, 0, 0, 0.4);
     }
     
-     ${theme.breakpoints.down("md")} {
+    ${theme.breakpoints.down("md")} {
       width: 284px;
-    height: 44px;
-    font-size: 15px;
+      height: 44px;
+      font-size: 15px;
     }
     ${theme.breakpoints.down("sm")} {
       width: 263px;
-    height: 40px;
-    font-size: 14px;
+      height: 40px;
+      font-size: 14px;
     }
   `,
 );
@@ -151,13 +152,13 @@ export const StyledFacebookButton = styled(Button)(
     
     ${theme.breakpoints.down("md")} {
       width: 284px;
-    height: 44px;
-    font-size: 15px;
+      height: 44px;
+      font-size: 15px;
     }
     ${theme.breakpoints.down("sm")} {
       width: 263px;
-    height: 40px;
-    font-size: 14px;
+      height: 40px;
+      font-size: 14px;
     }
   `,
 );
@@ -178,20 +179,21 @@ export const StyledFacebookIcon = styled(FacebookIcon)(
 
 export const StyledDividersContainer = styled("div")(
   ({ theme }) => `
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
     & .line {
       width: 120px;
       height: 2px;
       background-color: rgba(0, 0, 0, 0.2);
       ${theme.breakpoints.down("md")} {
-      width: 100px;
-    }
-    ${theme.breakpoints.down("sm")} {
-      width: 80px;
-    }
+        width: 100px;
+      }
+      ${theme.breakpoints.down("sm")} {
+        width: 80px;
+      }
     & .text {
       margin: 0 ${theme.spacing(7)};
     },
@@ -200,42 +202,44 @@ export const StyledDividersContainer = styled("div")(
 
 export const StyledForm = styled("form")(
   ({ theme }) => `
-  display: flex;
-  flex-direction: column; 
-  padding: ${theme.spacing(8)};
-  align-items: center;
+    display: flex;
+    flex-direction: column; 
+    padding: ${theme.spacing(8)};
+    align-items: center;
   `,
 );
 
 export const StyledTextField = styled(TextField)(
   ({ theme }) => `
-  padding: ${theme.spacing(2)};
+    padding: ${theme.spacing(2)};
   `,
 );
 
 export const StyledSubmitButton = styled(Button)(
   ({ theme }) => `
-  background-color: ${theme.palette.primary.main};
-  color: ${theme.palette.background.default};
-  font-weight: 600;  
-  font-size: 18px;
-  border-radius: 15px;
-  width: 135px;
-  height: 46px;
-  margin-top: ${theme.spacing(6)};
+    background-color: ${theme.palette.primary.main};
+    color: ${theme.palette.background.default};
+    font-weight: 600;  
+    font-size: 18px;
+    border-radius: 15px;
+    width: 135px;
+    height: 46px;
+    margin-top: ${theme.spacing(6)};
   
-   &:focus, &:focus-visible, &:active, &:hover {
-       background-color: ${theme.palette.primary.main}; 
-    color: ${theme.palette.background.default};    
-     border: 2px solid rgba(0, 0, 0, 0.4);
+    &:focus, &:focus-visible, &:active, &:hover {
+      background-color: ${theme.palette.primary.main}; 
+      color: ${theme.palette.background.default};    
+      border: 2px solid rgba(0, 0, 0, 0.4);
     }
   `,
 );
 
-export const StyledParagraph = styled("p")(
-  `height: 18px;
+export const StyledParagraph = styled("p")`
+  height: 18px;
   margin: 0;
-  padding: 0;`,
-);
+  padding: 0;
+`;
 
-export const StyledErrorMessageContainer = styled("div")(`min-height: 22px;`);
+export const StyledErrorMessageContainer = styled("div")`
+  min-height: 22px;
+`;

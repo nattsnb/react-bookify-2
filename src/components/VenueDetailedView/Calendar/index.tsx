@@ -35,6 +35,7 @@ import type { Dayjs } from "dayjs";
 import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 import { StyledErrorMessageContainer } from "../../LoginView/LoginView.styled.ts";
 import { useNavigate } from "react-router-dom";
+import { Urls } from "../../../shared/constants/urls.ts";
 
 export default function Calendar() {
   const {
@@ -162,7 +163,7 @@ export default function Calendar() {
             variant="contained"
             onClick={() => {
               setSuccessOpen(false);
-              navigate("/account");
+              navigate(Urls.ACCOUNT);
             }}
           >
             Go to my reservations

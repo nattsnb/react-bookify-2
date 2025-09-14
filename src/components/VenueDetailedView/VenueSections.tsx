@@ -1,6 +1,6 @@
 import React from "react";
 import { Description } from "./Description";
-import { VenueSection } from "../../shared/constants.ts";
+import { VenueSection } from "../../shared/constants/venueSections.ts";
 import { Gallery } from "./Gallery";
 import MapWithAddress from "./MapWithAddress";
 import { ContactInfo } from "./ContactInfo";

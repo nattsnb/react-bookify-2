@@ -1,12 +1,14 @@
 import { createContext, useContext, useState } from "react";
 import type { VenueDto } from "../shared/types/tables/venue/venue.dto.ts";
-import { VenueSection } from "../shared/constants.ts";
+import { VenueSection } from "../shared/constants/venueSections.ts";
+
+type VenueSectionValue = (typeof VenueSection)[keyof typeof VenueSection];
 
 interface ActiveVenueContextType {
   activeVenue: VenueDto | null;
   setActiveVenue: (value: VenueDto | null) => void;
-  displayedSection: VenueSection;
-  setDisplayedSection: (section: VenueSection) => void;
+  displayedSection: VenueSectionValue;
+  setDisplayedSection: (section: VenueSectionValue) => void;
 }
 
 export const ActiveVenueContext = createContext<ActiveVenueContextType | null>(
@@ -29,7 +31,7 @@ export function ActiveVenueProvider({
   children: React.ReactNode;
 }) {
   const [activeVenue, setActiveVenue] = useState<VenueDto | null>(null);
-  const [displayedSection, setDisplayedSection] = useState<VenueSection>(
+  const [displayedSection, setDisplayedSection] = useState<VenueSectionValue>(
     VenueSection.DESCRIPTION,
   );
   return (

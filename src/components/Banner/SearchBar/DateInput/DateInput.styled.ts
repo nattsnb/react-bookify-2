@@ -8,21 +8,21 @@ interface DateButtonProps extends ButtonProps {
 
 export const StyledDateInputDiv = styled("div")(
   ({ theme }) => `
-  width: 220px;
-  background-color: ${theme.palette.background.offDefault};
-  border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  min-height: 48px;
-  font-size: 1.2vw;
+    width: 220px;
+    background-color: ${theme.palette.background.offDefault};
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    font-size: 1.2vw;
 `,
 );
 
 export const StyledIconContainer = styled("div")(
   ({ theme }) => `
-  padding-right: ${theme.spacing(2)};
-`,
+    padding-right: ${theme.spacing(2)};
+  `,
 );
 
 export const StartDateButton = styled(Button, {

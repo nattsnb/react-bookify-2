@@ -5,6 +5,7 @@ import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 import { reservationApi } from "../../../shared/api/reservationApi.ts";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Urls } from "../../../shared/constants/urls.ts";
 
 export const useCalendar = () => {
   const { activeVenue } = useActiveVenue();
@@ -115,7 +116,7 @@ export const useCalendar = () => {
       return reservation;
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response?.status === 401) {
-        navigate("/login", { replace: true, state: { from: location } });
+        navigate(Urls.LOGIN, { replace: true, state: { from: location } });
         return null;
       }
       let message = "Unexpected error during booking.";

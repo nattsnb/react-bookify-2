@@ -1,8 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import type { VenueFilterDto } from "../shared/types/tables/venue/venue-filter.dto.ts";
-import type { VenueDto } from "../shared/types/tables/venue/venue.dto.ts";
-import { VenueSection } from "../shared/constants.ts";
-import { ActiveVenueContext } from "./activeVenueContext.tsx";
 
 interface FilterParamsContextType {
   filterParams: VenueFilterDto | undefined;
