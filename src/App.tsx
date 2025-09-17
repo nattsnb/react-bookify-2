@@ -61,7 +61,7 @@ export function App() {
                           element={
                             <NoUserRoute
                               placeholder={<CircularProgress />}
-                              redirectTo={Urls.LOGIN}
+                              redirectTo={Urls.ACCOUNT}
                             >
                               <LoginView />
                             </NoUserRoute>
