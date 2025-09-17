@@ -30,10 +30,10 @@ export const SearchBar = () => {
     onSubmit,
   } = useSearchBar();
 
-  const [isCollapsed, setIsCollapsed] = React.useState(false);
+  const [isSearchBarCollapsed, setIsSearchBarCollapsed] = React.useState(false);
 
   const collapseSearchBar = () => {
-    setIsCollapsed((prev) => {
+    setIsSearchBarCollapsed((prev) => {
       const next = !prev;
       if (!next) {
         reset();
@@ -63,13 +63,14 @@ export const SearchBar = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <StyledSearchBarContainer>
           {isViewportSmallerThanMd && (
-            <Collapse in={isCollapsed} collapsedSize={70}>
+            <Collapse in={isSearchBarCollapsed} collapsedSize={70}>
               <StyledInputsContainer>
                 <FormController name="localization">
                   {(field) => (
                     <LocalizationInput
                       value={typeof field.value === "string" ? field.value : ""}
                       onChange={field.onChange}
+                      setIsSearchBarCollapsed={setIsSearchBarCollapsed}
                     />
                   )}
                 </FormController>
@@ -123,7 +124,7 @@ export const SearchBar = () => {
           )}
           {isViewportLargerThanMd && (
             <Collapse
-              in={isCollapsed}
+              in={isSearchBarCollapsed}
               orientation="horizontal"
               collapsedSize={isViewportSmallerThanLg ? 235 : 245}
             >
@@ -133,6 +134,7 @@ export const SearchBar = () => {
                     <LocalizationInput
                       value={typeof field.value === "string" ? field.value : ""}
                       onChange={field.onChange}
+                      setIsSearchBarCollapsed={setIsSearchBarCollapsed}
                     />
                   )}
                 </FormController>
@@ -187,7 +189,7 @@ export const SearchBar = () => {
 
           <StyledCollapseTypographyContainer>
             <Button onClick={collapseSearchBar}>
-              {!isCollapsed
+              {!isSearchBarCollapsed
                 ? "I want to be more specific (4)"
                 : "I don’t want to be that specific"}
             </Button>

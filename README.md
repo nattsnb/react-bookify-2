@@ -4,10 +4,8 @@ Frontend mock-up for a booking app.
 
 ## Installation
 
-1. Clone the repo
-
-2. Install dependencies
+1. Install dependencies
    `npm install`
 
-3. Run the app
+2. To run the app in development, in the react-bookify-2 directory
    `npm run dev`
