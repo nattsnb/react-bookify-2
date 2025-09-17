@@ -125,7 +125,7 @@ export const SearchBar = () => {
             <Collapse
               in={isCollapsed}
               orientation="horizontal"
-              collapsedSize={isViewportSmallerThanLg ? 228 : 245}
+              collapsedSize={isViewportSmallerThanLg ? 235 : 245}
             >
               <StyledInputsContainer>
                 <FormController name="localization">
