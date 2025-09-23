@@ -23,7 +23,6 @@ import { Urls } from "./shared/constants/urls.ts";
 
 export function App() {
   const [isError, setIsError] = useState(false);
-  console.log("deploy works")
 
   return (
     <ErrorContext.Provider value={{ isError, setIsError }}>
