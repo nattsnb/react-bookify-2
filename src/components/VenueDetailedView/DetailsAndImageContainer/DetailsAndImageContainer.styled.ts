@@ -9,15 +9,15 @@ export const StyledDetailsAndImageContainer = styled("div")`
 
 export const StyledDetailsContainer = styled("div")(
   ({ theme }) => `
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: ${theme.spacing(4)};
-
-  ${theme.breakpoints.down("md")} {
-    margin-bottom: ${theme.spacing(1)};
-  }
-`,
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: ${theme.spacing(4)};
+  
+    ${theme.breakpoints.down("md")} {
+      margin-bottom: ${theme.spacing(1)};
+    }
+  `,
 );
 
 export const StyledNameAndAddressContainer = styled("div")`
@@ -48,23 +48,23 @@ export const StyledImageContainer = styled("div")<StyledImageContainerProps>`
 
 export const StyledVenueNameTypography = styled(Typography)(
   ({ theme }) => `
-  font-size: 40px;
-  font-weight: 500;
-  text-transform: capitalize;
-  margin-bottom: ${theme.spacing(2)};
-
-  ${theme.breakpoints.down("lg")} {
-    font-size: 35px;
-  }
-
-  ${theme.breakpoints.down("md")} {
-    font-size: 30px;
-  }
-
-  ${theme.breakpoints.down("sm")} {
-    font-size: 20px;
-  }
-`,
+    font-size: 40px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: ${theme.spacing(2)};
+  
+    ${theme.breakpoints.down("lg")} {
+      font-size: 35px;
+    }
+  
+    ${theme.breakpoints.down("md")} {
+      font-size: 30px;
+    }
+  
+    ${theme.breakpoints.down("sm")} {
+      font-size: 20px;
+    }
+  `,
 );
 
 export const StyledVenueAddressTypography = styled(Typography)(
@@ -96,11 +96,11 @@ export const StyledVenueRatingTypography = styled(Typography)(
 
 export const StyledReviewsTypography = styled(Typography)(
   ({ theme }) => `
-  font-size: 14px;
-  opacity: 75%;
-  @media (max-width: ${theme.breakpoints.values.md}px) {
-    font-size: 12px;
-`,
+    font-size: 14px;
+    opacity: 75%;
+    @media (max-width: ${theme.breakpoints.values.md}px) {
+      font-size: 12px;
+  `,
 );
 
 export const StyledIconContainer = styled("div")(

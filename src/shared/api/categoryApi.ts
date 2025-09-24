@@ -1,15 +1,14 @@
 import type { CategoryDto } from "../types/tables/category/category.dto.ts";
+import { axiosClient } from "./axiosClient.ts";
 
-const API_URL = "http://localhost:3000";
-
-const getAllCategories = (): Promise<CategoryDto[] | undefined> => {
-  return fetch(`${API_URL}/category/`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .catch((error: unknown) =>
-      console.error("Error fetching categories:", error),
-    );
+const getAllCategories = async (): Promise<CategoryDto[] | undefined> => {
+  try {
+    const { data } = await axiosClient.get<CategoryDto[]>("/category");
+    return data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return undefined;
+  }
 };
 
 export const categoryApi = {

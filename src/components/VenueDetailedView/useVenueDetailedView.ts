@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useError } from "../../contexts/errorContext.ts";
 import { venueApi } from "../../shared/api/venueApi.ts";
-import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../contexts/activeVenueContext.tsx";
 
 export const useVenueDetailedView = (venueId: number) => {
   const descriptionRef = useRef<HTMLDivElement>(null);

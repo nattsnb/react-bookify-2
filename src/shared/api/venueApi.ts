@@ -1,51 +1,67 @@
 import type { VenueDto } from "../types/tables/venue/venue.dto.ts";
+import { axiosClient } from "./axiosClient.ts";
+import { Urls } from "../constants/urls.ts";
 
-const API_URL = "http://localhost:3000";
-
-const getAllVenues = (): Promise<VenueDto[] | undefined> => {
-  return fetch(`${API_URL}/venue/`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .catch((error: unknown) => console.error("Error fetching venues:", error));
+const getAllVenues = async (): Promise<VenueDto[] | undefined> => {
+  try {
+    const { data } = await axiosClient.get<VenueDto[]>("/venue");
+    return data;
+  } catch (error) {
+    console.error("Error fetching venues:", error);
+    return undefined;
+  }
 };
 
-const getOneVenue = (venueId: number): Promise<VenueDto | undefined> => {
-  return fetch(`${API_URL}/venue/${venueId}/`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .catch((error: unknown) => console.error("Error fetching venues:", error));
+const getOneVenue = async (venueId: number): Promise<VenueDto | undefined> => {
+  try {
+    const { data } = await axiosClient.get<VenueDto>(
+      `${Urls.VENUE_DETAILS}/${venueId}`,
+    );
+    return data;
+  } catch (error) {
+    console.error("Error fetching venue:", error);
+    return undefined;
+  }
 };
 
-const getCities = (): Promise<string[] | undefined> => {
-  return fetch(`${API_URL}/venue/cities/`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .catch((error: unknown) => console.error("Error fetching cities:", error));
+const getCities = async (): Promise<string[] | undefined> => {
+  try {
+    const { data } = await axiosClient.get<string[]>("/venue/cities");
+    return data;
+  } catch (error) {
+    console.error("Error fetching cities:", error);
+    return undefined;
+  }
 };
 
-const getHead = (): Promise<Response | void> => {
-  return fetch(`${API_URL}/venue`, {
-    method: "HEAD",
-  }).catch((error: unknown) => console.error("Server is not running:", error));
+const getHead = async (): Promise<boolean> => {
+  try {
+    await axiosClient.head("/venue");
+    return true;
+  } catch (error) {
+    console.error("Server is not running:", error);
+    return false;
+  }
 };
 
-const getFilteredVenues = (
+const getFilteredVenues = async (
   filterQueryString: string,
 ): Promise<VenueDto[] | undefined> => {
-  return fetch(`${API_URL}/venue/filter?${filterQueryString}`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .catch((error: unknown) => console.error("Error fetching venues:", error));
+  try {
+    const { data } = await axiosClient.get<VenueDto[]>(
+      `/venue/filter?${filterQueryString}`,
+    );
+    return data;
+  } catch (error) {
+    console.error("Error fetching filtered venues:", error);
+    return undefined;
+  }
 };
 
 export const venueApi = {
   getAllVenues,
+  getOneVenue,
   getCities,
   getHead,
   getFilteredVenues,
-  getOneVenue,
 };

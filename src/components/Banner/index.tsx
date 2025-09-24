@@ -14,6 +14,7 @@ import { getBannerConfig } from "../../shared/utils/getBannerConfig.ts";
 import { FiltersDrawer } from "../ExploreVenuesView/FiltersDrawer";
 import { SortDrawer } from "../ExploreVenuesView/SortDrawer.tsx";
 import { useState } from "react";
+import { Urls } from "../../shared/constants/urls.ts";
 
 export function Banner() {
   const theme = useTheme();
@@ -23,7 +24,7 @@ export function Banner() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const location = useLocation();
   const config = getBannerConfig(location.pathname, isDesktop);
-  const isLocationExploreVenues = location.pathname === "/";
+  const isLocationExploreVenues = location.pathname === Urls.HOME;
 
   const toggleFiltersDrawer = (isOpen: boolean) => () => {
     setIsFilterDrawerOpen(isOpen);

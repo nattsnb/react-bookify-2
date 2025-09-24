@@ -19,9 +19,9 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useDetailsAndImageContainer } from "./useDetailsAndImageContainer";
 import { HiddenElement } from "../../../shared/styledComponents/hiddenElement.styled.js";
-import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.ts";
+import { useDisplayedPictureNumber } from "../../../contexts/pictureCaruselContext.tsx";
 import { v4 as uuidv4 } from "uuid";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 import React, { useMemo } from "react";
 
 export function DetailsAndImageContainer() {

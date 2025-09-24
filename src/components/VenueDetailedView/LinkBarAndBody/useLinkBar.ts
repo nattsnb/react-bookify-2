@@ -1,5 +1,5 @@
-import { VenueSection } from "../../../shared/constants.ts";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { VenueSection } from "../../../shared/constants/venueSections.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 import { useEffect, useRef } from "react";
 
 export function useLinkBar() {

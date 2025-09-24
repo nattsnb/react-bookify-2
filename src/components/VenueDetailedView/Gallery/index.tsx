@@ -5,8 +5,7 @@ import {
 import React from "react";
 import { StyledContactInfoTypography } from "../ContactInfo/ContactInfo.styled.js";
 import { useGallery } from "./useGallery.js";
-import { v4 as uuidv4 } from "uuid";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 interface GalleryProps {
@@ -31,7 +30,7 @@ export function Gallery({ galleryRef }: GalleryProps) {
       <StyledGalleryContainer>
         {activeVenue.images.map((imageURL, index) => (
           <StyledImageContainer
-            key={`${activeVenue.id}-${imageURL}`}
+            key={imageURL}
             imageUrl={imageURL}
             onClick={() => handleOnClick(index)}
           />

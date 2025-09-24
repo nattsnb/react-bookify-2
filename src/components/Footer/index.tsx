@@ -10,6 +10,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MailIcon from "@mui/icons-material/Mail";
+import { Urls } from "../../shared/constants/urls.ts";
 
 const socialMediaLinks = [
   { id: 0, path: "facebook.com", Icon: FacebookIcon },
@@ -24,13 +25,13 @@ export function Footer() {
     <div>
       <StyledFooterContainer>
         <StyledFooterLinksContainer>
-          <StyledFooterLink href={"/contact/"} variant="link">
+          <StyledFooterLink href={Urls.CONTACT} variant="link">
             contact
           </StyledFooterLink>
-          <StyledFooterLink href={"/assistance/"} variant="link">
+          <StyledFooterLink href={Urls.ASSISTANCE} variant="link">
             assistance
           </StyledFooterLink>
-          <StyledFooterLink href={"/aboutUs/"} variant="link">
+          <StyledFooterLink href={Urls.ABOUT_US} variant="link">
             about us
           </StyledFooterLink>
         </StyledFooterLinksContainer>

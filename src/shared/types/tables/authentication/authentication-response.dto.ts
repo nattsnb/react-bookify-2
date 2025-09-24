@@ -1,9 +1,8 @@
 import { UserDto } from "../user/user.dto.ts";
 
-export class AuthenticationResponseDto implements UserDto {
+export class AuthenticationResponseDto implements Omit<UserDto, "password"> {
   id!: number;
   email!: string;
-  name!: string;
-  password!: string;
-  phoneNumber!: string;
+  name?: string;
+  phoneNumber?: string;
 }

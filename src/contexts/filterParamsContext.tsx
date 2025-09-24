@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import type { VenueFilterDto } from "../shared/types/tables/venue/venue-filter.dto.ts";
 
 interface FilterParamsContextType {
@@ -18,3 +18,18 @@ export const useFilter = () => {
 
   return context;
 };
+
+export function FilterParamsProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [filterParams, setFilterParams] = useState<VenueFilterDto | undefined>(
+    undefined,
+  );
+  return (
+    <FilterParamsContext.Provider value={{ filterParams, setFilterParams }}>
+      {children}
+    </FilterParamsContext.Provider>
+  );
+}

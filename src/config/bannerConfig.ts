@@ -21,4 +21,14 @@ export const BANNER_CONFIG: PatternConfig[] = [
     desktop: { banner: true, bannerHeight: 524, searchBar: true },
     mobile: { banner: true, bannerHeight: 251, searchBar: false },
   },
+  {
+    pattern: /^\/login\/$/,
+    desktop: { banner: true, bannerHeight: 300, searchBar: false },
+    mobile: { banner: true, bannerHeight: 251, searchBar: false },
+  },
+  {
+    pattern: /^\/account\/$/,
+    desktop: { banner: true, bannerHeight: 300, searchBar: false },
+    mobile: { banner: true, bannerHeight: 251, searchBar: false },
+  },
 ];

@@ -7,20 +7,19 @@ import {
 import type { SearchBarFormValuesDto } from "../../../shared/types/forms/search-bar-form-values.dto.ts";
 import type { ReactElement } from "react";
 
-type Name = FieldPath<SearchBarFormValuesDto>;
-
-interface FormControllerProps<TName extends Name> {
-  name: TName;
+interface FormControllerProps {
+  name: FieldPath<SearchBarFormValuesDto>;
   children: (
-    field: ControllerRenderProps<SearchBarFormValuesDto, TName>,
+    field: ControllerRenderProps<
+      SearchBarFormValuesDto,
+      FieldPath<SearchBarFormValuesDto>
+    >,
   ) => ReactElement;
 }
 
-export const FormController = <TName extends Name>({
-  name,
-  children,
-}: FormControllerProps<TName>) => {
+export const FormController = ({ name, children }: FormControllerProps) => {
   const { control } = useFormContext<SearchBarFormValuesDto>();
+
   return (
     <Controller
       name={name}

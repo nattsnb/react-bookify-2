@@ -2,13 +2,17 @@ import Typography from "@mui/material/Typography";
 import { Link, useMediaQuery, useTheme } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  StyledAccountCircleIcon,
   StyledLoginLink,
   StyledNavBarContainer,
   StyledNavBarLinksContainer,
   StyledTypographyForHomeLink,
 } from "./NavBar.styled.ts";
+import { useAuthentication } from "../../contexts/authenticationContext.tsx";
+import { Urls } from "../../shared/constants/urls.ts";
 
 export function NavBar() {
+  const { user } = useAuthentication();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
@@ -17,25 +21,31 @@ export function NavBar() {
         {isDesktop ? (
           <>
             <div>
-              <Link href={"/"}>
+              <Link href={Urls.HOME}>
                 <StyledTypographyForHomeLink variant="homeLink">
                   bookify
                 </StyledTypographyForHomeLink>
               </Link>
             </div>
             <StyledNavBarLinksContainer>
-              <Link href={"/about-us/"} variant="link">
+              <Link href={Urls.ABOUT_US} variant="link">
                 <Typography variant="aboutUsLink">about us</Typography>
               </Link>
-              <Link href={"/your-favourites/"} variant="link">
+              <Link href={Urls.YOUR_FAVOURITES} variant="link">
                 your favourites
               </Link>
-              <Link href={"/start-hosting/"} variant="link">
+              <Link href={Urls.START_HOSTING} variant="link">
                 start hosting
               </Link>
-              <StyledLoginLink href={"/login/"} variant="boldLink">
-                login
-              </StyledLoginLink>
+              {user ? (
+                <Link href={Urls.ACCOUNT}>
+                  <StyledAccountCircleIcon />
+                </Link>
+              ) : (
+                <StyledLoginLink href={Urls.LOGIN} variant="boldLink">
+                  login
+                </StyledLoginLink>
+              )}
             </StyledNavBarLinksContainer>
           </>
         ) : (
@@ -44,15 +54,21 @@ export function NavBar() {
               <MenuIcon />
             </div>
             <div>
-              <Link href={"/"}>
+              <Link href={Urls.HOME}>
                 <StyledTypographyForHomeLink variant="homeLink">
                   bookify
                 </StyledTypographyForHomeLink>
               </Link>
             </div>
-            <StyledLoginLink href={"/login/"} variant="boldLink">
-              login
-            </StyledLoginLink>
+            {user ? (
+              <Link href={Urls.ACCOUNT}>
+                <StyledAccountCircleIcon />
+              </Link>
+            ) : (
+              <StyledLoginLink href={Urls.LOGIN} variant="boldLink">
+                login
+              </StyledLoginLink>
+            )}
           </>
         )}
       </StyledNavBarContainer>

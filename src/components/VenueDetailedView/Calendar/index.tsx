@@ -5,6 +5,10 @@ import {
   FormControlLabel,
   useMediaQuery,
   useTheme,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Button,
 } from "@mui/material";
 import {
   StyledEndsAtButton,
@@ -22,10 +26,16 @@ import {
   StyledCalendarAndButtonsContainer,
 } from "./Calendar.styled.ts";
 import { useCalendar } from "./useCalendar.ts";
-import { SectionTitleContainer } from "../VenueDetailedView.styled.ts";
+import {
+  SectionTitleContainer,
+  StyledDialogButtonsContainer,
+} from "../VenueDetailedView.styled.ts";
 import { useError } from "../../../contexts/errorContext.ts";
 import type { Dayjs } from "dayjs";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
+import { StyledErrorMessageContainer } from "../../LoginView/LoginView.styled.ts";
+import { useNavigate } from "react-router-dom";
+import { Urls } from "../../../shared/constants/urls.ts";
 
 export default function Calendar() {
   const {
@@ -33,7 +43,6 @@ export default function Calendar() {
     startDate,
     endDate,
     isOneDayActive,
-    isCalendarError,
     handleStartsAtClick,
     handleEndsAtClick,
     handleCheckboxChange,
@@ -41,8 +50,13 @@ export default function Calendar() {
     handleEndDateChange,
     fullPriceInPLN,
     priceInPLN,
+    handleBookClick,
+    bookingError,
+    successOpen,
+    setSuccessOpen,
   } = useCalendar();
 
+  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -52,6 +66,13 @@ export default function Calendar() {
   if (!activeVenue) {
     return null;
   }
+
+  const onBook = async () => {
+    const response = await handleBookClick();
+    if (response) {
+      setSuccessOpen(true);
+    }
+  };
 
   return (
     <StyledCalendarAndButtonsContainer>
@@ -106,11 +127,6 @@ export default function Calendar() {
           />
         )}
       </StyledCalendarContainer>
-
-      {isCalendarError && (
-        <div>that&apos;s not a time machine, start over.</div>
-      )}
-
       <StyledPriceContainer>
         <StyledPerDayContainer>
           <div>per day</div>
@@ -122,9 +138,39 @@ export default function Calendar() {
           <div>{isError ? "error" : `${fullPriceInPLN} zł`}</div>
         </StyledTotalContainer>
         <StyledBookButtonContainer>
-          <StyledBookButton variant="contained">Book</StyledBookButton>
+          {bookingError && (
+            <StyledErrorMessageContainer>
+              {bookingError}
+            </StyledErrorMessageContainer>
+          )}
+          <StyledBookButton variant="contained" onClick={onBook}>
+            Book
+          </StyledBookButton>
         </StyledBookButtonContainer>
       </StyledPriceContainer>
+      <Dialog open={successOpen} onClose={() => setSuccessOpen(false)}>
+        <DialogTitle>Reservation confirmed</DialogTitle>
+        <DialogContent>
+          <div>
+            <div>
+              <b>{activeVenue.name}</b>
+            </div>
+            <div>Total: {fullPriceInPLN ?? "-"} zł</div>
+          </div>
+        </DialogContent>
+        <StyledDialogButtonsContainer>
+          <Button
+            variant="contained"
+            onClick={() => {
+              setSuccessOpen(false);
+              navigate(Urls.ACCOUNT);
+            }}
+          >
+            Go to my reservations
+          </Button>
+          <Button onClick={() => setSuccessOpen(false)}>Close</Button>
+        </StyledDialogButtonsContainer>
+      </Dialog>
     </StyledCalendarAndButtonsContainer>
   );
 }

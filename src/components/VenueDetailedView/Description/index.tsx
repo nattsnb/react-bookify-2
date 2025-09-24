@@ -13,7 +13,7 @@ import {
 import React from "react";
 import { produceSleepingDetailsToList } from "./produceSleepingDetailsToList.js";
 import type { AmenityToVenueDto } from "../../../shared/types/tables/amenity/amenity-to-venue.dto.ts";
-import { useActiveVenue } from "../../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../../contexts/activeVenueContext.tsx";
 
 interface DescriptionProps {
   descriptionRef?: React.RefObject<HTMLDivElement>;
@@ -35,7 +35,7 @@ export function Description({ descriptionRef }: DescriptionProps) {
       <StyledSectionContainer>
         <StyledAmenitiesList>
           {activeVenue.amenityToVenues.map(
-            (amenityToVenue) => (
+            (amenityToVenue: AmenityToVenueDto) => (
               <ListItem key={amenityToVenue.amenity.id}>
                 <ListItemIcon>
                   <StyledDoneIcon />

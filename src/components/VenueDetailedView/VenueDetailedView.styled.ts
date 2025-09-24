@@ -9,8 +9,8 @@ export const StyledColumnsContainer = styled("div")(
     width: 100%;
 
     ${theme.breakpoints.down("lg")} {
-        flex-direction: column;
-        align-items: center;
+      flex-direction: column;
+      align-items: center;
     }
   `,
 );
@@ -109,7 +109,7 @@ export const StyledBookThisVenueContainer = styled("div")(
     color: ${theme.palette.background.default}; 
     width: 100%;
     height: 56px;
-      min-height: 56px; 
+    min-height: 56px; 
     font-size 16px;
   `,
 );
@@ -120,7 +120,7 @@ interface isHiddenProp {
 
 export const StyledBottomMountedContainer = styled("div")<isHiddenProp>(
   ({ isHidden }) => `
-   position: fixed;
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
@@ -138,6 +138,15 @@ export const StyledDrawer = styled(Drawer)`
     width: 100%;
   }
 `;
+
+export const StyledDialogButtonsContainer = styled("div")(
+  ({ theme }) => `
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    margin: ${theme.spacing(8)};
+  `,
+);
 
 interface StyledSectionProps {
   isMobile?: boolean;

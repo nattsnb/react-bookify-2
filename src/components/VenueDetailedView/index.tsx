@@ -20,7 +20,7 @@ import { ContactInfo } from "./ContactInfo";
 import { DetailsAndImageContainer } from "./DetailsAndImageContainer";
 import { WideBodyLinkBarAndContentContainer } from "./LinkBarAndBody/WideBodyLinkBarAndContentContainer.tsx";
 import { NarrowBodyLinkBar } from "./LinkBarAndBody/NarowBodyLinkBar.tsx";
-import { useActiveVenue } from "../../contexts/activeVenueContext.ts";
+import { useActiveVenue } from "../../contexts/activeVenueContext.tsx";
 import { VenueSections } from "./VenueSections.tsx";
 import { BackButton } from "../BackButton";
 

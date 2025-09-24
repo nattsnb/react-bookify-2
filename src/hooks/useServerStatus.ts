@@ -11,12 +11,9 @@ export function useServerStatus() {
     const checkServer = async () => {
       setIsLoading(true);
       try {
-        const response = await venueApi.getHead();
-        if (response instanceof Response) {
-          setIsServerRunning(response.ok);
-        } else {
-          setIsServerRunning(false);
-        }
+        const isApiAvailable = await venueApi.getHead();
+        setIsServerRunning(isApiAvailable);
+        if (!isApiAvailable) setIsError(true);
       } catch (error) {
         setIsError(true);
         console.error("Error while getting server status:", error);

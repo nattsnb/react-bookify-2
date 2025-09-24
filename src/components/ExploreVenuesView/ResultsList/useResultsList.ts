@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { venueApi } from "../../../shared/api/venueApi.ts";
 import { useError } from "../../../contexts/errorContext.ts";
 import type { VenueFilterDto } from "../../../shared/types/tables/venue/venue-filter.dto.ts";
-import { useFilter } from "../../../contexts/filterParamsContext.ts";
+import { useFilter } from "../../../contexts/filterParamsContext.tsx";
 import type { VenueDto } from "../../../shared/types/tables/venue/venue.dto.ts";
 
 export const useResultsList = (limit: number) => {

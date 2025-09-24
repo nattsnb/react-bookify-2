@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { CircularProgress, CssBaseline } from "@mui/material";
 import theme from "./theme/theme.ts";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
@@ -9,76 +9,89 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { ErrorContext } from "./contexts/errorContext";
 import { ExploreVenuesView } from "./components/ExploreVenuesView";
 import { VenueDetailedView } from "./components/VenueDetailedView";
-import { FilterParamsContext } from "./contexts/filterParamsContext.ts";
-import type { VenueFilterDto } from "./shared/types/tables/venue/venue-filter.dto.ts";
 import { CurrencyProvider } from "./contexts/currencyContext.tsx";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { PictureCarouselContext } from "./contexts/pictureCaruselContext.ts";
-import { ActiveVenueContext } from "./contexts/activeVenueContext.ts";
-import type { VenueDto } from "./shared/types/tables/venue/venue.dto.ts";
-import { VenueSection } from "./shared/constants.ts";
+import { LoginView } from "./components/LoginView";
+import { AuthenticationProvider } from "./contexts/authenticationContext.tsx";
+import { AccountView } from "./components/AccountView";
+import { ProtectedRoute } from "./routes/ProtectedRoute.tsx";
+import { ActiveVenueProvider } from "./contexts/activeVenueContext.tsx";
+import { FilterParamsProvider } from "./contexts/filterParamsContext.tsx";
+import { PictureCarouselProvider } from "./contexts/pictureCaruselContext.tsx";
+import { NoUserRoute } from "./routes/NoUserdRoute.tsx";
+import { Urls } from "./shared/constants/urls.ts";
 
 export function App() {
   const [isError, setIsError] = useState(false);
-  const [filterParams, setFilterParams] = useState<VenueFilterDto | undefined>(
-    undefined,
-  );
-  const [displayedPictureNumber, setDisplayedPictureNumber] = useState(0);
-  const [activeVenue, setActiveVenue] = useState<VenueDto | null>(null);
-  const [displayedSection, setDisplayedSection] = useState<VenueSection>(
-    VenueSection.DESCRIPTION,
-  );
 
   return (
     <ErrorContext.Provider value={{ isError, setIsError }}>
-      <PictureCarouselContext.Provider
-        value={{ displayedPictureNumber, setDisplayedPictureNumber }}
-      >
-        <ActiveVenueContext.Provider
-          value={{
-            activeVenue,
-            setActiveVenue,
-            displayedSection,
-            setDisplayedSection,
-          }}
-        >
+      <PictureCarouselProvider>
+        <ActiveVenueProvider>
           <CurrencyProvider>
-            <FilterParamsContext.Provider
-              value={{ filterParams, setFilterParams }}
-            >
-              <LocalizationProvider
-                dateAdapter={AdapterDayjs}
-                localeText={{ okButtonLabel: "Done" }}
-              >
-                <ThemeProvider theme={theme}>
-                  <CssBaseline />
-                  <Layout>
-                    <Routes>
-                      <Route path="/" element={<ExploreVenuesView />} />
-                      <Route
-                        path="/venue/:venueId"
-                        element={<VenueDetailedView />}
-                      />
-                      <Route path="/about-us/" element={<p>about us</p>} />
-                      <Route
-                        path="/your-favourites/"
-                        element={<p>your favourites</p>}
-                      />
-                      <Route
-                        path="/start-hosting/"
-                        element={<p>start hosting</p>}
-                      />
-                      <Route path="/login/" element={<p>log in</p>} />
-                      <Route path="/contact/" element={<p>contact</p>} />
-                      <Route path="/assistance/" element={<p>assistance</p>} />
-                    </Routes>
-                  </Layout>
-                </ThemeProvider>
-              </LocalizationProvider>
-            </FilterParamsContext.Provider>
+            <AuthenticationProvider>
+              <FilterParamsProvider>
+                <LocalizationProvider
+                  dateAdapter={AdapterDayjs}
+                  localeText={{ okButtonLabel: "Done" }}
+                >
+                  <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Layout>
+                      <Routes>
+                        <Route
+                          path={Urls.HOME}
+                          element={<ExploreVenuesView />}
+                        />
+                        <Route
+                          path={`${Urls.VENUE_DETAILS}/:venueId`}
+                          element={<VenueDetailedView />}
+                        />
+                        <Route path={Urls.ABOUT_US} element={<p>about us</p>} />
+                        <Route
+                          path={Urls.YOUR_FAVOURITES}
+                          element={<p>your favourites</p>}
+                        />
+                        <Route
+                          path={Urls.START_HOSTING}
+                          element={<p>start hosting</p>}
+                        />
+                        <Route
+                          path={Urls.LOGIN}
+                          element={
+                            <NoUserRoute
+                              placeholder={<CircularProgress />}
+                              redirectTo={Urls.ACCOUNT}
+                            >
+                              <LoginView />
+                            </NoUserRoute>
+                          }
+                        />
+                        <Route path={Urls.CONTACT} element={<p>contact</p>} />
+                        <Route
+                          path={Urls.ASSISTANCE}
+                          element={<p>assistance</p>}
+                        />
+                        <Route
+                          path={Urls.ACCOUNT}
+                          element={
+                            <ProtectedRoute
+                              placeholder={<CircularProgress />}
+                              redirectTo={Urls.LOGIN}
+                            >
+                              <AccountView />
+                            </ProtectedRoute>
+                          }
+                        />
+                      </Routes>
+                    </Layout>
+                  </ThemeProvider>
+                </LocalizationProvider>
+              </FilterParamsProvider>
+            </AuthenticationProvider>
           </CurrencyProvider>
-        </ActiveVenueContext.Provider>
-      </PictureCarouselContext.Provider>
+        </ActiveVenueProvider>
+      </PictureCarouselProvider>
     </ErrorContext.Provider>
   );
 }

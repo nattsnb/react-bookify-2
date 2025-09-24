@@ -21,6 +21,7 @@ import { GuestsNumberInput } from "./GuestsNumberInput.tsx";
 import { useSearchDropdownData } from "./useSearchBarData.ts";
 import { FormProvider } from "react-hook-form";
 import { FormController } from "./FormController.tsx";
+import type { Dayjs } from "dayjs";
 
 export const SearchBar = () => {
   const {
@@ -29,10 +30,10 @@ export const SearchBar = () => {
     onSubmit,
   } = useSearchBar();
 
-  const [isCollapsed, setIsCollapsed] = React.useState(false);
+  const [isSearchBarCollapsed, setIsSearchBarCollapsed] = React.useState(false);
 
   const collapseSearchBar = () => {
-    setIsCollapsed((prev) => {
+    setIsSearchBarCollapsed((prev) => {
       const next = !prev;
       if (!next) {
         reset();
@@ -62,20 +63,25 @@ export const SearchBar = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <StyledSearchBarContainer>
           {isViewportSmallerThanMd && (
-            <Collapse in={isCollapsed} collapsedSize={70}>
+            <Collapse in={isSearchBarCollapsed} collapsedSize={70}>
               <StyledInputsContainer>
                 <FormController name="localization">
                   {(field) => (
                     <LocalizationInput
-                      value={field.value ?? ""}
+                      value={typeof field.value === "string" ? field.value : ""}
                       onChange={field.onChange}
+                      setIsSearchBarCollapsed={setIsSearchBarCollapsed}
                     />
                   )}
                 </FormController>
                 <FormController name="occasionIds">
                   {(field) => (
                     <OccasionInput
-                      value={field.value ?? []}
+                      value={
+                        Array.isArray(field.value)
+                          ? field.value.map(Number)
+                          : []
+                      }
                       onChange={field.onChange}
                     />
                   )}
@@ -83,7 +89,11 @@ export const SearchBar = () => {
                 <FormController name="venueTypeId">
                   {(field) => (
                     <VenueTypeInput
-                      value={field.value ?? undefined}
+                      value={
+                        typeof field.value === "number"
+                          ? field.value
+                          : undefined
+                      }
                       onChange={field.onChange}
                     />
                   )}
@@ -91,7 +101,7 @@ export const SearchBar = () => {
                 <FormController name="guests">
                   {(field) => (
                     <GuestsNumberInput
-                      value={field.value ?? undefined}
+                      value={field.value as number | null | undefined}
                       onChange={field.onChange}
                     />
                   )}
@@ -99,7 +109,12 @@ export const SearchBar = () => {
                 <FormController name="dateRange">
                   {(field) => (
                     <DateInput
-                      value={field.value ?? [null, null]}
+                      value={
+                        (field.value ?? [null, null]) as [
+                          Dayjs | null,
+                          Dayjs | null,
+                        ]
+                      }
                       onChange={field.onChange}
                     />
                   )}
@@ -109,23 +124,28 @@ export const SearchBar = () => {
           )}
           {isViewportLargerThanMd && (
             <Collapse
-              in={isCollapsed}
+              in={isSearchBarCollapsed}
               orientation="horizontal"
-              collapsedSize={isViewportSmallerThanLg ? 228 : 245}
+              collapsedSize={isViewportSmallerThanLg ? 235 : 245}
             >
               <StyledInputsContainer>
                 <FormController name="localization">
                   {(field) => (
                     <LocalizationInput
-                      value={field.value ?? ""}
+                      value={typeof field.value === "string" ? field.value : ""}
                       onChange={field.onChange}
+                      setIsSearchBarCollapsed={setIsSearchBarCollapsed}
                     />
                   )}
                 </FormController>
                 <FormController name="occasionIds">
                   {(field) => (
                     <OccasionInput
-                      value={field.value ?? []}
+                      value={
+                        Array.isArray(field.value)
+                          ? field.value.map(Number)
+                          : []
+                      }
                       onChange={field.onChange}
                     />
                   )}
@@ -133,7 +153,11 @@ export const SearchBar = () => {
                 <FormController name="venueTypeId">
                   {(field) => (
                     <VenueTypeInput
-                      value={field.value ?? undefined}
+                      value={
+                        typeof field.value === "number"
+                          ? field.value
+                          : undefined
+                      }
                       onChange={field.onChange}
                     />
                   )}
@@ -141,7 +165,12 @@ export const SearchBar = () => {
                 <FormController name="dateRange">
                   {(field) => (
                     <DateInput
-                      value={field.value ?? [null, null]}
+                      value={
+                        (field.value ?? [null, null]) as [
+                          Dayjs | null,
+                          Dayjs | null,
+                        ]
+                      }
                       onChange={field.onChange}
                     />
                   )}
@@ -149,7 +178,7 @@ export const SearchBar = () => {
                 <FormController name="guests">
                   {(field) => (
                     <GuestsNumberInput
-                      value={field.value ?? undefined}
+                      value={field.value as number | null | undefined}
                       onChange={field.onChange}
                     />
                   )}
@@ -157,9 +186,10 @@ export const SearchBar = () => {
               </StyledInputsContainer>
             </Collapse>
           )}
+
           <StyledCollapseTypographyContainer>
             <Button onClick={collapseSearchBar}>
-              {!isCollapsed
+              {!isSearchBarCollapsed
                 ? "I want to be more specific (4)"
                 : "I don’t want to be that specific"}
             </Button>

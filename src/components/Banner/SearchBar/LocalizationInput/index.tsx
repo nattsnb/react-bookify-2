@@ -7,14 +7,21 @@ import { StyledSuggestionList } from "./LocalizationInput.styled.ts";
 type LocalizationInputProps = {
   value: string;
   onChange: (value: string) => void;
+  setIsSearchBarCollapsed: (v: boolean) => void;
 };
 
 export const LocalizationInput = ({
   value,
   onChange,
+  setIsSearchBarCollapsed,
 }: LocalizationInputProps) => {
   const { suggestions, isAutocompleteOpen, setIsAutocompleteOpen } =
     useLocalizationInput(value);
+
+  const onFocusLocalizationInput = () => {
+    setIsAutocompleteOpen(true);
+    setIsSearchBarCollapsed(true);
+  };
 
   return (
     <StyledFormControl fullWidth>
@@ -25,7 +32,7 @@ export const LocalizationInput = ({
         onChange={(event) => {
           onChange(event.target.value);
         }}
-        onFocus={() => setIsAutocompleteOpen(true)}
+        onFocus={onFocusLocalizationInput}
         onBlur={() => setIsAutocompleteOpen(false)}
         placeholder="localization"
         InputProps={{
@@ -39,9 +46,9 @@ export const LocalizationInput = ({
       />
       {isAutocompleteOpen && suggestions.length > 0 && (
         <StyledSuggestionList>
-          {suggestions.map((name, idx) => (
+          {suggestions.map((name) => (
             <ListItem
-              key={idx}
+              key={name}
               onMouseDown={() => {
                 onChange(name);
                 setIsAutocompleteOpen(false);

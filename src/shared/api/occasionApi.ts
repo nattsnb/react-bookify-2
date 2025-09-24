@@ -1,15 +1,14 @@
 import type { OccasionDto } from "../types/tables/occasion/occasion.dto.ts";
+import { axiosClient } from "./axiosClient.ts";
 
-const API_URL = "http://localhost:3000";
-
-const getAllOccasions = (): Promise<OccasionDto[] | undefined> => {
-  return fetch(`${API_URL}/occasion/`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .catch((error: unknown) =>
-      console.error("Error fetching categories:", error),
-    );
+const getAllOccasions = async (): Promise<OccasionDto[] | undefined> => {
+  try {
+    const { data } = await axiosClient.get<OccasionDto[]>("/occasion");
+    return data;
+  } catch (error) {
+    console.error("Error fetching occasions:", error);
+    return undefined;
+  }
 };
 
 export const occasionApi = {
