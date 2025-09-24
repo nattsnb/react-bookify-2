@@ -6,17 +6,16 @@ import {
   styled,
 } from "@mui/material";
 
-export const StyledResetButton = styled("button")(
-  ({ theme }) => `
+export const StyledResetButton = styled("button")`
     background: none;
     border: none;
     padding: 0;
     margin: 0;
     font: inherit;
-    color: ${theme.palette.primary.main};
+    color: red;
     font-weight: bold;
-  `,
-);
+  `
+;
 
 export const StyledSlider = styled(Slider)(
   ({ theme }) => `
