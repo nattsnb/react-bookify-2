@@ -40,8 +40,6 @@ export const StyledSlider = styled(Slider)(
       );
       border: 2px solid white;
     }
-    padding-left: ${theme.spacing(13)};
-    padding-right: ${theme.spacing(13)};
     margin-top: ${theme.spacing(12)};
     width: 70%;
   `,
