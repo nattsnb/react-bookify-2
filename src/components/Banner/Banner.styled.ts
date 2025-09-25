@@ -119,7 +119,7 @@ export const FiltersButton = styled("button")(
 
 export const SortButton = styled("button")(
   ({ theme }) => `
-    border-radius: 20px 0 0 20px;f
+    border-radius: 20px 0 0 20px;
     font-size: 16px;
     border: none;
     background-color: ${theme.palette.primary.main};
@@ -127,5 +127,6 @@ export const SortButton = styled("button")(
     color: ${theme.palette.background.default};
     height: 40px;
     width: 64px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
   `,
 );
