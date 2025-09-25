@@ -94,8 +94,9 @@ export const StyledLimitWrapper = styled("div")(
 
 export const StyledFiltersContainer = styled("div")(
   ({ theme }) => `
+    overflow: hidden;
     box-shadow: 0 5px 4px ${theme.palette.secondary.light};
-    width: 285px;
+    min-width: 285px;
     font-size: 16px;
   
     &.MuiTypography-root {
